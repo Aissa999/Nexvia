@@ -6,8 +6,13 @@ const API_BASE = (window.location.hostname === 'localhost' ||
   window.location.hostname === '127.0.0.1' ||
   window.location.protocol === 'file:')
   ? 'http://localhost:5000'
-  : 'https://nexvia-backend.onrender.com/';
-
+  : 'https://nexvia-backend.onrender.com';
+// Wake up Render backend on page load to reduce cold start delay
+(function pingBackend() {
+  fetch(API_BASE)
+    .then(() => console.log('Backend awake'))
+    .catch(() => console.log('Backend waking up...'));
+})();
 // ================================================================
 // Menu mobile toggle
 // Ouvre/ferme la navbar mobile et change l'icône hamburger ↔ X
@@ -547,7 +552,7 @@ window.processCheckout = function () {
 
   document.getElementById('confirm-pay-btn').onclick = () => {
     const warning = document.getElementById('payment-warning');
-    
+
     if (selectedMethod === 'card') {
       const num = document.getElementById('card-number').value.trim();
       const exp = document.getElementById('card-exp').value.trim();
