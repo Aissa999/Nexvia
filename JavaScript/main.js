@@ -6,7 +6,7 @@ const API_BASE = (window.location.hostname === 'localhost' ||
   window.location.hostname === '127.0.0.1' ||
   window.location.protocol === 'file:')
   ? 'http://localhost:5000'
-  : 'https://YOUR_RENDER_APP_NAME.onrender.com';
+  : 'https://nexvia-backend.onrender.com/';
 
 // ================================================================
 // Menu mobile toggle
