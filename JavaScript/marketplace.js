@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 </div>
                 <div class="prod-price-row">
-                    <span class="prod-price">${prod.price}</span> <span class="unit">${prod.priceUnit || 'DA/mois'}</span>
+                    <span class="prod-price">${prod.price} <span class="unit">${prod.priceUnit || 'DA/mois'}</span></span>
                 </div>
                 <div class="prod-div"></div>
                 <div class="prod-social">
@@ -494,8 +494,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     <img src="../images/paypal.png" alt="PayPal" loading="lazy"> PayPal
                 </button>
             </div>
+
             ${paymentDetailsHTML}
+            
             <div id="cart-warning" style="color: #ff4d4f; font-size: 13px; margin-bottom: 10px; display: none; text-align: left; font-weight: 500;"></div>
+            
+            <div class="price-box" style="margin-top: 10px;">
+                <div class="price-big">${finalPrice} DA</div>
+                <div class="price-note">Total à régler pour cette commande</div>
+            </div>
+
             <button class="d-buy" id="btn-add-cart">Ajouter au panier</button>
         `;
         detRight.appendChild(paySection);

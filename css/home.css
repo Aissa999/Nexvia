@@ -310,6 +310,8 @@ html {
     transform: translateX(-50%);
     bottom: 65px;
     color: var(--main-color2);
+    cursor: pointer;
+    z-index: 10;
 }
 
 .landing-page a.arrow i {
