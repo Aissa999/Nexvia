@@ -448,34 +448,169 @@ window.renderCartPage = function () {
 
 // Gère le processus de paiement — modal de confirmation professionnel
 window.processCheckout = function () {
-  const btn = document.getElementById('checkout-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Traitement...';
-
-  setTimeout(() => {
-    // Generate a random order serial
-    const serial = 'ORD-2026-' + Math.random().toString(36).substring(2, 8).toUpperCase();
-
-    const overlay = document.createElement('div');
-    overlay.className = 'checkout-modal-overlay';
-    overlay.innerHTML = `
-      <div class="checkout-modal-card">
-        <div class="checkout-modal-icon"><i class="fa-solid fa-check"></i></div>
-        <div class="checkout-modal-title">Commande confirmée !</div>
-        <div class="checkout-modal-order"><i class="fa-solid fa-hashtag"></i> ${serial}</div>
-        <p class="checkout-modal-msg">Une confirmation a été envoyée à votre email. Votre abonnement sera activé dans un délai maximum de <strong>24 heures</strong>.</p>
-        <button class="checkout-modal-btn" id="modal-close-btn">
-          <i class="fa-solid fa-house"></i> Retour à l'accueil
+  const imgPath = window.location.pathname.includes('/pages/') || window.location.pathname.includes('\\pages\\') ? '../images/' : 'images/';
+  const overlay = document.createElement('div');
+  overlay.className = 'checkout-modal-overlay';
+  overlay.innerHTML = `
+    <div class="checkout-modal-card" style="width: 400px; padding: 30px; max-width: 90%;">
+      <h2 style="color: #fff; margin-bottom: 20px; font-size: 24px;">Paiement</h2>
+      <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <button id="pay-card-btn" style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid var(--main-color1); background: rgba(34, 167, 240, 0.1); color: #fff; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <img src="${imgPath}baridi-mob.png" alt="" style="width: 20px; height: 20px;"> Carte Dahabia
+        </button>
+        <button id="pay-paypal-btn" style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #fff; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <img src="${imgPath}paypal.png" alt="" style="width: 20px; height: 20px;"> PayPal
         </button>
       </div>
-    `;
-    document.body.appendChild(overlay);
 
-    document.getElementById('modal-close-btn').addEventListener('click', () => {
-      window.clearCart();
-      window.location.href = '../index.html';
+      <div id="card-form" style="display: block; text-align: left;">
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; color: var(--p-color); margin-bottom: 5px; font-size: 14px;">Numéro de carte</label>
+          <input type="text" id="card-number" placeholder="0000 0000 0000 0000" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff;" required>
+        </div>
+        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+            <div style="flex: 1;">
+              <label style="display: block; color: var(--p-color); margin-bottom: 5px; font-size: 14px;">Expiration</label>
+              <input type="text" id="card-exp" placeholder="MM/YY" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff;" required>
+            </div>
+            <div style="flex: 1;">
+              <label style="display: block; color: var(--p-color); margin-bottom: 5px; font-size: 14px;">CVC</label>
+              <input type="text" id="card-cvc" placeholder="123" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff;" required>
+            </div>
+        </div>
+      </div>
+
+      <div id="paypal-form" style="display: none; text-align: left;">
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; color: var(--p-color); margin-bottom: 5px; font-size: 14px;">Email PayPal</label>
+          <input type="email" id="paypal-email" placeholder="votre@email.com" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff;" required>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; color: var(--p-color); margin-bottom: 5px; font-size: 14px;">Numéro de téléphone</label>
+          <input type="text" id="paypal-phone" placeholder="+213 555 55 55 55" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff;" required>
+        </div>
+      </div>
+
+      <div id="payment-warning" style="color: #ff4d4f; font-size: 14px; margin-bottom: 15px; display: none; text-align: center; font-weight: 500;"></div>
+
+      <button id="confirm-pay-btn" style="width: 100%; padding: 14px; background: var(--gradient); color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px;">
+        Confirmer le paiement
+      </button>
+      <button id="cancel-pay-btn" style="width: 100%; padding: 10px; background: transparent; color: var(--p-color); border: none; font-size: 14px; cursor: pointer; margin-top: 10px;">
+        Annuler
+      </button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  const cardBtn = document.getElementById('pay-card-btn');
+  const paypalBtn = document.getElementById('pay-paypal-btn');
+  const cardForm = document.getElementById('card-form');
+  const paypalForm = document.getElementById('paypal-form');
+  let selectedMethod = 'card';
+
+  cardBtn.onclick = () => {
+    selectedMethod = 'card';
+    cardBtn.style.border = '1px solid var(--main-color1)';
+    cardBtn.style.background = 'rgba(34, 167, 240, 0.1)';
+    paypalBtn.style.border = '1px solid rgba(255,255,255,0.1)';
+    paypalBtn.style.background = 'transparent';
+    cardForm.style.display = 'block';
+    paypalForm.style.display = 'none';
+  };
+
+  paypalBtn.onclick = () => {
+    selectedMethod = 'paypal';
+    paypalBtn.style.border = '1px solid var(--main-color1)';
+    paypalBtn.style.background = 'rgba(34, 167, 240, 0.1)';
+    cardBtn.style.border = '1px solid rgba(255,255,255,0.1)';
+    cardBtn.style.background = 'transparent';
+    paypalForm.style.display = 'block';
+    cardForm.style.display = 'none';
+  };
+
+  const expInput = document.getElementById('card-exp');
+  if (expInput) {
+    expInput.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 4) value = value.substring(0, 4);
+      if (value.length > 2) {
+        value = value.substring(0, 2) + '/' + value.substring(2);
+      }
+      e.target.value = value;
     });
-  }, 2000);
+  }
+
+  document.getElementById('cancel-pay-btn').onclick = () => {
+    document.body.removeChild(overlay);
+  };
+
+  document.getElementById('confirm-pay-btn').onclick = () => {
+    const warning = document.getElementById('payment-warning');
+    
+    if (selectedMethod === 'card') {
+      const num = document.getElementById('card-number').value.trim();
+      const exp = document.getElementById('card-exp').value.trim();
+      const cvc = document.getElementById('card-cvc').value.trim();
+      if (!num || !exp || !cvc) {
+        warning.textContent = "Veuillez remplir toutes les informations de la carte.";
+        warning.style.display = 'block';
+        return;
+      }
+
+      const expParts = exp.split('/');
+      if (expParts.length !== 2) {
+        warning.textContent = "Format d'expiration invalide (MM/YY).";
+        warning.style.display = 'block';
+        return;
+      }
+      const month = parseInt(expParts[0], 10);
+      const year = parseInt(expParts[1], 10);
+      if (isNaN(month) || month < 1 || month > 12) {
+        warning.textContent = "Mois d'expiration invalide (01-12).";
+        warning.style.display = 'block';
+        return;
+      }
+      if (isNaN(year) || year < 26) {
+        warning.textContent = "Année d'expiration invalide (26+).";
+        warning.style.display = 'block';
+        return;
+      }
+    } else {
+      const email = document.getElementById('paypal-email').value.trim();
+      const phone = document.getElementById('paypal-phone').value.trim();
+      if (!email || !email.includes('@') || !phone) {
+        warning.textContent = "Veuillez entrer un email valide et un numéro de téléphone.";
+        warning.style.display = 'block';
+        return;
+      }
+    }
+    warning.style.display = 'none';
+
+    // Proceed to success
+    const btn = document.getElementById('confirm-pay-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Traitement...';
+
+    setTimeout(() => {
+      const serial = 'ORD-2026-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      overlay.innerHTML = `
+        <div class="checkout-modal-card">
+          <div class="checkout-modal-icon"><i class="fa-solid fa-check"></i></div>
+          <div class="checkout-modal-title">Commande confirmée !</div>
+          <div class="checkout-modal-order"><i class="fa-solid fa-hashtag"></i> ${serial}</div>
+          <p class="checkout-modal-msg">Une confirmation a été envoyée à votre email. Votre abonnement sera activé dans un délai maximum de <strong>24 heures</strong>.</p>
+          <button class="checkout-modal-btn" id="modal-close-btn">
+            <i class="fa-solid fa-house"></i> Retour à l'accueil
+          </button>
+        </div>
+      `;
+      document.getElementById('modal-close-btn').addEventListener('click', () => {
+        window.clearCart();
+        window.location.href = '../index.html';
+      });
+    }, 2000);
+  };
 };
 
 

@@ -495,10 +495,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </button>
             </div>
             ${paymentDetailsHTML}
-            <div class="price-box">
-                <div class="price-big" id="final-price">${finalPrice} DA</div>
-                <div class="price-note" id="price-note">Payez en DZD via ${selectedPayment === 'baridimob' ? 'Baridimob / CCP' : 'PayPal'}</div>
-            </div>
+            <div id="cart-warning" style="color: #ff4d4f; font-size: 13px; margin-bottom: 10px; display: none; text-align: left; font-weight: 500;"></div>
             <button class="d-buy" id="btn-add-cart">Ajouter au panier</button>
         `;
         detRight.appendChild(paySection);
@@ -511,15 +508,20 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("btn-add-cart").onclick = () => {
             const orderName = document.getElementById("order-name").value.trim();
             const orderEmail = document.getElementById("order-email").value.trim();
+            const warningEl = document.getElementById("cart-warning");
 
             if (!orderName) {
-                alert("Veuillez entrer un nom pour votre commande.");
+                warningEl.textContent = "Veuillez entrer un nom pour votre commande.";
+                warningEl.style.display = "block";
                 return;
             }
             if (!orderEmail || !orderEmail.includes('@')) {
-                alert("Veuillez entrer une adresse email valide.");
+                warningEl.textContent = "Veuillez entrer une adresse email valide.";
+                warningEl.style.display = "block";
                 return;
             }
+
+            warningEl.style.display = "none";
 
             const productToAdd = {
                 id: activeProduct.id + '-' + Date.now(),
@@ -534,8 +536,6 @@ document.addEventListener("DOMContentLoaded", () => {
             };
             if (typeof window.addToCart === 'function') {
                 window.addToCart(productToAdd);
-            } else {
-                alert(`Achat de ${activeProduct.name} (Commande: ${orderName}) pour ${finalPrice} DA via ${selectedPayment} ajouté au panier !`);
             }
         };
     }
