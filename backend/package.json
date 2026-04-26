@@ -1,14 +1,15 @@
 {
-  "name": "backend",
+  "name": "nexvia-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Nexvia API — Marketplace algérienne d'abonnements numériques",
   "main": "server.js",
   "engines": {
     "node": ">=18.0.0"
   },
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch server.js",
+    "test": "echo \"Aucun test configuré\" && exit 0"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "express-rate-limit": "^7.1.5",
     "jsonwebtoken": "^9.0.3",
     "sqlite3": "^6.0.1"
   }
