@@ -1001,7 +1001,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (res.ok) {
         const backendUser = await res.json();
         const local = getUser() || {};
-        
+
         // Merge backend data into localStorage
         const merged = {
           name: backendUser.name || local.name,

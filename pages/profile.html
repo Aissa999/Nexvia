@@ -2,6 +2,7 @@
 <html lang="fr">
 
 <!-- Début Head -->
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +10,8 @@
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/header_footer.css">
     <link rel="stylesheet" href="../css/profile.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -157,59 +160,77 @@
     </footer>
     <!-- Fin Footer -->
     <!-- Début Scripts -->
-<script src="../JavaScript/main.js"></script>
+    <script src="../JavaScript/main.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', async () => {
+        // Use a self-invoking async function to ensure variables don't clash
+        (async function initProfile() {
             const token = localStorage.getItem('nexvia_token');
             if (!token) {
                 window.location.href = 'login.html';
                 return;
             }
 
-            // Pre-fill from localStorage for instant UX
-            const localUser = JSON.parse(localStorage.getItem('nexvia_user') || '{}');
-            if (localUser.name) document.getElementById('prof-name').value = localUser.name;
-            if (localUser.email) document.getElementById('prof-email').value = localUser.email;
-            if (localUser.avatar) {
-                const radio = document.querySelector(`input[name="avatar"][value="${localUser.avatar}"]`);
-                if (radio) radio.checked = true;
-            }
+            const nameInput = document.getElementById('prof-name');
+            const emailInput = document.getElementById('prof-email');
+            const msgEl = document.getElementById('profile-msg');
+            const form = document.getElementById('profile-form');
 
-            // Fetch fresh data from backend
-            try {
-                const res = await fetch(API_BASE + '/api/profile', {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                if (res.ok) {
-                    const user = await res.json();
-                    document.getElementById('prof-name').value = user.name;
-                    document.getElementById('prof-email').value = user.email;
-                    const radio = document.querySelector(`input[name="avatar"][value="${user.profileImage}"]`);
-                    if (radio) radio.checked = true;
-                    
-                    // Sync localStorage
-                    localStorage.setItem('nexvia_user', JSON.stringify({
-                        name: user.name,
-                        email: user.email,
-                        avatar: user.profileImage || 'avatar1'
-                    }));
-                    if (typeof updateHeader === 'function') updateHeader();
-                } else if (res.status === 401 || res.status === 403) {
-                    localStorage.removeItem('nexvia_token');
-                    localStorage.removeItem('nexvia_user');
-                    window.location.href = 'login.html';
+            // 1. First attempt: Pre-fill from localStorage (Instant)
+            function fillFromLocal() {
+                try {
+                    const localUser = JSON.parse(localStorage.getItem('nexvia_user') || '{}');
+                    if (localUser.name) nameInput.value = localUser.name;
+                    if (localUser.email) emailInput.value = localUser.email;
+                    if (localUser.avatar) {
+                        const radio = document.querySelector(`input[name="avatar"][value="${localUser.avatar}"]`);
+                        if (radio) radio.checked = true;
+                    }
+                } catch(e) { console.error("Local storage error", e); }
+            }
+            fillFromLocal();
+
+            // 2. Second attempt: Fetch from backend (Fresh data)
+            async function fetchFreshData() {
+                try {
+                    const res = await fetch(API_BASE + '/api/profile', {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (res.ok) {
+                        const user = await res.json();
+                        nameInput.value = user.name || nameInput.value;
+                        emailInput.value = user.email || emailInput.value;
+                        
+                        const avatarKey = user.profileImage || 'avatar1';
+                        const radio = document.querySelector(`input[name="avatar"][value="${avatarKey}"]`);
+                        if (radio) radio.checked = true;
+
+                        // Sync localStorage
+                        localStorage.setItem('nexvia_user', JSON.stringify({
+                            name: user.name,
+                            email: user.email,
+                            avatar: avatarKey
+                        }));
+                        
+                        if (typeof updateHeader === 'function') updateHeader();
+                    } else if (res.status === 401 || res.status === 403) {
+                        localStorage.clear();
+                        window.location.href = 'login.html';
+                    }
+                } catch (err) {
+                    console.error("Backend fetch error", err);
                 }
-            } catch (err) {
-                console.error("Erreur chargement profil:", err);
             }
+            // Wait for main.js to be fully ready if needed
+            setTimeout(fetchFreshData, 100);
 
-            document.getElementById('profile-form').addEventListener('submit', async (e) => {
+            // 3. Save Changes
+            form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                const btn = e.target.querySelector('button[type="submit"]');
-                const originalBtnText = btn.innerHTML;
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.innerHTML;
                 
-                const name = document.getElementById('prof-name').value.trim();
-                const email = document.getElementById('prof-email').value.trim();
+                const name = nameInput.value.trim();
+                const email = emailInput.value.trim();
                 const avatar = document.querySelector('input[name="avatar"]:checked')?.value || 'avatar1';
 
                 btn.disabled = true;
@@ -224,47 +245,53 @@
                         },
                         body: JSON.stringify({ name, email, profileImage: avatar })
                     });
+                    
                     const data = await res.json();
-
-                    const msgEl = document.getElementById('profile-msg');
                     msgEl.style.display = 'block';
+
                     if (res.ok) {
                         msgEl.style.color = '#22c55e';
-                        msgEl.innerHTML = `<i class="fa-solid fa-check"></i> ${data.message || 'Profil mis à jour !'}`;
+                        msgEl.innerHTML = `<i class="fa-solid fa-check"></i> Profil mis à jour avec succès !`;
                         
-                        // Use the centralized session manager for reliable UI updates
-                        if (typeof window.saveUserSession === 'function') {
-                            window.saveUserSession(name, email, avatar);
+                        // Permanent sync
+                        localStorage.setItem('nexvia_user', JSON.stringify({ name, email, avatar }));
+                        
+                        // Force update the header avatar immediately
+                        if (typeof updateHeader === 'function') {
+                            updateHeader();
                         } else {
-                            localStorage.setItem('nexvia_user', JSON.stringify({ name, email, avatar }));
-                            if (typeof updateHeader === 'function') updateHeader();
+                            // Fallback if main.js is not initialized yet
+                            const headerImg = document.getElementById('nav-profile-avatar');
+                            if (headerImg) {
+                                headerImg.src = `../images/${avatar}.jpeg?t=${Date.now()}`;
+                            }
                         }
                         
-                        // Small bounce effect on success
-                        msgEl.style.animation = 'none';
-                        void msgEl.offsetWidth;
-                        msgEl.style.animation = 'fadeInDown 0.5s ease forwards';
+                        // Scroll to message
+                        msgEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     } else {
                         msgEl.style.color = '#ef4444';
-                        msgEl.innerText = data.message || "Erreur lors de la mise à jour.";
+                        msgEl.textContent = data.message || "Erreur de mise à jour.";
                     }
                 } catch (err) {
-                    console.error("Erreur sauvegarde profil:", err);
-                    document.getElementById('profile-msg').innerText = "Erreur de connexion au serveur.";
+                    msgEl.style.display = 'block';
+                    msgEl.style.color = '#ef4444';
+                    msgEl.textContent = "Erreur de connexion au serveur.";
                 } finally {
                     btn.disabled = false;
-                    btn.innerHTML = originalBtnText;
+                    btn.innerHTML = originalText;
                 }
             });
 
+            // 5. Logout
             document.getElementById('btn-logout').addEventListener('click', () => {
                 localStorage.removeItem('nexvia_token');
                 localStorage.removeItem('nexvia_user');
                 window.location.href = '../index.html';
             });
-        });
+        })();
     </script>
-<!-- Fin Scripts -->
+    <!-- Fin Scripts -->
 </body>
 
 </html>
