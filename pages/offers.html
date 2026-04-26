@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<!-- Début Head -->
+<head>
+    <!-- Encodage caractères  -->
+    <meta charset="UTF-8" />
+    <!-- Vue mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Description SEO -->
+    <meta name="description "
+        content="Achetez vos abonnements Netflix, Spotify, ChatGPT et plus à prix réduit en Algérie." />
+    <!-- Mots clés -->
+    <meta name="keywords" content="abonnements Algérie, Netflix Algérie, Spotify Algérie" />
+    <!-- Auteur site -->
+    <meta name="author" content="Nexvia" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <!-- Titre page -->
+    <title>Nexvia — Offres</title>
+    <!-- fichier principal de style -->
+    <link rel="stylesheet" href="../css/offers.css">
+    <!-- fichier de style header et footer -->
+    <link rel="stylesheet" href="../css/header_footer.css">
+    <!-- polices de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <!-- icônes de bibliothèque FontAwesome -->
+    <link rel="stylesheet" href="../css/all.min.css">
+
+</head>
+<!-- Fin Head -->
+
+</head>
+
+<body>
+    <!-- Début Header -->
+    <header id="home">
+        <div class="container">
+            <nav>
+                <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="logo" loading="lazy"></a>
+                </div>
+                <div class="nav-bar">
+                    <ul class="links">
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="categories.html">Catégories</a></li>
+                        <li><a href="offers.html" class="active">Offres</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <div class="links nav-right-actions">
+
+                        <a href="login.html?mode=signin" class="sign-in">Sign In</a>
+                        <a href="login.html?mode=signup" class="sign-up">Sign Up</a>
+                        <a href="panier.html" class="cart-icon-link">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="cart-badge" style="display: none;">0</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="toggle-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Fin Header -->
+    <!-- Début Section Offres -->
+    <section class="offers" id="offers">
+        <div class="container">
+            <div class="special-heading offpadding">
+                <h3>Offres & Packs Limités</h3>
+                <p>Packs combinés et promos spéciales — économisez plus, profitez mieux</p>
+            </div>
+
+            <div class="offers-tabs" id="offers-tabs">
+                <button class="active" data-filter="all">Tous</button>
+                <button data-filter="pack">Packs</button>
+                <button data-filter="promo">Promos</button>
+            </div>
+
+            <div class="offers-container" id="offers-grid">
+                <!-- OFFRE 1 : Pack Divertissement Ultime -->
+                <div class="offer" data-category="pack"
+                    onclick="window.location.href='categories.html?prod=pack-divertissement'">
+                    <span class="offer-label">🧩 PACK</span>
+                    <span class="offer-badge badge-orange">🔥 N°1</span>
+                    <div class="offer-cover">
+                        <img src="../images/offer1.jpeg" alt="Pack Divertissement Ultime" loading="lazy">
+                    </div>
+                    <h5>Media Premium</h5>
+                    <div class="price-box">
+                        <div class="old-price">1 900 DA/mois</div>
+                        <div class="current-price">1 399 <span>DA/mois</span></div>
+                        <div class="savings">Tu économises 501 DA</div>
+                    </div>
+
+                    <div class="live-counter">
+                        <p><i class="fa-solid fa-bullseye"></i>+3 200 Clients Satisfaits</p>
+                        <p><i class="fa-solid fa-star"></i>Noté 4,9 ⭐</p>
+                    </div>
+                    <button>Acheter maintenant</button>
+                </div>
+
+                <!-- OFFRE 5 : NordVPN (Solo) -->
+                <div class="offer" data-category="promo" onclick="window.location.href='categories.html?prod=nord-vpn'">
+                    <span class="offer-label">🏷️ PROMO</span>
+                    <span class="offer-badge badge-green">🏷️ Prix Réduit</span>
+                    <div class="offer-cover"><img src="../images/offer5.jpeg" alt="NordVPN" loading="lazy"></div>
+                    <h5>NordVPN</h5>
+                    <div class="price-box">
+                        <div class="old-price">900 DA/mois</div>
+                        <div class="current-price">649 <span>DA/mois</span></div>
+                        <div class="savings">Tu économises 251 DA</div>
+                    </div>
+
+                    <div class="live-counter">
+                        <p><i class="fa-solid fa-bullseye"></i>+3 500 Clients Satisfaits</p>
+                        <p><i class="fa-solid fa-star"></i>Noté 4,8 ⭐</p>
+                    </div>
+                    <button>Acheter maintenant</button>
+                </div>
+                <!-- OFFRE 2 : Duo Streaming -->
+                <div class="offer" data-category="pack"
+                    onclick="window.location.href='categories.html?prod=duo-streaming'">
+                    <span class="offer-label">🧩 PACK</span>
+                    <span class="offer-badge badge-red">⏳ Offre Limitée</span>
+                    <div class="offer-cover">
+                        <img src="../images/offer2.jpeg" alt="Duo Streaming" loading="lazy">
+                    </div>
+                    <h5>Duo Streaming</h5>
+                    <div class="price-box">
+                        <div class="old-price">1 300 DA/mois</div>
+                        <div class="current-price">949 <span>DA/mois</span></div>
+                        <div class="savings">Tu économises 351 DA</div>
+                    </div>
+
+                    <div class="live-counter">
+                        <p><i class="fa-solid fa-bullseye"></i>+1 500 Clients Satisfaits</p>
+                        <p><i class="fa-solid fa-star"></i>Noté 4,7 ⭐</p>
+                    </div>
+                    <button>Acheter maintenant</button>
+                </div>
+
+                <!-- OFFRE 3 : Pack IA Premium -->
+                <div class="offer" data-category="pack" onclick="window.location.href='categories.html?prod=pack-ia'">
+                    <span class="offer-label">🧩 PACK</span>
+                    <span class="offer-badge badge-blue">⚡ Top Vente</span>
+                    <div class="offer-cover">
+                        <img src="../images/offer3.jpeg" alt="Pack IA Premium" loading="lazy">
+                    </div>
+                    <h5>Pack IA Premium</h5>
+                    <div class="price-box">
+                        <div class="old-price">5 600 DA/mois</div>
+                        <div class="current-price">4 499 <span>DA/mois</span></div>
+                        <div class="savings">Tu économises 1 101 DA</div>
+                    </div>
+
+                    <div class="live-counter">
+                        <p><i class="fa-solid fa-bullseye"></i>+2 100 Clients Satisfaits</p>
+                        <p><i class="fa-solid fa-star"></i>Noté 4,8 ⭐</p>
+                    </div>
+                    <button>Acheter maintenant</button>
+                </div>
+
+                <!-- OFFRE 4 : Pack Gaming -->
+                <div class="offer" data-category="pack"
+                    onclick="window.location.href='categories.html?prod=pack-gaming'">
+                    <span class="offer-label">🧩 PACK</span>
+                    <span class="offer-badge badge-red badge-pulse">🎮 Seulement 10 Restants !</span>
+                    <div class="offer-cover">
+                        <img src="../images/offer4.png" alt="Pack Gaming" loading="lazy">
+                    </div>
+                    <h5>Pack Gaming</h5>
+                    <div class="price-box">
+                        <div class="old-price">1 360 DA</div>
+                        <div class="current-price">999 <span>DA</span></div>
+                        <div class="savings">Tu économises 361 DA</div>
+                    </div>
+
+                    <div class="live-counter">
+                        <p><i class="fa-solid fa-bullseye"></i>+980 Clients Satisfaits</p>
+                        <p><i class="fa-solid fa-star"></i>Noté 4,6 ⭐</p>
+                    </div>
+                    <button>Acheter maintenant</button>
+                </div>
+
+
+                <!-- OFFRE 6 : Canva Pro (Solo) -->
+                <div class="offer" data-category="promo" onclick="window.location.href='categories.html?prod=canva'">
+                    <span class="offer-label">🏷️ PROMO</span>
+                    <span class="offer-badge badge-gold">⚡ Flash Sale</span>
+                    <div class="offer-cover"><img src="../images/offer6.jpeg" alt="Canva Pro" loading="lazy"></div>
+                    <h5>Canva Pro</h5>
+                    <div class="price-box">
+                        <div class="old-price">650 DA/mois</div>
+                        <div class="current-price">449 <span>DA/mois</span></div>
+                        <div class="savings">Tu économises 201 DA</div>
+                    </div>
+
+                    <div class="live-counter">
+                        <p><i class="fa-solid fa-bullseye"></i>+2 800 Clients Satisfaits</p>
+                        <p><i class="fa-solid fa-star"></i>Noté 4,7 ⭐</p>
+                    </div>
+                    <button>Acheter maintenant</button>
+                </div>
+            </div>
+    </section>
+    <!-- Fin Section Offres -->
+    <!-- Début Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="nexvia">
+                    <img class="logo" src="../images/logo.png" alt="logo" loading="lazy">
+                    <p>Votre marketplace de confiance pour les abonnements numériques premium en Algérie. Qualité et
+                        rapidité garanties.</p>
+                    <div>
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <h6>Navigation</h6>
+                    <ul>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="../index.html">Accueil</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="about.html">À propos</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a
+                                    href="categories.html">Catégories</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="offers.html">Offres</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="contact.html">Contact</a></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="inofs">
+                    <h6>Contact</h6>
+                    <div>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>Département d’informatique, Université Mouloud Mammeri </p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-clock"></i>
+                        <p>Horaires de service : Dimanche – Jeudi, 9h – 18h</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-phone-volume"></i>
+                        <p>+213 123456789</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-envelope"></i>
+                        <p>nexvia@Support.dz</p>
+                    </div>
+                </div>
+                <div class="policies">
+                    <h6>Légal</h6>
+                    <ul>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="conditions.html">Conditions
+                                    d'utilisation</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="privacy.html">Politique de
+                                    confidentialité</a></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p>© 2026 <span>Nexvia</span> — Tous droits réservés.</p>
+    </footer>
+    <!-- Fin Footer -->
+    <!-- Début Scripts -->
+<script src="../JavaScript/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabBtns = document.querySelectorAll('#offers-tabs button');
+            const offers = document.querySelectorAll('#offers-grid .offer');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active from all
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    // Add active to clicked
+                    btn.classList.add('active');
+
+                    const filter = btn.getAttribute('data-filter');
+
+                    offers.forEach(offer => {
+                        if (filter === 'all' || offer.getAttribute('data-category') === filter) {
+                            offer.classList.remove('hidden');
+                        } else {
+                            offer.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+<!-- Fin Scripts -->
+</body>
+
+</html>

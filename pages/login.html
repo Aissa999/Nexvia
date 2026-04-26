@@ -1,0 +1,262 @@
+﻿<!doctype html>
+<html lang="fr">
+
+<!-- Début Head -->
+<head>
+    <!-- Encodage caractères  -->
+    <meta charset="UTF-8" />
+    <!-- Vue mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Description SEO -->
+    <meta name="description "
+        content="Achetez vos abonnements Netflix, Spotify, ChatGPT et plus à prix réduit en Algérie." />
+    <!-- Mots clés -->
+    <meta name="keywords" content="abonnements Algérie, Netflix Algérie, Spotify Algérie" />
+    <!-- Auteur site -->
+    <meta name="author" content="Nexvia" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <!-- Titre page -->
+    <title>Nexvia</title>
+    <!-- fichier principal de style -->
+    <link rel="stylesheet" href="../css/login.css">
+    <!-- fichier de style header et footer -->
+    <link rel="stylesheet" href="../css/header_footer.css">
+    <!-- polices de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <!-- icônes de bibliothèque FontAwesome -->
+    <link rel="stylesheet" href="../css/all.min.css">
+
+</head>
+<!-- Fin Head -->
+
+<body>
+    <!-- Début Header -->
+    <header id="home">
+        <div class="container">
+            <nav>
+                <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="logo" loading="lazy"></a>
+                </div>
+                <div class="nav-bar">
+                    <ul class="links">
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="categories.html">Catégories</a></li>
+                        <li><a href="offers.html">Offres</a></li>
+                        <li><a href="contact.html" class="active">Contact</a></li>
+                    </ul>
+                    <div class="links nav-right-actions">
+
+                        <a href="login.html?mode=signin" class="sign-in">Sign In</a>
+                        <a href="login.html?mode=signup" class="sign-up">Sign Up</a>
+                        <a href="panier.html" class="cart-icon-link">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="cart-badge" style="display: none;">0</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="toggle-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Fin Header -->
+    <!-- Début Sign-in -->
+    <!-- Début Section Sign-In -->
+<section class="sign-in" id="signin-section">
+        <div class="auth-card">
+            <div class="panel-social">
+                <p class="panel-label">Connexion rapide</p>
+                <h2 class="panel-title">Un clic suffit</h2>
+                <p class="panel-sub">Connectez-vous instantanément avec votre compte Google ou Apple.</p>
+
+                <button class="social-btn">
+                    <img src="../images/google.webp" width="18px" loading="lazy">
+                    <span>Continuer avec Google</span>
+                </button>
+
+                <button class="social-btn">
+                    <img src="../images/apple.png" width="18px" loading="lazy">
+                    <span>Continuer avec Apple</span>
+                </button>
+            </div>
+            <div class="divider-v"></div>
+            <div class="panel-form">
+                <h1>Bon retour</h1>
+                <p class="subtitle">Connectez-vous à votre espace Nexvia</p>
+                <form onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="signin-email">Adresse email</label>
+                        <input type="email" id="signin-email" placeholder="vous@exemple.com" autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="signin-password">Mot de passe</label>
+                        <input type="password" id="signin-password" placeholder="••••••••"
+                            autocomplete="current-password">
+                    </div>
+                    <a href="#" class="forgot-link">Mot de passe oublié ?</a>
+                    <button type="submit" class="btn-primary">Se connecter</button>
+                </form>
+                <p class="auth-footer">
+                    Pas encore de compte ? <span><a href="#" id="go-signup">S'inscrire</a></span>
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- Fin Sign-in -->
+    <!-- Début Sing-up -->
+    <section class="sign-up" id="signup-section" style="display:none">
+
+        <div class="auth-card">
+            <div class="panel-social">
+                <p class="panel-label">Inscription rapide</p>
+                <h2 class="panel-title">Commencez vite</h2>
+                <p class="panel-sub">Créez votre compte en un clic avec Google ou Apple.</p>
+
+                <button class="social-btn">
+                    <img src="../images/google.webp" width="18px" loading="lazy">
+                    <span>S'inscrire avec Google</span>
+                </button>
+
+                <button class="social-btn">
+                    <img src="../images/apple.png" width="18px" loading="lazy">
+                    <span>S'inscrire avec Apple</span>
+                </button>
+            </div>
+            <div class="divider-v"></div>
+
+            <div class="panel-form">
+                <h1>Créer un compte</h1>
+                <p class="subtitle">Rejoignez Nexvia et transformez votre productivité</p>
+
+                <form onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="signup-name">Nom complet</label>
+                        <input type="text" id="signup-name" placeholder="Jean Dupont" autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Adresse email</label>
+                        <input type="email" id="signup-email" placeholder="vous@exemple.com" autocomplete="email">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="signup-password">Mot de passe</label>
+                            <input type="password" id="signup-password" placeholder="Min. 8 caractères"
+                                autocomplete="new-password" oninput="checkStrength(this.value)">
+                            <div class="strength-bars">
+                                <div class="s-bar" id="b1"></div>
+                                <div class="s-bar" id="b2"></div>
+                                <div class="s-bar" id="b3"></div>
+                                <div class="s-bar" id="b4"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-confirm">Confirmer</label>
+                            <input type="password" id="signup-confirm" placeholder="Répétez"
+                                autocomplete="new-password">
+                        </div>
+                    </div>
+
+                    <div class="terms">
+                        <input type="checkbox" id="agree">
+                        <label for="agree">
+                            J'accepte les <a href="conditions.html">Conditions d'utilisation</a> et la <a
+                                href="privacy.html">Politique de confidentialité</a>.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Créer un compte</button>
+                </form>
+
+                <p class="auth-footer">
+                    Déjà un compte ? <a href="#" id="go-signin">Se connecter</a>
+                </p>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- Fin Sing-up -->
+    <!-- Début Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="nexvia">
+                    <img class="logo" src="../images/logo.png" alt="logo" loading="lazy">
+                    <p>Votre marketplace de confiance pour les abonnements numériques premium en Algérie. Qualité et
+                        rapidité garanties.</p>
+                    <div>
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <h6>Navigation</h6>
+                    <ul>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="../index.html">Accueil</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="about.html">Ã€ propos</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a
+                                    href="categories.html">Catégories</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="offers.html">Offres</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="contact.html">Contact</a></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="inofs">
+                    <h6>Contact</h6>
+                    <div>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>Département d'informatique, Université Mouloud Mammeri </p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-clock"></i>
+                        <p>Horaires de service : Dimanche â€“ Jeudi, 9h â€“ 18h</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-phone-volume"></i>
+                        <p>+213 123456789</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-envelope"></i>
+                        <p>nexvia@Support.dz</p>
+                    </div>
+                </div>
+                <div class="policies">
+                    <h6>Légal</h6>
+                    <ul>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="conditions.html">Conditions
+                                    d'utilisation</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="privacy.html">Politique de
+                                    confidentialité</a></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p>© 2026 <span>Nexvia</span> — Tous droits réservés.</p>
+    </footer>
+    <!-- Fin Footer -->
+    <!-- Début Scripts -->
+<script src="../JavaScript/main.js"></script>
+<!-- Fin Scripts -->
+</body>
+
+</html>

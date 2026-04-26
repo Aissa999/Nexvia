@@ -1,0 +1,132 @@
+header {
+    background-color: var(--bg-section2);
+}
+
+.profile-page {
+    padding: 100px 0;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-section1);
+}
+
+.profile-card {
+    background-color: var(--bg-card);
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.profile-card h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--p-color);
+    font-size: 14px;
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: var(--main-color2);
+}
+
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.avatar-grid label {
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    border-radius: 50%;
+}
+
+.avatar-grid input {
+    display: none;
+}
+
+.avatar-grid img {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    border: 3px solid transparent;
+    transition: 0.3s;
+    object-fit: cover !important;
+}
+
+.avatar-grid input:checked+img {
+    border-color: var(--main-color2);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--main-color2);
+}
+
+.btn-save,
+.btn-logout {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.btn-save {
+    background: var(--gradient);
+    color: white;
+}
+
+.btn-save:hover {
+    box-shadow: var(--box-shadow);
+}
+
+.btn-logout {
+    background-color: transparent;
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.btn-logout:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+#profile-msg {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    display: none;
+}

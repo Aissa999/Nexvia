@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="fr">
+
+<!-- Début Head -->
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexvia - Profil</title>
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/header_footer.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/all.min.css">
+
+</head>
+<!-- Fin Head -->
+
+<body>
+    <header id="home">
+        <div class="container">
+            <nav>
+                <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="logo" loading="lazy"></a>
+                </div>
+                <div class="nav-bar">
+                    <ul class="links">
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="categories.html">Catégories</a></li>
+                        <li><a href="offers.html">Offres</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <div class="links nav-right-actions">
+
+                        <a href="login.html?mode=signin" class="sign-in">Sign In</a>
+                        <a href="login.html?mode=signup" class="sign-up">Sign Up</a>
+                        <a href="panier.html" class="cart-icon-link">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="cart-badge" style="display: none;">0</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="toggle-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="profile-page">
+        <div class="container">
+            <div class="profile-card">
+                <h2>Mon Profil</h2>
+                <div id="profile-msg"></div>
+                <form id="profile-form">
+                    <div class="input-group">
+                        <label>Nom complet <i class="fa-solid fa-pen"
+                                style="color: var(--main-color2); margin-left: 5px; font-size: 11px;"></i></label>
+                        <input type="text" id="prof-name" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Adresse Email <i class="fa-solid fa-pen"
+                                style="color: var(--main-color2); margin-left: 5px; font-size: 11px;"></i></label>
+                        <input type="email" id="prof-email" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Choisir un avatar</label>
+                        <div class="avatar-grid">
+                            <label><input type="radio" name="avatar" value="avatar1" checked><img
+                                    src="../images/avatar1.jpeg" alt="Avatar1"></label>
+                            <label><input type="radio" name="avatar" value="avatar2"><img src="../images/avatar2.jpeg"
+                                    alt="Avatar2"></label>
+                            <label><input type="radio" name="avatar" value="avatar3"><img src="../images/avatar3.jpeg"
+                                    alt="Avatar3"></label>
+                            <label><input type="radio" name="avatar" value="avatar4"><img src="../images/avatar4.jpeg"
+                                    alt="Avatar4"></label>
+                            <label><input type="radio" name="avatar" value="avatar5"><img src="../images/avatar5.jpeg"
+                                    alt="Avatar5"></label>
+                            <label><input type="radio" name="avatar" value="avatar6"><img src="../images/avatar6.jpeg"
+                                    alt="Avatar6"></label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-save">Sauvegarder les modifications</button>
+                    <button type="button" class="btn-logout" id="btn-logout">Se déconnecter</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Début Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="nexvia">
+                    <img class="logo" src="../images/logo.png" alt="logo" loading="lazy">
+                    <p>Votre marketplace de confiance pour les abonnements numériques premium en Algérie. Qualité et
+                        rapidité garanties.</p>
+                    <div>
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <h6>Navigation</h6>
+                    <ul>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="../index.html">Accueil</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="about.html">À propos</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a
+                                    href="categories.html">Catégories</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="offers.html">Offres</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="contact.html">Contact</a></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="inofs">
+                    <h6>Contact</h6>
+                    <div><i class="fa-solid fa-location-dot"></i>
+                        <p>Département d'informatique, Université Mouloud Mammeri</p>
+                    </div>
+                    <div><i class="fa-solid fa-clock"></i>
+                        <p>Horaires de service : Dimanche – Jeudi, 9h – 18h</p>
+                    </div>
+                    <div><i class="fa-solid fa-phone-volume"></i>
+                        <p>+213 123456789</p>
+                    </div>
+                    <div><i class="fa-solid fa-envelope"></i>
+                        <p>nexvia@Support.dz</p>
+                    </div>
+                </div>
+                <div class="policies">
+                    <h6>Légal</h6>
+                    <ul>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="conditions.html">Conditions
+                                    d'utilisation</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="privacy.html">Politique de
+                                    confidentialité</a></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p>© 2026 <span>Nexvia</span> — Tous droits réservés.</p>
+    </footer>
+    <!-- Fin Footer -->
+    <!-- Début Scripts -->
+<script src="../JavaScript/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('nexvia_token');
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                const res = await fetch('http://localhost:5000/api/profile', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    const user = await res.json();
+                    document.getElementById('prof-name').value = user.name;
+                    document.getElementById('prof-email').value = user.email;
+                    const radio = document.querySelector(`input[name="avatar"][value="${user.profileImage}"]`);
+                    if (radio) radio.checked = true;
+                } else {
+                    localStorage.removeItem('nexvia_token');
+                    window.location.href = 'login.html';
+                }
+            } catch (err) {
+                console.error(err);
+            }
+
+            document.getElementById('profile-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('prof-name').value;
+                const email = document.getElementById('prof-email').value;
+                const avatar = document.querySelector('input[name="avatar"]:checked')?.value || 'avatar1';
+
+                try {
+                    const res = await fetch('http://localhost:5000/api/profile', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({ name, email, profileImage: avatar })
+                    });
+                    const data = await res.json();
+
+                    const msgEl = document.getElementById('profile-msg');
+                    msgEl.style.display = 'block';
+                    if (res.ok) {
+                        msgEl.style.color = '#22c55e';
+                        msgEl.innerHTML = `<i class="fa-solid fa-check"></i> ${data.message}`;
+                        // Update localStorage so header avatar refreshes immediately
+                        const stored = JSON.parse(localStorage.getItem('nexvia_user') || '{}');
+                        stored.name = name;
+                        stored.email = email;
+                        stored.avatar = avatar;
+                        localStorage.setItem('nexvia_user', JSON.stringify(stored));
+                        // Refresh the header avatar
+                        if (typeof updateHeader === 'function') updateHeader();
+                    } else {
+                        msgEl.style.color = '#ef4444';
+                        msgEl.innerText = data.message;
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            });
+
+            document.getElementById('btn-logout').addEventListener('click', () => {
+                localStorage.removeItem('nexvia_token');
+                localStorage.removeItem('nexvia_user');
+                window.location.href = '../index.html';
+            });
+        });
+    </script>
+<!-- Fin Scripts -->
+</body>
+
+</html>

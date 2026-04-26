@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+
+<!-- Début Head -->
+<head>
+    <!-- Encodage caractères -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Votre panier - Nexvia" />
+    <title>Nexvia — Panier</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <!-- Style header, footer et global -->
+    <link rel="stylesheet" href="../css/header_footer.css">
+    <!-- Style spécifique au panier -->
+    <link rel="stylesheet" href="../css/panier.css">
+    <!-- Polices Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Icônes FontAwesome -->
+    <link rel="stylesheet" href="../css/all.min.css">
+
+</head>
+<!-- Fin Head -->
+
+<body>
+
+    <!-- Début Header -->
+    <header id="home">
+        <div class="container">
+            <nav>
+                <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="logo" loading="lazy"></a></div>
+                <div class="nav-bar">
+                    <ul class="links">
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="categories.html">Catégories</a></li>
+                        <li><a href="offers.html">Offres</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <div class="links nav-right-actions">
+                        
+                        <a href="login.html?mode=signin" class="sign-in">Sign In</a>
+                        <a href="login.html?mode=signup" class="sign-up">Sign Up</a>
+                        <a href="panier.html" class="cart-icon-link active"> <!-- active to show we are on it -->
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="cart-badge" style="display: none;">0</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="toggle-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Fin Header -->
+
+    <!-- Début Contenu Panier -->
+    <section class="cart-section">
+        <div class="container">
+
+            <div class="cart-container" id="cart-container">
+                <div class="cart-items" id="cart-items">
+                </div>
+                <div class="cart-summary" id="cart-summary" style="display: none;">
+                    <div class="summary-title">Résumé de la commande</div>
+                    <div class="summary-row">
+                        <span>Sous-total</span>
+                        <span id="summary-subtotal">0 DA</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Frais de traitement</span>
+                        <span>0 DA</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total (TTC)</span>
+                        <span id="summary-total">0 DA</span>
+                    </div>
+                    <button class="checkout-btn" id="checkout-btn" onclick="processCheckout()">Finaliser
+                        l'achat</button>
+                    <button class="clear-cart-btn" onclick="window.clearCart()"
+                        style="width: 100%; margin-top: 10px; font-size: 0.9rem;">Vider le panier</button>
+                </div>
+            </div>
+
+            <div id="empty-state" class="empty-cart" style="display: none;">
+                <i class="fa-solid fa-cart-arrow-down"></i>
+                <h4>Votre panier est vide</h4>
+                <p>Découvrez nos offres premium et ajoutez vos abonnements préférés.</p>
+                <a href="categories.html">Explorer les catégories</a>
+            </div>
+        </div>
+    </section>
+    <!-- Fin Contenu Panier -->
+
+    <!-- Début Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="nexvia">
+                    <img class="logo" src="../images/logo.png" alt="logo" loading="lazy">
+                    <p>Votre marketplace de confiance pour les abonnements numériques premium en Algérie. Qualité et
+                        rapidité garanties.</p>
+                    <div>
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <h6>Navigation</h6>
+                    <ul>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="../index.html">Accueil</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="about.html">À propos</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a
+                                    href="categories.html">Catégories</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="offers.html">Offres</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="contact.html">Contact</a></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="inofs">
+                    <h6>Contact</h6>
+                    <div>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>Département d’informatique, Université Mouloud Mammeri </p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-clock"></i>
+                        <p>Horaires de service : Dimanche – Jeudi, 9h – 18h</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-phone-volume"></i>
+                        <p>+213 123456789</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-envelope"></i>
+                        <p>nexvia@Support.dz</p>
+                    </div>
+                </div>
+                <div class="policies">
+                    <h6>Légal</h6>
+                    <ul>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="conditions.html">Conditions
+                                    d'utilisation</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="privacy.html">Politique de
+                                    confidentialité</a></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p>© 2026 <span>Nexvia</span> — Tous droits réservés.</p>
+    </footer>
+    <!-- Fin Footer -->
+
+    <!-- Scripts -->
+    <!-- Début Scripts -->
+<script src="../JavaScript/main.js"></script>
+<!-- Fin Scripts -->
+
+</body>
+
+</html>
+
+
+
+

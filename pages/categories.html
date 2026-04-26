@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+
+<!-- Début Head -->
+<head>
+    <!-- Encodage caractères  -->
+    <meta charset="UTF-8" />
+    <!-- Vue mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Description SEO -->
+    <meta name="description "
+        content="Achetez vos abonnements Netflix, Spotify, ChatGPT et plus à prix réduit en Algérie." />
+    <!-- Mots clés -->
+    <meta name="keywords" content="abonnements Algérie, Netflix Algérie, Spotify Algérie" />
+    <!-- Auteur site -->
+    <meta name="author" content="Nexvia" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <!-- Titre page -->
+    <title>Nexvia — Catégories</title>
+    <!-- fichier principal de style -->
+    <link rel="stylesheet" href="../css/categories.css">
+    <!-- fichier de style header et footer -->
+    <link rel="stylesheet" href="../css/header_footer.css">
+    <!-- polices de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <!-- icônes de bibliothèque FontAwesome -->
+    <link rel="stylesheet" href="../css/all.min.css">
+
+</head>
+<!-- Fin Head -->
+
+<body>
+
+    <!-- Début Header -->
+    <header id="home">
+        <div class="container">
+            <nav>
+                <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="logo" loading="lazy"></a>
+                </div>
+                <div class="nav-bar">
+                    <ul class="links">
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="categories.html" class="active">Catégories</a></li>
+                        <li><a href="offers.html">Offres</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <div class="links nav-right-actions">
+
+                        <a href="login.html?mode=signin" class="sign-in">Sign In</a>
+                        <a href="login.html?mode=signup" class="sign-up">Sign Up</a>
+                        <a href="panier.html" class="cart-icon-link">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="cart-badge" style="display: none;">0</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="toggle-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Fin Header -->
+
+    <!-- Début Section Catégories -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mob-cats" id="mob-cats"></div>
+
+    <section class="marketplace" style="padding-top: 40px;">
+        <div class="container">
+            <div class="main-wrap">
+                <aside id="sidebar">
+                    <button class="sb-close" id="sb-close">✕</button>
+                </aside>
+
+                <main id="content">
+                    <div id="categories-view">
+                        <div class="cat-grid stagger" id="cat-grid"></div>
+                    </div>
+
+                    <div id="products-view" class="hidden">
+                        <div class="view-hdr">
+                            <button class="back-btn" id="back-to-cats">← Retour</button>
+                            <h2 id="prod-title">Produits</h2>
+                        </div>
+
+                        <div class="search-filter-bar"
+                            style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
+                            <input type="text" id="filter-search" placeholder="Rechercher un produit..."
+                                style="flex:1; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.2); background:transparent; color:white;">
+                            <select id="filter-sort"
+                                style="width:200px; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.2);background-color:  transparent;">
+                                <option value="popularity">Popularité</option>
+                                <option value="price-asc">Prix Croissant</option>
+                                <option value="price-desc">Prix Décroissant</option>
+                            </select>
+                        </div>
+
+                        <div class="prod-grid stagger" id="prod-grid"></div>
+                    </div>
+
+                    <div id="detail-view" class="hidden">
+                        <div class="view-hdr">
+                            <button class="back-btn" id="back-to-prods">← Retour aux produits</button>
+                            <h2 id="det-title"></h2>
+                        </div>
+                        <div class="detail-grid">
+                            <div class="d-panel" id="det-left"></div>
+                            <div class="d-panel" id="det-right"></div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+    <!-- Fin Section Catégories -->
+
+
+    <!-- Début Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="nexvia">
+                    <img class="logo" src="../images/logo.png" alt="logo" loading="lazy">
+                    <p>Votre marketplace de confiance pour les abonnements numériques premium en Algérie. Qualité et
+                        rapidité garanties.</p>
+                    <div>
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <h6>Navigation</h6>
+                    <ul>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="../index.html">Accueil</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="about.html">À propos</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a
+                                    href="categories.html">Catégories</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="offers.html">Offres</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="contact.html">Contact</a></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="inofs">
+                    <h6>Contact</h6>
+                    <div><i class="fa-solid fa-location-dot"></i>
+                        <p>Département d'informatique, Université Mouloud Mammeri</p>
+                    </div>
+                    <div><i class="fa-solid fa-clock"></i>
+                        <p>Horaires de service : Dimanche – Jeudi, 9h – 18h</p>
+                    </div>
+                    <div><i class="fa-solid fa-phone-volume"></i>
+                        <p>+213 123456789</p>
+                    </div>
+                    <div><i class="fa-solid fa-envelope"></i>
+                        <p>nexvia@Support.dz</p>
+                    </div>
+                </div>
+                <div class="policies">
+                    <h6>Légal</h6>
+                    <ul>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="conditions.html">Conditions
+                                    d'utilisation</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fa-solid fa-angles-right bold-icon"></i><a href="privacy.html">Politique de
+                                    confidentialité</a></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p>© 2026 <span>Nexvia</span> — Tous droits réservés.</p>
+    </footer>
+    <!-- Fin Footer -->
+    <!-- Début Scripts -->
+<script src="../JavaScript/products.js"></script>
+    <script src="../JavaScript/main.js"></script>
+    <script src="../JavaScript/marketplace.js"></script>
+<!-- Fin Scripts -->
+</body>
+
+</html>
