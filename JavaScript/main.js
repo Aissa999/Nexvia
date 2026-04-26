@@ -991,30 +991,32 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Then verify token with backend and refresh user data
   const token = localStorage.getItem('nexvia_token');
-  if (token) {
+  const isInProfilePage = window.location.pathname.includes('profile.html');
+
+  if (token && !isInProfilePage) {
     try {
       const res = await fetch(API_BASE + '/api/profile', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
         const backendUser = await res.json();
-        // Merge backend data into localStorage (keep uploaded avatar if any)
         const local = getUser() || {};
+        
+        // Merge backend data into localStorage
         const merged = {
           name: backendUser.name || local.name,
           email: backendUser.email || local.email,
-          avatar: local.avatar?.startsWith('data:') ? local.avatar : (backendUser.profileImage || local.avatar || 'avatar1')
+          avatar: backendUser.profileImage || local.avatar || 'avatar1'
         };
         localStorage.setItem('nexvia_user', JSON.stringify(merged));
         updateHeader();
-      } else {
-        // Token expired — clear session
+      } else if (res.status === 401 || res.status === 403) {
         localStorage.removeItem('nexvia_token');
         localStorage.removeItem('nexvia_user');
         updateHeader();
       }
     } catch (e) {
-      console.error(e);
+      console.error("Session sync error:", e);
     }
   }
 });
