@@ -119,6 +119,14 @@ html {
     margin-bottom: 30px;
     position: relative;
     cursor: default;
+    opacity: 0;
+    transform: translateY(22px);
+    animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+    transition: filter 0.3s ease;
+}
+
+.special-heading h3:hover {
+    filter: brightness(1.2) drop-shadow(0 0 24px rgba(110, 76, 248, 0.45));
 }
 
 .special-heading h3::before {
@@ -129,22 +137,45 @@ html {
     left: 50%;
     transform: translateX(-50%);
     bottom: -35%;
-    background: var(--gradient);
+    background: linear-gradient(90deg, #6e4cf8 0%, #ac7ddb 50%, #cfd8ff 100%);
     border-radius: 15px;
-    transition: width 0.3s ease-in-out;
+    transition: width 0.5s ease-in-out;
 }
 
 .special-heading h3:hover::before {
-    width: 65% !important;
+    width: 75%;
 }
 
 .special-heading p {
     color: var(--p-color);
     font-size: 15px;
-    line-height: 1.3
+    line-height: 1.3;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 0.6s ease 1.1s forwards;
 }
 
-@media(max-width:425px) {
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media(max-width: 620px) {
+    .special-heading h3 {
+        font-size: 25px;
+    }
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media(max-width: 620px) {
     .special-heading h3 {
         font-size: 25px;
     }
@@ -279,20 +310,43 @@ html {
 }
 
 @media(min-width:1440px) {
-    .landing-page .hero {
-        margin-top: 150px !important;
+    .landing-page {
+        justify-content: center;
     }
 
-    .landing-page .hero h2 {
-        font-size: 40px !important;
+    .landing-page::before {
+        background: radial-gradient(circle at center, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
     }
 
-    .landing-page .hero p {
+    .landing-page .container .hero {
+        width: 100% !important;
+        text-align: center !important;
+        margin-top: 0 !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .landing-page .container .hero h2 {
+        font-size: 64px !important;
+        max-width: 900px;
+        margin-inline: auto;
+    }
+
+    .landing-page .container .hero p {
+        font-size: 22px !important;
+        max-width: 800px !important;
+        margin-inline: auto !important;
+    }
+
+    .landing-page .hero-btns {
+        justify-content: center !important;
+        margin-top: 10px;
+    }
+
+    .landing-page .container .hero button {
         font-size: 18px !important;
-    }
-
-    .landing-page .hero button {
-        font-size: 18px !important;
+        padding: 14px 32px !important;
     }
 }
 
@@ -1032,7 +1086,6 @@ html {
     color: yellow;
 }
 
-/* Premium Hover Animations */
 .offers-container .offer .live-counter p:hover {
     color: white;
     background: rgba(255, 255, 255, 0.08);
@@ -1085,7 +1138,6 @@ html {
     animation: starGlow 1s infinite;
 }
 
-/* removed glowStar entirely here */
 
 .offers-container .offer button {
     background: linear-gradient(90deg, #00b4ff, #7b2ff7);
@@ -1106,7 +1158,6 @@ html {
     box-shadow: 0 8px 20px rgba(123, 47, 247, 0.4);
 }
 
-/* old specific glow removed */
 
 .offers .swap {
     text-align: right;
@@ -1257,13 +1308,13 @@ html {
 
 .how .right img {
     width: 100%;
-    max-width: 450px;
+    max-width: 520px;
     object-fit: contain;
     transition: transform 0.4s ease-in-out;
 }
 
 .how .right:hover img {
-    transform: scale(1.1);
+    transform: scale(1.15);
 }
 
 .how .left {
@@ -1273,18 +1324,19 @@ html {
     gap: 0;
     background: var(--bg-section1);
     border-radius: 25px;
-    padding: 20px
+    padding: 15px
 }
 
 .how .step {
+    height: 150px;
     display: grid;
     grid-template-columns: 1fr 100px 1fr;
     align-items: center;
-    padding: 16px 0;
     position: relative;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-radius: 12px;
     cursor: pointer;
+    padding-block: 5px;
 }
 
 .how .step:hover {
@@ -1309,7 +1361,7 @@ html {
 }
 
 .how .step .text h5 {
-    font-size: 0.92rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: #fff;
     margin-bottom: 6px;
@@ -1333,7 +1385,7 @@ html {
 
 .how .step .num span {
     display: block;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: #c4b5fd;
@@ -1342,7 +1394,7 @@ html {
 
 .how .step .num strong {
     display: block;
-    font-size: 2.1rem;
+    font-size: 2.3rem;
     font-weight: 800;
     color: rgba(167, 139, 250, 0.25);
     line-height: 1;
@@ -1359,23 +1411,13 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 12px;
 }
 
 .how .step .img-container img {
-    width: 80px;
-    height: 80px;
+    height: 140px;
     object-fit: contain;
-    border-radius: 50%;
-    transition: all 0.4s ease;
-    border: 2px solid transparent;
 }
 
-.how .step:hover .img-container img {
-    transform: scale(1.1) rotate(5deg);
-    border-color: #a78bfa;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
 
 @media (max-width: 992px) {
     .how {

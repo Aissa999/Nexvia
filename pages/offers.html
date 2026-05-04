@@ -2,6 +2,7 @@
 <html lang="fr">
 
 <!-- Début Head -->
+
 <head>
     <!-- Encodage caractères  -->
     <meta charset="UTF-8" />
@@ -100,13 +101,14 @@
 
                     <div class="live-counter">
                         <p><i class="fa-solid fa-bullseye"></i>+3 200 Clients Satisfaits</p>
-                        <p><i class="fa-solid fa-star"></i>Noté 4,9 ⭐</p>
+                        <p><i class="fa-solid fa-star"></i>Noté 4,9 </p>
                     </div>
                     <button>Acheter maintenant</button>
                 </div>
 
                 <!-- OFFRE 5 : NordVPN (Solo) -->
-                <div class="offer" data-category="promo" onclick="window.location.href='categories.html?prod=nord-vpn'">
+                <div class="offer" data-category="promo"
+                    onclick="window.location.href='categories.html?prod=nord-vpn&promo=true'">
                     <span class="offer-label">🏷️ PROMO</span>
                     <span class="offer-badge badge-green">🏷️ Prix Réduit</span>
                     <div class="offer-cover"><img src="../images/offer5.jpeg" alt="NordVPN" loading="lazy"></div>
@@ -119,7 +121,7 @@
 
                     <div class="live-counter">
                         <p><i class="fa-solid fa-bullseye"></i>+3 500 Clients Satisfaits</p>
-                        <p><i class="fa-solid fa-star"></i>Noté 4,8 ⭐</p>
+                        <p><i class="fa-solid fa-star"></i>Noté 4,8 </p>
                     </div>
                     <button>Acheter maintenant</button>
                 </div>
@@ -140,7 +142,7 @@
 
                     <div class="live-counter">
                         <p><i class="fa-solid fa-bullseye"></i>+1 500 Clients Satisfaits</p>
-                        <p><i class="fa-solid fa-star"></i>Noté 4,7 ⭐</p>
+                        <p><i class="fa-solid fa-star"></i>Noté 4,7 </p>
                     </div>
                     <button>Acheter maintenant</button>
                 </div>
@@ -161,7 +163,7 @@
 
                     <div class="live-counter">
                         <p><i class="fa-solid fa-bullseye"></i>+2 100 Clients Satisfaits</p>
-                        <p><i class="fa-solid fa-star"></i>Noté 4,8 ⭐</p>
+                        <p><i class="fa-solid fa-star"></i>Noté 4,8 </p>
                     </div>
                     <button>Acheter maintenant</button>
                 </div>
@@ -172,7 +174,7 @@
                     <span class="offer-label">🧩 PACK</span>
                     <span class="offer-badge badge-red badge-pulse">🎮 Seulement 10 Restants !</span>
                     <div class="offer-cover">
-                        <img src="../images/offer4.png" alt="Pack Gaming" loading="lazy">
+                        <img src="../images/offer4.jpeg" alt="Pack Gaming" loading="lazy">
                     </div>
                     <h5>Pack Gaming</h5>
                     <div class="price-box">
@@ -183,14 +185,15 @@
 
                     <div class="live-counter">
                         <p><i class="fa-solid fa-bullseye"></i>+980 Clients Satisfaits</p>
-                        <p><i class="fa-solid fa-star"></i>Noté 4,6 ⭐</p>
+                        <p><i class="fa-solid fa-star"></i>Noté 4,6 </p>
                     </div>
                     <button>Acheter maintenant</button>
                 </div>
 
 
                 <!-- OFFRE 6 : Canva Pro (Solo) -->
-                <div class="offer" data-category="promo" onclick="window.location.href='categories.html?prod=canva'">
+                <div class="offer" data-category="promo"
+                    onclick="window.location.href='categories.html?prod=canva&promo=true'">
                     <span class="offer-label">🏷️ PROMO</span>
                     <span class="offer-badge badge-gold">⚡ Flash Sale</span>
                     <div class="offer-cover"><img src="../images/offer6.jpeg" alt="Canva Pro" loading="lazy"></div>
@@ -203,7 +206,7 @@
 
                     <div class="live-counter">
                         <p><i class="fa-solid fa-bullseye"></i>+2 800 Clients Satisfaits</p>
-                        <p><i class="fa-solid fa-star"></i>Noté 4,7 ⭐</p>
+                        <p><i class="fa-solid fa-star"></i>Noté 4,7 </p>
                     </div>
                     <button>Acheter maintenant</button>
                 </div>
@@ -218,11 +221,11 @@
                     <img class="logo" src="../images/logo.png" alt="logo" loading="lazy">
                     <p>Votre marketplace de confiance pour les abonnements numériques premium en Algérie. Qualité et
                         rapidité garanties.</p>
-                    <div>
-                        <i class="fa-brands fa-facebook-f"></i>
-                        <i class="fa-brands fa-instagram"></i>
-                        <i class="fa-brands fa-linkedin-in"></i>
-                        <i class="fa-brands fa-x-twitter"></i>
+                    <div class="footer-socials">
+                        <a href="https://web.facebook.com/profile.php?id=100067714398068&mibextid=wwXIfr&_rdc=1&_rdr#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/nexvia.dz/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@nexvia999" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://x.com/Nexvia99" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
                     </div>
                 </div>
                 <div class="navigation">
@@ -284,7 +287,7 @@
     </footer>
     <!-- Fin Footer -->
     <!-- Début Scripts -->
-<script src="../JavaScript/main.js"></script>
+    <script src="../JavaScript/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const tabBtns = document.querySelectorAll('#offers-tabs button');
@@ -310,7 +313,7 @@
             });
         });
     </script>
-<!-- Fin Scripts -->
+    <!-- Fin Scripts -->
 </body>
 
 </html>

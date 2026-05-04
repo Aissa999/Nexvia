@@ -154,7 +154,7 @@ var MARKETPLACE_DATA = {
     {
       "id": "c-finance",
       "name": "Finance & Crypto",
-      "description": "Accédez aux meilleurs outils d'analyse financière, de suivi de portefeuille et de trading crypto.",
+      "description": "Accédez aux meilleurs outils d'analyse financière, de suivi de portefeuille et de trading crypto avancé sécurisé.",
       "tags": [
         "TradingView",
         "CoinStats",
@@ -718,12 +718,12 @@ var MARKETPLACE_DATA = {
       "logo": "../images/products/chatGpt.png",
       "rating": "5.0",
       "clients": "5100",
-      "description": "Accédez à GPT-4o, GPT-4.5, génération d'images et analyse avancée.",
+      "description": "Accédez à GPT-5.5, génération d'images et analyse de données ultra-avancée.",
       "features": [
-        "GPT-4o & GPT-4.5 (derniers modèles)",
-        "Génération d'images avec DALL-E 3",
+        "GPT-5.5 (dernier modèle ultra-performant)",
+        "Génération d'images ultra-réalistes",
         "Analyse de fichiers & code (Advanced Data Analysis)",
-        "Accès prioritaire même aux heures de pointe"
+        "Mode vocal avancé et accès prioritaire"
       ],
       "options": [
         {
@@ -752,7 +752,7 @@ var MARKETPLACE_DATA = {
       "clients": "1500",
       "description": "L'IA la plus avancée en codage, raisonnement et traitement de longs documents.",
       "features": [
-        "Claude Sonnet 4 & Opus 4 (derniers modèles)",
+        "Claude 3.7 Sonnet & Opus (derniers modèles)",
         "Fenêtre de contexte 200 000 tokens",
         "Mode de réflexion étendue (Extended Thinking)",
         "Accès prioritaire aux serveurs"
@@ -779,7 +779,7 @@ var MARKETPLACE_DATA = {
       "name": "Gemini",
       "subtitle": "Google One AI Premium",
       "price": 2800,
-      "logo": "../images/products/gemeni.png",
+      "logo": "../images/products/gemeni.jpeg",
       "rating": "4.5",
       "clients": "2300",
       "description": "Gemini 2.5 Pro intégré à tout l'écosystème Google + 2 To de stockage.",
@@ -890,17 +890,17 @@ var MARKETPLACE_DATA = {
       "id": "flow-ai",
       "categoryId": "c-ai",
       "name": "Flow AI",
-      "subtitle": "Générateur Visuel IA",
+      "subtitle": "Générateur Visuel UI/UX",
       "price": 2500,
       "logo": "../images/products/flow.png",
-      "rating": "4.7",
-      "clients": "1200",
-      "description": "Création rapide d'interfaces, designs et wireframes assistée par IA.",
+      "rating": "4.8",
+      "clients": "2100",
+      "description": "Générez des interfaces utilisateur prêtes à l'emploi et du code propre (React, Tailwind) à partir de simples requêtes textuelles.",
       "features": [
-        "Maquettes UI générées en secondes",
-        "Export Figma / React / HTML",
-        "Design System automatique",
-        "Collaboration en temps réel"
+        "Génération de composants UI instantanée",
+        "Export de code propre (React, Vue, HTML/CSS)",
+        "Intégration directe avec Figma",
+        "Itérations de design assistées par l'IA"
       ],
       "options": [
         {
@@ -1379,17 +1379,17 @@ var MARKETPLACE_DATA = {
       "id": "google-antigravity",
       "categoryId": "c-productivity",
       "name": "AntiGravity",
-      "subtitle": "Mode Lévitation",
-      "price": 1800,
+      "subtitle": "IDE Vibe Coding",
+      "price": 1200,
       "logo": "../images/products/antigravity.png",
-      "rating": "4.3",
-      "clients": "900",
-      "description": "Faites léviter vos recherches et défiez les lois de Newton directement dans votre navigateur.",
+      "rating": "4.7",
+      "clients": "1500",
+      "description": "L'IDE propulsé par l'IA de nouvelle génération. Codez à l'instinct (vibe coding) et laissez l'IA construire vos applications entières.",
       "features": [
-        "Désactivation de la gravité",
-        "Fenêtres flottantes",
-        "Interface interactive",
-        "Compatible tout navigateur"
+        "Vibe Coding : création d'apps via le langage naturel",
+        "Agents IA autonomes multi-fichiers",
+        "Intégration native avec GPT-5.5 & Claude Opus",
+        "Déploiement en 1 clic"
       ],
       "options": [
         {
@@ -1400,12 +1400,12 @@ var MARKETPLACE_DATA = {
               "priceMultiplier": 1
             },
             {
-              "label": "3 Mois",
-              "priceMultiplier": 3
+              "label": "6 Mois",
+              "priceMultiplier": 5
             },
             {
-              "label": "6 Mois",
-              "priceMultiplier": 6
+              "label": "1 An",
+              "priceMultiplier": 9
             }
           ]
         }
@@ -1734,7 +1734,7 @@ var MARKETPLACE_DATA = {
       "categoryId": "c-vpn",
       "name": "NordVPN",
       "subtitle": "Sécurité & Confidentialité",
-      "price": 649,
+      "price": 900,
       "logo": "../images/products/nord-vpn.png",
       "rating": "4.8",
       "clients": "3500",
@@ -2609,7 +2609,7 @@ var MARKETPLACE_DATA = {
       "clients": "2100",
       "description": "Tu économises 1 101 DA. Les 2 meilleurs assistants IA du marché réunis en un seul pack.",
       "features": [
-        "ChatGPT-4o accès illimité",
+        "ChatGPT-5.5 accès illimité",
         "Claude Pro accès illimité",
         "Génération de texte et d'images avancée",
         "Livraison instantanée"
@@ -2625,7 +2625,7 @@ var MARKETPLACE_DATA = {
       "name": "Pack Gaming",
       "subtitle": "FC Points + V-Bucks + UC",
       "price": 999,
-      "logo": "../images/offer4.png",
+      "logo": "../images/offer4.jpeg",
       "rating": "4.6",
       "clients": "980",
       "description": "Tu économises 361 DA. 10 restants ! Fonce pour améliorer ton expérience sur tes jeux préférés.",
@@ -2640,6 +2640,6 @@ var MARKETPLACE_DATA = {
         "../images/description/fortnite1.jpg",
         "../images/description/pubg1.jpg"
       ]
-    }]
+    }
+  ]
 };
-

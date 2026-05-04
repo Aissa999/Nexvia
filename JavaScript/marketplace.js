@@ -276,7 +276,20 @@ document.addEventListener("DOMContentLoaded", () => {
 // Affiche la page de détail d'un produit avec images, description et bouton d'achat
 // ================================================================
     function showDetailView(productId) {
-        activeProduct = data.products.find(p => p.id === productId);
+        const originalProduct = data.products.find(p => p.id === productId);
+        activeProduct = JSON.parse(JSON.stringify(originalProduct));
+
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('promo') === 'true') {
+            if (activeProduct.id === 'canva') {
+                activeProduct.price = 449;
+                activeProduct.oldPrice = 650;
+            } else if (activeProduct.id === 'nord-vpn') {
+                activeProduct.price = 649;
+                activeProduct.oldPrice = 900;
+            }
+        }
+
         selectedOptions = {};
         selectedPayment = 'baridimob';
 
@@ -455,34 +468,82 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         let finalPrice = activeProduct.price;
+        let finalOldPrice = activeProduct.oldPrice ? activeProduct.oldPrice : null;
         if (activeProduct.options) {
             activeProduct.options.forEach(opt => {
                 const selectedVal = opt.values.find(v => v.label === selectedOptions[opt.name]);
                 if (selectedVal) {
-                    if (selectedVal.priceAdd !== undefined) finalPrice += selectedVal.priceAdd;
-                    if (selectedVal.priceMultiplier !== undefined) finalPrice *= selectedVal.priceMultiplier;
+                    if (selectedVal.priceAdd !== undefined) {
+                        finalPrice += selectedVal.priceAdd;
+                        if (finalOldPrice) finalOldPrice += selectedVal.priceAdd;
+                    }
+                    if (selectedVal.priceMultiplier !== undefined) {
+                        finalPrice *= selectedVal.priceMultiplier;
+                        if (finalOldPrice) finalOldPrice *= selectedVal.priceMultiplier;
+                    }
                 }
             });
         }
         finalPrice = Math.round(finalPrice);
+        if (finalOldPrice) finalOldPrice = Math.round(finalOldPrice);
+
+        const isMobileCategory = activeProduct.categoryId === 'c-mobile';
+        const isGameCategory = activeProduct.categoryId === 'c-games' && activeProduct.id !== 'minecraft';
+
+        let targetInputHTML = "";
+        if (isMobileCategory) {
+            targetInputHTML = `
+                <label style="display:block; margin-bottom:5px; color:var(--muted)">Numéro de téléphone</label>
+                <input type="tel" id="order-target" placeholder="Ex: 06XXXXXXXX" pattern="[0-9]{10}" style="width:100%; padding:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; transition: border-color 0.3s;" required>
+                <div style="color:var(--main-color2); font-size:12px; margin-top:8px; display:flex; align-items:center; gap:6px; opacity:0.9; font-weight:500;">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Votre rechargement sera envoyé à ce numéro.</span>
+                </div>
+            `;
+        } else if (isGameCategory) {
+            targetInputHTML = `
+                <label style="display:block; margin-bottom:5px; color:var(--muted)">Votre ID dans le jeu</label>
+                <input type="text" id="order-target" placeholder="Entrez votre Player ID" style="width:100%; padding:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; transition: border-color 0.3s;" required>
+                <div style="color:var(--main-color2); font-size:12px; margin-top:8px; display:flex; align-items:center; gap:6px; opacity:0.9; font-weight:500;">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Votre rechargement sera envoyé à cet ID.</span>
+                </div>
+            `;
+        } else {
+            targetInputHTML = `
+                <label style="display:block; margin-bottom:5px; color:var(--muted)">Adresse Email</label>
+                <input type="email" id="order-target" placeholder="votre@email.com" style="width:100%; padding:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; transition: border-color 0.3s;" required>
+                <div style="color:var(--main-color2); font-size:12px; margin-top:8px; display:flex; align-items:center; gap:6px; opacity:0.9; font-weight:500;">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Votre commande sera envoyée à cette adresse.</span>
+                </div>
+            `;
+        }
 
         const paySection = document.createElement("div");
         const paymentDetailsHTML = `
             <div style="margin-top:20px; text-align:left; font-size:14px;">
                 <div style="margin-bottom:15px;">
                     <label style="display:block; margin-bottom:5px; color:var(--muted)">Nom de la commande</label>
-                    <input type="text" id="order-name" placeholder="Entrez un nom pour votre commande" style="width:100%; padding:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff;" required>
+                    <input type="text" id="order-name" placeholder="Entrez un nom pour votre commande" style="width:100%; padding:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; transition: border-color 0.3s;" required>
                 </div>
                 <div style="margin-bottom:15px;">
-                    <label style="display:block; margin-bottom:5px; color:var(--muted)">Adresse Email</label>
-                    <input type="email" id="order-email" placeholder="votre@email.com" style="width:100%; padding:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff;" required>
-                    <div style="color:var(--main-color2); font-size:12px; margin-top:8px; display:flex; align-items:center; gap:6px; opacity:0.9; font-weight:500;">
-                        <i class="fa-solid fa-circle-info"></i>
-                        <span>Votre commande sera envoyée à cette adresse.</span>
-                    </div>
+                    ${targetInputHTML}
                 </div>
             </div>
         `;
+
+        let priceDisplayHTML = `<div class="price-big">${finalPrice} DA</div>`;
+        if (finalOldPrice) {
+            const discountPct = Math.round(((finalOldPrice - finalPrice) / finalOldPrice) * 100);
+            priceDisplayHTML = `
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom: 5px;">
+                    <div class="price-big" style="color:#fff; font-size:2rem; font-weight:800; line-height:1;">${finalPrice} DA</div>
+                    <div style="text-decoration:line-through; color:var(--muted); font-size:1.1rem;">${finalOldPrice} DA</div>
+                    <div style="background:rgba(255, 77, 79, 0.15); color:#ff4d4f; padding:4px 8px; border-radius:6px; font-size:0.85rem; font-weight:700;">-${discountPct}%</div>
+                </div>
+            `;
+        }
 
         paySection.innerHTML = `
             <div class="pay-lbl">Choisissez un mode de paiement</div>
@@ -500,7 +561,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div id="cart-warning" style="color: #ff4d4f; font-size: 13px; margin-bottom: 10px; display: none; text-align: left; font-weight: 500;"></div>
             
             <div class="price-box" style="margin-top: 10px;">
-                <div class="price-big">${finalPrice} DA</div>
+                ${priceDisplayHTML}
                 <div class="price-note">Total à régler pour cette commande</div>
             </div>
 
@@ -515,7 +576,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.getElementById("btn-add-cart").onclick = () => {
             const orderName = document.getElementById("order-name").value.trim();
-            const orderEmail = document.getElementById("order-email").value.trim();
+            const orderTarget = document.getElementById("order-target").value.trim();
             const warningEl = document.getElementById("cart-warning");
 
             if (!orderName) {
@@ -523,10 +584,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 warningEl.style.display = "block";
                 return;
             }
-            if (!orderEmail || !orderEmail.includes('@')) {
-                warningEl.textContent = "Veuillez entrer une adresse email valide.";
-                warningEl.style.display = "block";
-                return;
+
+            if (isMobileCategory) {
+                const phoneRegex = /^[0-9]{10}$/;
+                if (!orderTarget || !phoneRegex.test(orderTarget)) {
+                    warningEl.textContent = "Veuillez entrer un numéro de téléphone valide (10 chiffres).";
+                    warningEl.style.display = "block";
+                    return;
+                }
+            } else if (isGameCategory) {
+                if (!orderTarget) {
+                    warningEl.textContent = "Veuillez entrer votre ID de jeu.";
+                    warningEl.style.display = "block";
+                    return;
+                }
+            } else {
+                if (!orderTarget || !orderTarget.includes('@')) {
+                    warningEl.textContent = "Veuillez entrer une adresse email valide.";
+                    warningEl.style.display = "block";
+                    return;
+                }
             }
 
             warningEl.style.display = "none";
@@ -536,7 +613,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 productId: activeProduct.id,
                 name: activeProduct.name,
                 orderName: orderName,
-                orderEmail: orderEmail,
+                orderEmail: orderTarget,
                 price: finalPrice,
                 image: activeProduct.logo,
                 options: selectedOptions,
