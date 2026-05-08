@@ -705,8 +705,8 @@ footer>p span {
 }
 
 .language-current:hover .language-code {
-    font-weight: 500; /* Keep weight same to avoid shift */
-    text-shadow: 0.5px 0 0 currentColor, -0.5px 0 0 currentColor; /* Simulate boldness without shift */
+    font-weight: 500;
+    text-shadow: 0.5px 0 0 currentColor, -0.5px 0 0 currentColor; 
 }
 
 .language-flag {
@@ -739,7 +739,7 @@ footer>p span {
     min-width: 126px;
     padding: 7px 0;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
+    border-radius: 13px;
     background: #0f172a;
     box-shadow: 0 16px 34px rgba(0, 0, 0, 0.38);
     opacity: 0;
