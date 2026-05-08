@@ -1,4 +1,4 @@
-var MARKETPLACE_DATA = {
+{
   "categories": [
     {
       "id": "c-films",
@@ -2642,4 +2642,4 @@ var MARKETPLACE_DATA = {
       ]
     }
   ]
-};
+}

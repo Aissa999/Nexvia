@@ -967,7 +967,6 @@ function saveProfile() {
   user.avatar = _selectedAvatar || user.avatar || 'avatar1';
   localStorage.setItem('nexvia_user', JSON.stringify(user));
 
-  // Update backend (best-effort)
   const token = localStorage.getItem('nexvia_token');
   if (token) {
     fetch(API_BASE + '/api/profile', {
@@ -986,10 +985,8 @@ function saveProfile() {
 // Au chargement: affiche le header immédiatement depuis localStorage, puis vérifie le token avec le backend
 // ================================================================
 document.addEventListener('DOMContentLoaded', async () => {
-  // First render immediately with localStorage data (instant, no flicker)
   updateHeader();
 
-  // Then verify token with backend and refresh user data
   const token = localStorage.getItem('nexvia_token');
   const isInProfilePage = window.location.pathname.includes('profile.html');
 
@@ -1021,7 +1018,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
-// Make functions globally accessible for inline onclick handlers
+
 window.openEditProfile = openEditProfile;
 window.closeEditProfile = closeEditProfile;
 window.saveProfile = saveProfile;

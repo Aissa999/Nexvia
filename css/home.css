@@ -475,6 +475,9 @@ html {
     border: 0.02px solid rgba(128, 128, 128, 0.329);
     border-radius: 25px;
     transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .categories-container .card:hover {
@@ -503,6 +506,7 @@ html {
     line-height: 1.55;
     margin: 0 16px 11px 16px;
     min-height: 40px;
+    flex-grow: 1;
 }
 
 .categories-container .card p+div {
@@ -1004,7 +1008,7 @@ html {
 }
 
 .price-box .current-price {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     font-weight: 900;
     color: white;
     line-height: 1.1;
@@ -1055,20 +1059,22 @@ html {
 .offers-container .offer .live-counter {
     margin-top: 20px;
     display: flex;
-    gap: 12px;
-    justify-content: flex-start;
+    justify-content: space-between;
+    gap: 8px;
     align-items: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .offers-container .offer .live-counter p {
     background: rgba(255, 255, 255, 0.05);
-    padding: 5px;
+    padding: 4px 8px;
     border-radius: 50px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     border: 1px solid rgba(255, 255, 255, 0.03);
     transition: all 0.25s ease-out;
 }

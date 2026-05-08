@@ -61,7 +61,7 @@ section.marketplace {
 
 .sb-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 9px;
   padding: 10px 14px;
   border-radius: 10px;
@@ -71,6 +71,11 @@ section.marketplace {
   color: var(--muted);
   transition: all 0.2s ease;
   border: 1px solid transparent;
+  line-height: 1.3;
+}
+
+.sb-item i {
+  margin-top: 2px;
 }
 
 .sb-item:hover {
@@ -739,7 +744,8 @@ section.marketplace {
 
 .prod-social {
   display: flex;
-  gap: 6px;
+  justify-content: space-between;
+  gap: 12px;
   flex-wrap: wrap;
   margin-bottom: 13px;
 }

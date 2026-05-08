@@ -2,14 +2,20 @@
 // DOMContentLoaded init
 // Point d'entrée: initialise toutes les vues et branche les événements au chargement de la page
 // ================================================================
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     // ================================================================
     // Data import / products array
-    // Données des produits importées depuis products.js (catalogue complet)
+    // Données des produits importées depuis products.json (catalogue complet)
     // ================================================================
-    const data = typeof MARKETPLACE_DATA !== 'undefined' ? MARKETPLACE_DATA : window.MARKETPLACE_DATA;
-    if (!data) {
-        console.error("Marketplace Data not found!");
+    let data;
+    try {
+        const isPagesDir = window.location.pathname.includes('/pages/') || window.location.pathname.includes('\\pages\\');
+        const jsonPath = isPagesDir ? '../JavaScript/products.json' : 'JavaScript/products.json';
+        const response = await fetch(jsonPath);
+        if (!response.ok) throw new Error("Network response was not ok");
+        data = await response.json();
+    } catch (error) {
+        console.error("Marketplace Data not found or could not be loaded!", error);
         return;
     }
 
@@ -40,6 +46,15 @@ document.addEventListener("DOMContentLoaded", () => {
     let selectedOptions = {};
     let selectedPayment = 'baridimob';
 
+    // Helper de traduction
+    function t(text) {
+        if (!text) return text;
+        if (window.NexviaI18n && typeof window.NexviaI18n.translateText === 'function') {
+            return window.NexviaI18n.translateText(text);
+        }
+        return text;
+    }
+
     // Lance l'initialisation générale
     init();
 
@@ -58,8 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Events for search and filters
         const fSearch = document.getElementById("filter-search");
         const fSort = document.getElementById("filter-sort");
-        if (fSearch) fSearch.addEventListener("input", () => { if(activeCategoryId) renderProducts(activeCategoryId) });
-        if (fSort) fSort.addEventListener("change", () => { if(activeCategoryId) renderProducts(activeCategoryId) });
+        if (fSearch) fSearch.addEventListener("input", () => { if (activeCategoryId) renderProducts(activeCategoryId) });
+        if (fSort) fSort.addEventListener("change", () => { if (activeCategoryId) renderProducts(activeCategoryId) });
 
         // Gère la navigation via paramètres URL (?cat= ou ?prod=)
         const params = new URLSearchParams(window.location.search);
@@ -76,12 +91,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 showProductsView(cid);
             }
         }
+
+        // Ecouteur pour la langue
+        window.addEventListener('nexvia:languagechange', () => {
+            renderCategories();
+            renderSidebar();
+            renderMobCats();
+            if (activeCategoryId && !detailView.classList.contains("on")) {
+                renderProducts(activeCategoryId);
+            } else if (activeCategoryId && detailView.classList.contains("on") && activeProduct) {
+                const oldTitle = document.getElementById("det-title")?.innerHTML;
+                if (oldTitle) {
+                    detTitle.innerHTML = `${t("Configuration:")} <span>${t(activeProduct.name)}</span>`;
+                }
+                renderDetailLeft();
+                renderDetailRight();
+            }
+        });
     }
 
     // ================================================================
-// renderCategories()
-// Génère et affiche les cartes de catégories dans la grille principale
-// ================================================================
+    // renderCategories()
+    // Génère et affiche les cartes de catégories dans la grille principale
+    // ================================================================
     function renderCategories() {
         catGrid.innerHTML = "";
         data.categories.forEach(cat => {
@@ -90,18 +122,18 @@ document.addEventListener("DOMContentLoaded", () => {
             card.onclick = () => showProductsView(cat.id);
 
             const visibleTags = cat.tags.slice(0, 3);
-            let tagsHTML = visibleTags.map(tag => `<span class="cat-tag">${tag}</span>`).join("");
+            let tagsHTML = visibleTags.map(tag => `<span class="cat-tag">${t(tag)}</span>`).join("");
 
             card.innerHTML = `
-                <img src="${cat.image}" class="cat-img" alt="${cat.name}" loading="lazy">
+                <img src="${cat.image}" class="cat-img" alt="${t(cat.name)}" loading="lazy">
                 <div class="cat-body">
-                    <span class="cat-title">${cat.name}</span>
-                    <p class="cat-desc">${cat.description}</p>
+                    <span class="cat-title">${t(cat.name)}</span>
+                    <p class="cat-desc">${t(cat.description)}</p>
                     <div class="cat-tags">${tagsHTML}</div>
                     <div class="cat-hr"></div>
                     <div class="cat-btn-row">
                         <button class="cat-btn">
-                            Voir Plus <span class="arr"><i class="fa-solid fa-arrow-right arr"></i></span>
+                            ${t("Voir Plus")} <span class="arr"><i class="fa-solid fa-arrow-right arr"></i></span>
                         </button>
                     </div>
                 </div>
@@ -111,11 +143,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ================================================================
-// renderSidebar()
-// Construit le menu latéral de filtrage par catégorie sur desktop
-// ================================================================
+    // renderSidebar()
+    // Construit le menu latéral de filtrage par catégorie sur desktop
+    // ================================================================
     function renderSidebar() {
-        sidebar.innerHTML = '<button class="sb-close" id="sb-close">✕</button><div class="sb-title">CATÉGORIES</div>';
+        sidebar.innerHTML = `<button class="sb-close" id="sb-close">✕</button><div class="sb-title">${t("CATÉGORIES")}</div>`;
         document.getElementById("sb-close").addEventListener("click", closeMobileSidebar);
 
         data.categories.forEach(cat => {
@@ -126,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
             item.onclick = () => showProductsView(cat.id);
 
             item.innerHTML = `
-                <span>${cat.name}</span>
+                <span>${t(cat.name)}</span>
                 <span class="sb-count">${prodCount}</span>
             `;
             sidebar.appendChild(item);
@@ -134,9 +166,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ================================================================
-// renderMobCats()
-// Génère les boutons de catégories pour la navigation mobile horizontale
-// ================================================================
+    // renderMobCats()
+    // Génère les boutons de catégories pour la navigation mobile horizontale
+    // ================================================================
     function renderMobCats() {
         mobCats.innerHTML = "";
         data.categories.forEach(cat => {
@@ -144,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
             pill.className = "mob-pill";
             pill.dataset.id = cat.id;
             pill.onclick = () => showProductsView(cat.id);
-            pill.innerHTML = `<span>${cat.name}</span>`;
+            pill.innerHTML = `<span>${t(cat.name)}</span>`;
             mobCats.appendChild(pill);
         });
     }
@@ -169,9 +201,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ================================================================
-// selectCategory()
-// Sélectionne une catégorie et met à jour la vue produits + l'URL
-// ================================================================
+    // selectCategory()
+    // Sélectionne une catégorie et met à jour la vue produits + l'URL
+    // ================================================================
     function showProductsView(categoryId) {
         activeCategoryId = categoryId;
         catView.classList.add("hidden");
@@ -185,13 +217,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ================================================================
-// renderProducts()
-// Filtre et affiche les produits de la catégorie active selon la recherche et le tri
-// ================================================================
+    // renderProducts()
+    // Filtre et affiche les produits de la catégorie active selon la recherche et le tri
+    // ================================================================
     function renderProducts(categoryId) {
         prodGrid.innerHTML = "";
         const categoryData = data.categories.find(c => c.id === categoryId) || { name: 'Offres Spéciales' };
-        prodTitle.innerHTML = `Produits de la catégorie <span>${categoryData.name}</span>`;
+        prodTitle.innerHTML = `${t("Produits de la catégorie")} <span>${t(categoryData.name)}</span>`;
 
         let categoryProducts = data.products.filter(p => p.categoryId === categoryId);
 
@@ -217,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (categoryProducts.length === 0) {
-            prodGrid.innerHTML = `<p style="color:var(--muted)">Aucun produit trouvé pour ces critères.</p>`;
+            prodGrid.innerHTML = `<p style="color:var(--muted)">${t("Aucun produit trouvé pour ces critères.")}</p>`;
             return;
         }
 
@@ -234,28 +266,28 @@ document.addEventListener("DOMContentLoaded", () => {
             card.className = "prod-card";
             card.onclick = () => showDetailView(prod.id);
 
-            const badgeHTML = prod.id === popularId ? '<div class="prod-badge">Populaire</div>' : '';
+            const badgeHTML = prod.id === popularId ? `<div class="prod-badge">${t("Populaire")}</div>` : '';
 
             card.innerHTML = `
                 ${badgeHTML}
                 <div class="prod-top">
                     <div class="prod-logo">
-                        <img src="${prod.logo}" alt="${prod.name}" loading="lazy">
+                        <img src="${prod.logo}" alt="${t(prod.name)}" loading="lazy">
                     </div>
                     <div class="prod-info">
-                        <div class="prod-name">${prod.name}</div>
-                        <div class="prod-sub">${prod.subtitle}</div>
+                        <div class="prod-name">${t(prod.name)}</div>
+                        <div class="prod-sub">${t(prod.subtitle)}</div>
                     </div>
                 </div>
                 <div class="prod-price-row">
-                    <span class="prod-price">${prod.price} <span class="unit">${prod.priceUnit || 'DA/mois'}</span></span>
+                    <span class="prod-price">${prod.price} <span class="unit">${t(prod.priceUnit || 'DA/mois')}</span></span>
                 </div>
                 <div class="prod-div"></div>
                 <div class="prod-social">
-                    <div class="s-pill"><div class="s-dot"></div>+${prod.clients} Clients</div>
+                    <div class="s-pill"><div class="s-dot"></div>+${prod.clients} ${t("Clients")}</div>
                     <div class="s-pill"><i class="fa-solid fa-star s-star"></i> ${prod.rating}</div>
                 </div>
-                <button class="buy-btn">Acheter maintenant</button>
+                <button class="buy-btn">${t("Acheter maintenant")}</button>
             `;
             prodGrid.appendChild(card);
         });
@@ -272,9 +304,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ================================================================
-// openDetail() / renderDetailLeft() / renderDetailRight()
-// Affiche la page de détail d'un produit avec images, description et bouton d'achat
-// ================================================================
+    // openDetail() / renderDetailLeft() / renderDetailRight()
+    // Affiche la page de détail d'un produit avec images, description et bouton d'achat
+    // ================================================================
     function showDetailView(productId) {
         const originalProduct = data.products.find(p => p.id === productId);
         activeProduct = JSON.parse(JSON.stringify(originalProduct));
@@ -313,7 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const featHTML = activeProduct.features.map(f => `
             <div class="feat-row">
                 <div class="chk"><i class="fa-solid fa-check"></i></div>
-                <span>${f}</span>
+                <span>${t(f)}</span>
             </div>
         `).join("");
 
@@ -379,8 +411,8 @@ document.addEventListener("DOMContentLoaded", () => {
             'strava': 'strava',
             'freeletics': 'freeletics'
         };
-        const jpegProducts = ['my-fitness-pal','yazio','nike-training','strava','freeletics'];
-        
+        const jpegProducts = ['my-fitness-pal', 'yazio', 'nike-training', 'strava', 'freeletics'];
+
         let cImgs = [];
         if (activeProduct.descriptionImages) {
             cImgs = activeProduct.descriptionImages;
@@ -406,35 +438,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
         detLeft.innerHTML = `
             <div class="d-logo-row" style="margin-bottom:15px;">
-                <div class="d-logo"><img src="${activeProduct.logo}" alt="${activeProduct.name}" loading="lazy"></div>
+                <div class="d-logo"><img src="${activeProduct.logo}" alt="${t(activeProduct.name)}" loading="lazy"></div>
                 <div>
-                    <div class="d-name">${activeProduct.name}</div>
-                    <div class="d-desc">${activeProduct.subtitle}</div>
+                    <div class="d-name">${t(activeProduct.name)}</div>
+                    <div class="d-desc">${t(activeProduct.subtitle)}</div>
                 </div>
             </div>
-            <p class="d-desc" style="margin-bottom:20px;">${activeProduct.description}</p>
+            <p class="d-desc" style="margin-bottom:20px;">${t(activeProduct.description)}</p>
             ${carouselHTML}
-            <div class="feat-lbl">Caractéristiques Incluses</div>
+            <div class="feat-lbl">${t("Caractéristiques Incluses")}</div>
             <div>${featHTML}</div>
         `;
 
         let curImg = 0;
         const cImg = document.getElementById('carousel-img');
-        
+
         document.getElementById('car-prev').onclick = () => {
-             curImg = curImg === 0 ? cImgs.length - 1 : curImg - 1;
-             cImg.src = cImgs[curImg];
+            curImg = curImg === 0 ? cImgs.length - 1 : curImg - 1;
+            cImg.src = cImgs[curImg];
         };
         document.getElementById('car-next').onclick = () => {
-             curImg = curImg === cImgs.length - 1 ? 0 : curImg + 1;
-             cImg.src = cImgs[curImg];
+            curImg = curImg === cImgs.length - 1 ? 0 : curImg + 1;
+            cImg.src = cImgs[curImg];
         };
     }
 
     // ================================================================
-// Cart add to detail
-// Gère l'ajout au panier depuis la page de détail avec feedback visuel
-// ================================================================
+    // Cart add to detail
+    // Gère l'ajout au panier depuis la page de détail avec feedback visuel
+    // ================================================================
     function renderDetailRight() {
         detRight.innerHTML = "";
 
@@ -445,7 +477,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const lbl = document.createElement("div");
                 lbl.className = "opt-lbl";
-                lbl.textContent = opt.name;
+                lbl.textContent = t(opt.name);
 
                 const pills = document.createElement("div");
                 pills.className = "opt-pills";
@@ -453,7 +485,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 opt.values.forEach(val => {
                     const btn = document.createElement("button");
                     btn.className = `opt-pill ${selectedOptions[opt.name] === val.label ? 'active' : ''}`;
-                    btn.textContent = val.label;
+                    btn.textContent = t(val.label);
                     btn.onclick = () => {
                         selectedOptions[opt.name] = val.label;
                         renderDetailRight();
@@ -493,29 +525,29 @@ document.addEventListener("DOMContentLoaded", () => {
         let targetInputHTML = "";
         if (isMobileCategory) {
             targetInputHTML = `
-                <label style="display:block; margin-bottom:5px; color:var(--muted)">Numéro de téléphone</label>
-                <input type="tel" id="order-target" placeholder="Ex: 06XXXXXXXX" pattern="[0-9]{10}" style="width:100%; padding:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; transition: border-color 0.3s;" required>
+                <label style="display:block; margin-bottom:5px; color:var(--muted)">${t("Numéro de téléphone")}</label>
+                <input type="tel" id="order-target" placeholder="${t("Ex: 06XXXXXXXX")}" pattern="[0-9]{10}" style="width:100%; padding:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; transition: border-color 0.3s;" required>
                 <div style="color:var(--main-color2); font-size:12px; margin-top:8px; display:flex; align-items:center; gap:6px; opacity:0.9; font-weight:500;">
                     <i class="fa-solid fa-circle-info"></i>
-                    <span>Votre rechargement sera envoyé à ce numéro.</span>
+                    <span>${t("Votre rechargement sera envoyé à ce numéro.")}</span>
                 </div>
             `;
         } else if (isGameCategory) {
             targetInputHTML = `
-                <label style="display:block; margin-bottom:5px; color:var(--muted)">Votre ID dans le jeu</label>
-                <input type="text" id="order-target" placeholder="Entrez votre Player ID" style="width:100%; padding:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; transition: border-color 0.3s;" required>
+                <label style="display:block; margin-bottom:5px; color:var(--muted)">${t("Votre ID dans le jeu")}</label>
+                <input type="text" id="order-target" placeholder="${t("Entrez votre Player ID")}" style="width:100%; padding:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; transition: border-color 0.3s;" required>
                 <div style="color:var(--main-color2); font-size:12px; margin-top:8px; display:flex; align-items:center; gap:6px; opacity:0.9; font-weight:500;">
                     <i class="fa-solid fa-circle-info"></i>
-                    <span>Votre rechargement sera envoyé à cet ID.</span>
+                    <span>${t("Votre rechargement sera envoyé à cet ID.")}</span>
                 </div>
             `;
         } else {
             targetInputHTML = `
-                <label style="display:block; margin-bottom:5px; color:var(--muted)">Adresse Email</label>
-                <input type="email" id="order-target" placeholder="votre@email.com" style="width:100%; padding:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; transition: border-color 0.3s;" required>
+                <label style="display:block; margin-bottom:5px; color:var(--muted)">${t("Adresse Email")}</label>
+                <input type="email" id="order-target" placeholder="${t("votre@email.com")}" style="width:100%; padding:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; transition: border-color 0.3s;" required>
                 <div style="color:var(--main-color2); font-size:12px; margin-top:8px; display:flex; align-items:center; gap:6px; opacity:0.9; font-weight:500;">
                     <i class="fa-solid fa-circle-info"></i>
-                    <span>Votre commande sera envoyée à cette adresse.</span>
+                    <span>${t("Votre commande sera envoyée à cette adresse.")}</span>
                 </div>
             `;
         }
@@ -524,8 +556,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const paymentDetailsHTML = `
             <div style="margin-top:20px; text-align:left; font-size:14px;">
                 <div style="margin-bottom:15px;">
-                    <label style="display:block; margin-bottom:5px; color:var(--muted)">Nom de la commande</label>
-                    <input type="text" id="order-name" placeholder="Entrez un nom pour votre commande" style="width:100%; padding:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; transition: border-color 0.3s;" required>
+                    <label style="display:block; margin-bottom:5px; color:var(--muted)">${t("Nom de la commande")}</label>
+                    <input type="text" id="order-name" placeholder="${t("Entrez un nom pour votre commande")}" style="width:100%; padding:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; transition: border-color 0.3s;" required>
                 </div>
                 <div style="margin-bottom:15px;">
                     ${targetInputHTML}
@@ -546,7 +578,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         paySection.innerHTML = `
-            <div class="pay-lbl">Choisissez un mode de paiement</div>
+            <div class="pay-lbl">${t("Choisissez un mode de paiement")}</div>
             <div class="pay-opts">
                 <button class="pay-opt ${selectedPayment === 'baridimob' ? 'active' : ''}" onclick="selectPayment('baridimob')">
                     <img src="../images/baridi-mob.png" alt="Baridimob" loading="lazy"> Baridimob
@@ -562,10 +594,10 @@ document.addEventListener("DOMContentLoaded", () => {
             
             <div class="price-box" style="margin-top: 10px;">
                 ${priceDisplayHTML}
-                <div class="price-note">Total à régler pour cette commande</div>
+                <div class="price-note">${t("Total à régler pour cette commande")}</div>
             </div>
 
-            <button class="d-buy" id="btn-add-cart">Ajouter au panier</button>
+            <button class="d-buy" id="btn-add-cart">${t("Ajouter au panier")}</button>
         `;
         detRight.appendChild(paySection);
 
@@ -580,7 +612,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const warningEl = document.getElementById("cart-warning");
 
             if (!orderName) {
-                warningEl.textContent = "Veuillez entrer un nom pour votre commande.";
+                warningEl.textContent = t("Veuillez entrer un nom pour votre commande.");
                 warningEl.style.display = "block";
                 return;
             }
@@ -588,19 +620,19 @@ document.addEventListener("DOMContentLoaded", () => {
             if (isMobileCategory) {
                 const phoneRegex = /^[0-9]{10}$/;
                 if (!orderTarget || !phoneRegex.test(orderTarget)) {
-                    warningEl.textContent = "Veuillez entrer un numéro de téléphone valide (10 chiffres).";
+                    warningEl.textContent = t("Veuillez entrer un numéro de téléphone valide (10 chiffres).");
                     warningEl.style.display = "block";
                     return;
                 }
             } else if (isGameCategory) {
                 if (!orderTarget) {
-                    warningEl.textContent = "Veuillez entrer votre ID de jeu.";
+                    warningEl.textContent = t("Veuillez entrer votre ID de jeu.");
                     warningEl.style.display = "block";
                     return;
                 }
             } else {
                 if (!orderTarget || !orderTarget.includes('@')) {
-                    warningEl.textContent = "Veuillez entrer une adresse email valide.";
+                    warningEl.textContent = t("Veuillez entrer une adresse email valide.");
                     warningEl.style.display = "block";
                     return;
                 }

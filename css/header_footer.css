@@ -294,7 +294,7 @@ header .container .logo {
     display: inline;
 }
 
-header .container img {
+header .container .logo img {
     width: 120px;
 }
 
@@ -677,6 +677,140 @@ footer>p span {
     color: var(--main-color1);
 }
 
+.language-switcher {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.language-current {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 0 12px;
+    height: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(4px);
+    transition: 
+        border-color 0.4s ease;
+}
+
+.language-current:hover,
+.language-switcher.open .language-current {
+    border-color: var(--main-color1);
+}
+
+.language-current:hover .language-code {
+    font-weight: 500; /* Keep weight same to avoid shift */
+    text-shadow: 0.5px 0 0 currentColor, -0.5px 0 0 currentColor; /* Simulate boldness without shift */
+}
+
+.language-flag {
+    font-size: 14px;
+    line-height: 1;
+}
+
+.language-flag-img {
+    width: 18px;
+    height: 12px;
+    display: block;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+    flex: 0 0 auto;
+}
+
+.language-code {
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: font-weight 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.language-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 10000;
+    min-width: 126px;
+    padding: 7px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    background: #0f172a;
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.38);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition:
+        opacity .18s ease,
+        visibility .18s ease,
+        transform .18s ease;
+}
+
+.language-switcher.open .language-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.language-option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 28px;
+    padding: 6px 11px;
+    border: 0;
+    border-radius: 0;
+    color: var(--text-color);
+    background: transparent;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    transition:
+        color .3s ease,
+        background-color .3s ease,
+        padding-left .3s ease,
+        font-weight .3s ease,
+        letter-spacing .3s ease;
+}
+
+.language-option:hover,
+.language-option.active {
+    color: var(--text-color);
+    background: transparent;
+}
+
+.language-option:hover .language-name {
+    font-weight: 600;
+    text-shadow: 0.3px 0 0 currentColor;
+}
+
+.language-option:hover {
+    padding-left: 11px; /* Keeping it consistent with non-hover state if possible, or just removing the jump */
+}
+
+.language-name {
+    flex: 1;
+}
+
+.language-check {
+    margin-left: auto;
+    font-size: 10px;
+    color: #22c55e;
+    opacity: 0;
+}
+
+.language-option.active .language-check {
+    opacity: 1;
+}
+
 .cart-badge {
     position: absolute;
     top: -8px;
@@ -1028,4 +1162,23 @@ header .container nav .links.nav-right-actions {
 header .container nav .links.nav-right-actions .sign-in,
 header .container nav .links.nav-right-actions .sign-up {
     white-space: nowrap;
+}
+
+@media(max-width: 768px) {
+    header .container nav .links.nav-right-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        width: 100%;
+        margin: 0 auto;
+        justify-items: center;
+    }
+
+    header .container nav .links.nav-right-actions > * {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 !important;
+    }
 }
