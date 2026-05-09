@@ -158,7 +158,14 @@
       "Qui sommes-nous ?": "Who are we?",
       "Qui sommes-nous": "Who we are",
       "L'accès digital premium simplifié en Algérie.": "Premium digital access made simple in Algeria.",
+<<<<<<< HEAD
       "La marketplace d'abonnements numériques de l'Algérie": "The marketplace for digital subscriptions in Algeria",
+=======
+      "La marketplace": "The marketplace",
+      "d'abonnements": "for digital ",
+      "numériques": " subscriptions",
+      "de l'Algérie": "in Algeria",
+>>>>>>> b7d85cc (last commit)
       "Nexvia vous donne accès à vos services préférés en quelques clics : Netflix, Spotify, ChatGPT, Canva, iCloud et bien plus encore. Paiement local, livraison instantanée et support humain.": "Nexvia gives you access to your favorite services in just a few clicks: Netflix, Spotify, ChatGPT, Canva, iCloud, and much more. Local payment, instant delivery, and human support.",
       "Accès en moins de 5 minutes": "Access in under 5 minutes",
       "BaridiMob, PayPal et plus": "BaridiMob, PayPal, and more",
@@ -1009,7 +1016,6 @@
       "données": "data",
       "abonnements": "subscriptions",
       "abonnement": "subscription",
-      "numériques": "digital",
       "Algérie": "Algeria",
       "algériens": "Algerian",
       "réduit": "reduced",

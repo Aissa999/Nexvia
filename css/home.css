@@ -24,8 +24,10 @@
 
 /* Fin Variables */
 /* ================================================ */
-/* Début des règles globales */
+/* Début Styles globaux */
 /* ================================================ */
+
+/* Reset de base */
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -34,10 +36,12 @@
     margin: 0;
 }
 
+/* Police par défaut */
 body {
     font-family: 'Inter', sans-serif;
 }
 
+/* Liens sans soulignement */
 a {
     text-decoration: none;
     display: block;
@@ -52,15 +56,18 @@ ul {
     list-style-type: none;
 }
 
+/* Scroll fluide */
 html {
     scroll-behavior: smooth;
 }
 
+/* Conteneur centré */
 .container {
     padding-inline: 15px;
     margin-inline: auto;
 }
 
+/* Largeurs du conteneur */
 @media (min-width:768px) {
     .container {
         width: 750px;
@@ -79,36 +86,44 @@ html {
     }
 }
 
-/* Fin des règles globales */
+/* Fin Styles globaux */
 /* ================================================ */
-/* Début Personnalisation de la barre de défilement */
+/* Début Scrollbar */
 /* ================================================ */
+
+/* Largeur de la barre */
 ::-webkit-scrollbar {
     width: 8px;
 }
 
+/* Fond de la scrollbar */
 ::-webkit-scrollbar-track {
     background: var(--bg-main);
 }
 
+/* La barre avec dégradé */
 ::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, #7C3AED, #A855F7);
 }
 
+/* Survol de la barre */
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, #9333EA, #C084FC);
 }
 
-/* Fin Personnalisation de la barre de défilement */
+/* Fin Scrollbar */
 /* ================================================ */
-/* Début styles des composants réutilisables */
+/* Début Composants réutilisables */
 /* ================================================ */
+
+/* Titre de section avec animation */
 .special-heading {
     padding-block: var(--main-padding);
     text-align: center;
     position: relative;
 }
 
+/* Titre avec dégradé et animation fadeUp */
 .special-heading h3 {
     display: inline-block;
     font-size: 35px;
@@ -125,10 +140,12 @@ html {
     transition: filter 0.3s ease;
 }
 
+/* Lueur au survol du titre */
 .special-heading h3:hover {
     filter: brightness(1.2) drop-shadow(0 0 24px rgba(110, 76, 248, 0.45));
 }
 
+/* Ligne décorative sous le titre */
 .special-heading h3::before {
     content: "";
     position: absolute;
@@ -142,10 +159,12 @@ html {
     transition: width 0.5s ease-in-out;
 }
 
+/* Ligne s'élargit au survol */
 .special-heading h3:hover::before {
     width: 75%;
 }
 
+/* Sous-titre de section */
 .special-heading p {
     color: var(--p-color);
     font-size: 15px;
@@ -155,6 +174,7 @@ html {
     animation: fadeUp 0.6s ease 1.1s forwards;
 }
 
+/* Animation montée */
 @keyframes fadeUp {
     to {
         opacity: 1;
@@ -181,6 +201,7 @@ html {
     }
 }
 
+/* Effet de pointes entre sections */
 .spikes {
     position: relative;
 }
@@ -198,6 +219,7 @@ html {
     z-index: 2;
 }
 
+/* Fond incliné entre sections */
 .skewed {
     position: absolute;
     top: -3px;
@@ -233,10 +255,12 @@ html {
     }
 }
 
-/* Fin styles des composants réutilisables */
+/* Fin Composants réutilisables */
 /* ================================================ */
 /* Début Landing Page */
 /* ================================================ */
+
+/* Section hero avec image de fond */
 .landing-page {
     padding-top: 80px;
     background-image: url("../images/landing-page.jpg");
@@ -250,6 +274,7 @@ html {
     overflow: hidden;
 }
 
+/* Dégradé sombre sur l'image de fond */
 .landing-page::before {
     content: '';
     position: absolute;
@@ -258,11 +283,13 @@ html {
     z-index: 1;
 }
 
+/* Contenu au dessus du fond */
 .landing-page .container {
     position: relative;
     z-index: 2;
 }
 
+/* Responsive mobile landing */
 @media(max-width:768px) {
     .landing-page {
         padding-top: 80px;
@@ -270,10 +297,12 @@ html {
         justify-content: center;
     }
 
+    /* Fond radial sur mobile */
     .landing-page::before {
         background: radial-gradient(circle at center, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
     }
 
+    /* Hero centré sur mobile */
     .landing-page .container .hero {
         width: 100% !important;
         text-align: center;
@@ -283,12 +312,14 @@ html {
     }
 }
 
+/* Texte hero sur desktop */
 .landing-page .container .hero {
     width: 60%;
     color: var(--text-color);
     margin-top: -50px;
 }
 
+/* Titre principal */
 .landing-page .container .hero h2 {
     font-weight: 900;
     font-size: clamp(32px, 4vw, 40px);
@@ -296,11 +327,13 @@ html {
     margin-bottom: 20px;
 }
 
+/* Mot en violet dans le titre */
 .landing-page .container .hero h2 span {
     color: var(--main-color2);
     display: inline;
 }
 
+/* Sous-titre */
 .landing-page .container .hero p {
     color: var(--p-color);
     line-height: 1.6;
@@ -309,6 +342,7 @@ html {
     max-width: 480px;
 }
 
+/* Grand écran : hero centré */
 @media(min-width:1440px) {
     .landing-page {
         justify-content: center;
@@ -350,12 +384,14 @@ html {
     }
 }
 
+/* Flèche de défilement cachée sur petit mobile */
 @media(max-width:525px) {
     .landing-page a.arrow {
         display: none;
     }
 }
 
+/* Flèche de défilement animée */
 .landing-page a.arrow {
     position: absolute;
     font-size: 30px;
@@ -368,6 +404,7 @@ html {
     z-index: 10;
 }
 
+/* Animation de rebond de la flèche */
 .landing-page a.arrow i {
     animation: arrow-jump 1.5s ease-in-out infinite;
 }
@@ -387,12 +424,14 @@ html {
     }
 }
 
+/* Boutons CTA côte à côte */
 .hero-btns {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
 }
 
+/* Boutons centrés sur mobile */
 @media(max-width: 768px) {
     .hero-btns {
         justify-content: center;
@@ -405,6 +444,7 @@ html {
     cursor: pointer;
 }
 
+/* Bouton principal avec dégradé */
 .landing-page .container .hero button:first-of-type {
     font-size: 14px;
     font-weight: 700;
@@ -420,6 +460,7 @@ html {
     box-shadow: var(--box-shadow);
 }
 
+/* Bouton secondaire avec bordure dégradée */
 .landing-page .container .hero button:nth-of-type(2) {
     font-weight: 700;
     font-size: 14px;
@@ -437,6 +478,7 @@ html {
     transform: translateY(-3px);
 }
 
+/* Boutons en colonne sur très petit écran */
 @media(max-width: 480px) {
     .hero-btns {
         flex-direction: column;
@@ -451,13 +493,15 @@ html {
 
 /* Fin Landing Page */
 /* ================================================ */
-/* Début catégories */
+/* Début Catégories */
 /* ================================================ */
+
 .categories {
     background: var(--bg-section1);
     padding-bottom: var(--main-padding);
 }
 
+/* Grille auto-remplissante des catégories */
 .categories-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
@@ -470,6 +514,7 @@ html {
     }
 }
 
+/* Carte de catégorie */
 .categories-container .card {
     background-color: var(--bg-section2);
     border: 0.02px solid rgba(128, 128, 128, 0.329);
@@ -480,10 +525,12 @@ html {
     height: 100%;
 }
 
+/* Carte monte au survol */
 .categories-container .card:hover {
     transform: translateY(-14px);
 }
 
+/* Image de la catégorie */
 .categories-container .card img {
     width: 100%;
     height: 185px;
@@ -493,6 +540,7 @@ html {
     border-top-left-radius: 25px;
 }
 
+/* Nom de la catégorie */
 .categories-container .card h4 {
     font-size: 1.22rem;
     font-weight: 800;
@@ -500,6 +548,7 @@ html {
     margin: 16px 16px 6px 16px;
 }
 
+/* Description courte */
 .categories-container .card p {
     color: var(--p-color);
     font-size: .8rem;
@@ -509,6 +558,7 @@ html {
     flex-grow: 1;
 }
 
+/* Tags sous la description */
 .categories-container .card p+div {
     display: flex;
     flex-wrap: wrap;
@@ -517,6 +567,7 @@ html {
     margin: 0 16px 12px 16px;
 }
 
+/* Un tag individuel */
 .categories-container .card p+div span {
     border: .4px solid gray;
     border-radius: 15px;
@@ -533,6 +584,7 @@ html {
     background: var(--bg-section1);
 }
 
+/* Ligne séparatrice */
 .hr {
     margin-block: 15px 10px;
     margin-inline: auto;
@@ -546,6 +598,7 @@ html {
     margin-block: 0 !important;
 }
 
+/* Bouton en bas à droite de la carte */
 .categories-container .card .button {
     display: flex;
     justify-content: flex-end;
@@ -571,6 +624,7 @@ html {
     padding: 0;
 }
 
+/* Flèche qui se déplace au survol de la carte */
 @keyframes button-move {
     from {
         transform: translateX(0);
@@ -585,6 +639,11 @@ html {
     animation: button-move .4s ease-in-out infinite alternate;
 }
 
+/* ================================================ */
+/* Couleurs par catégorie */
+/* ================================================ */
+
+/* Catégorie 1 : rouge */
 .categories-container .first h4 {
     background: linear-gradient(90deg, #F53C4F, #fff 70%);
     -webkit-background-clip: text;
@@ -615,6 +674,7 @@ html {
     box-shadow: 0 0 0 .5px rgba(245, 60, 79, .3), 0 12px 28px rgba(245, 60, 79, .15);
 }
 
+/* Catégorie 2 : vert */
 .categories-container .second h4 {
     background: linear-gradient(90deg, #385849, #fff 80%);
     -webkit-background-clip: text;
@@ -642,6 +702,7 @@ html {
     box-shadow: 0 0 0 .5px rgba(56, 88, 73, .3), 0 12px 28px rgba(56, 88, 73, .15);
 }
 
+/* Catégorie 3 : cyan */
 .categories-container .third h4 {
     background: linear-gradient(90deg, #4EF0F5, #fff 70%);
     -webkit-background-clip: text;
@@ -669,6 +730,7 @@ html {
     box-shadow: 0 0 0 .5px rgba(78, 240, 245, .2), 0 12px 28px rgba(78, 240, 245, .08);
 }
 
+/* Catégorie 4 : orange */
 .categories-container .fourth h4 {
     background: linear-gradient(90deg, #f59e0b, #fff 70%);
     -webkit-background-clip: text;
@@ -696,6 +758,7 @@ html {
     box-shadow: 0 0 0 .5px rgba(245, 158, 11, .3), 0 12px 28px rgba(245, 158, 11, .15);
 }
 
+/* Catégorie 5 : bleu */
 .categories-container .fivth h4 {
     background: linear-gradient(90deg, #22a7f0, #fff 70%);
     -webkit-background-clip: text;
@@ -723,6 +786,7 @@ html {
     box-shadow: 0 0 0 .5px rgba(34, 167, 240, .3), 0 12px 28px rgba(34, 167, 240, .15);
 }
 
+/* Catégorie 6 : violet */
 .categories-container .sixth h4 {
     background: linear-gradient(90deg, #7C49C6, #fff 70%);
     -webkit-background-clip: text;
@@ -750,6 +814,7 @@ html {
     box-shadow: 0 0 0 .5px rgba(124, 73, 198, .3), 0 12px 28px rgba(124, 73, 198, .15);
 }
 
+/* Bouton "Voir plus" */
 .categories button.more {
     display: block;
     width: fit-content;
@@ -771,19 +836,22 @@ html {
         0 8px 20px rgba(0, 102, 255, 0.2);
 }
 
-/* Fin catégories */
+/* Fin Catégories */
 /* ================================================ */
-/* Début offres */
+/* Début Offres populaires */
 /* ================================================ */
+
 .offers {
     padding-block: var(--main-padding);
     background-color: var(--bg-section2);
 }
 
+/* Overflow caché pour le slider */
 .offers .container {
     overflow: hidden;
 }
 
+/* Slider des offres */
 .offers-container {
     padding-top: 30px;
     display: flex;
@@ -797,6 +865,7 @@ html {
     }
 }
 
+/* Carte d'offre */
 .offers-container .offer {
     flex: 0 0 calc((100% - 60px) / 3);
     color: var(--text-color);
@@ -809,24 +878,28 @@ html {
     cursor: pointer;
 }
 
+/* 2 cartes par ligne sur tablette */
 @media (max-width: 992px) {
     .offers-container .offer {
         flex: 0 0 calc((100% - 40px) / 2);
     }
 }
 
+/* 1 carte par ligne sur mobile */
 @media (max-width: 665px) {
     .offers-container .offer {
         flex: 0 0 100%;
     }
 }
 
+/* Survol carte offre */
 .offers-container .offer:hover {
     transform: translateY(-4px);
     border-color: rgba(123, 47, 247, 0.8);
     box-shadow: 0 0 15px rgba(123, 47, 247, 0.4);
 }
 
+/* Étiquette catégorie en haut à gauche */
 .offer-label {
     position: absolute;
     top: 15px;
@@ -841,6 +914,7 @@ html {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Badge promo en haut à droite */
 .offer-badge {
     position: absolute;
     top: 15px;
@@ -856,6 +930,7 @@ html {
     overflow: hidden;
 }
 
+/* Effet shimmer sur le badge */
 .offer-badge::after {
     content: '';
     position: absolute;
@@ -867,6 +942,7 @@ html {
     animation: shimmer 1.5s infinite;
 }
 
+/* Couleurs des badges */
 .badge-orange {
     background: #f97316;
     color: white;
@@ -893,6 +969,7 @@ html {
     position: absolute;
 }
 
+/* Badge avec animation pulsation */
 .badge-pulse {
     animation: badgePulse 2s infinite;
 }
@@ -911,14 +988,14 @@ html {
     }
 }
 
-
-
+/* Animation shimmer */
 @keyframes shimmer {
     100% {
         left: 200%;
     }
 }
 
+/* Image de couverture de l'offre */
 .offer-cover {
     width: 100%;
     height: 120px;
@@ -926,7 +1003,6 @@ html {
     overflow: hidden;
     margin-bottom: 15px;
     margin-top: 30px;
-    /* space for label */
 }
 
 .offer-cover img {
@@ -935,6 +1011,7 @@ html {
     object-fit: cover;
 }
 
+/* Logos alignés horizontalement */
 .logos-row {
     display: flex;
     justify-content: center;
@@ -952,6 +1029,7 @@ html {
     object-fit: contain;
 }
 
+/* Logo + nom du produit */
 .offers-container .offer .top {
     display: flex;
     align-items: center;
@@ -960,6 +1038,7 @@ html {
     margin-top: 25px;
 }
 
+/* Conteneur icône */
 .offers-container .offer .top .img-container {
     width: 60px;
     height: 60px;
@@ -977,12 +1056,14 @@ html {
     object-fit: contain;
 }
 
+/* Texte à côté du logo */
 .offers-container .offer .top .text-container {
     width: calc(100% - 75px);
     text-align: left;
     margin-left: 15px;
 }
 
+/* Nom du produit avec dégradé */
 .offers-container .offer h5 {
     font-weight: bold;
     font-size: 1.5rem;
@@ -992,6 +1073,7 @@ html {
     background-clip: text;
 }
 
+/* Bloc prix */
 .price-box {
     margin-bottom: 15px;
     display: flex;
@@ -1000,6 +1082,7 @@ html {
     flex-wrap: wrap;
 }
 
+/* Ancien prix barré */
 .price-box .old-price {
     color: #8b949e;
     text-decoration: line-through;
@@ -1007,6 +1090,7 @@ html {
     order: 2;
 }
 
+/* Prix actuel en grand */
 .price-box .current-price {
     font-size: 1.8rem;
     font-weight: 900;
@@ -1021,6 +1105,7 @@ html {
     font-weight: normal;
 }
 
+/* Badge économies en vert */
 .price-box .savings {
     display: inline-block;
     background: linear-gradient(90deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.05));
@@ -1036,6 +1121,7 @@ html {
     order: 3;
 }
 
+/* Liste des avantages */
 .offers-container .offer .pros {
     padding-top: 8px;
     margin-bottom: 15px;
@@ -1049,6 +1135,7 @@ html {
     align-items: center;
 }
 
+/* Icône bleue devant chaque avantage */
 .offers-container .offer .pros p i {
     margin-right: 10px;
     color: #00b4ff;
@@ -1056,6 +1143,7 @@ html {
     text-align: center;
 }
 
+/* Compteurs live (vues, avis) */
 .offers-container .offer .live-counter {
     margin-top: 20px;
     display: flex;
@@ -1084,10 +1172,12 @@ html {
     transition: all 0.25s ease-out;
 }
 
+/* Icône rouge pour les vues */
 .offers-container .offer .live-counter p:first-child i {
     color: red;
 }
 
+/* Icône jaune pour les avis */
 .offers-container .offer .live-counter p:last-child i {
     color: yellow;
 }
@@ -1097,6 +1187,7 @@ html {
     background: rgba(255, 255, 255, 0.08);
 }
 
+/* Animation lueur étoile */
 @keyframes starGlow {
     0% {
         text-shadow: 0 0 5px rgba(250, 204, 21, 0.5);
@@ -1116,6 +1207,7 @@ html {
     }
 }
 
+/* Animation lueur rouge */
 @keyframes redGlow {
     0% {
         text-shadow: 0 0 5px rgba(255, 59, 59, 0.5);
@@ -1135,7 +1227,7 @@ html {
     }
 }
 
-/* Star Icon Hover */
+/* Icônes animées au survol de la carte */
 .offers-container .offer:hover .live-counter p:first-child i {
     animation: redGlow 1s infinite;
 }
@@ -1144,7 +1236,7 @@ html {
     animation: starGlow 1s infinite;
 }
 
-
+/* Bouton ajouter au panier */
 .offers-container .offer button {
     background: linear-gradient(90deg, #00b4ff, #7b2ff7);
     color: white;
@@ -1164,7 +1256,7 @@ html {
     box-shadow: 0 8px 20px rgba(123, 47, 247, 0.4);
 }
 
-
+/* Boutons navigation du slider */
 .offers .swap {
     text-align: right;
     color: white;
@@ -1176,6 +1268,7 @@ html {
     }
 }
 
+/* Bouton flèche gauche/droite */
 .offers .swap i {
     margin-inline: 10px;
     background: var(--bg-section1);
@@ -1197,6 +1290,7 @@ html {
     border-color: var(--main-color2);
 }
 
+/* Padding réduit sur le titre des offres */
 .special-heading.offpadding {
     padding-bottom: 10px;
 }
@@ -1207,6 +1301,7 @@ html {
     }
 }
 
+/* Points de navigation du slider */
 .offers-dots {
     display: flex;
     justify-content: center;
@@ -1225,21 +1320,24 @@ html {
     transition: all 0.3s ease;
 }
 
+/* Point actif en dégradé allongé */
 .offers-dots button.active {
     width: 28px;
     border-radius: 5px;
     background: var(--gradient);
 }
 
-/* Fin offres */
+/* Fin Offres populaires */
 /* ================================================ */
-/* Début features */
+/* Début Features */
 /* ================================================ */
+
 .features {
     background-color: var(--bg-section1);
     padding-bottom: var(--main-padding);
 }
 
+/* Grille des cartes avantages */
 .features .cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1252,6 +1350,7 @@ html {
     }
 }
 
+/* Carte avantage */
 .features .cards .card {
     color: var(--text-color);
     background-color: #192435;
@@ -1274,6 +1373,7 @@ html {
     margin-top: 10px;
 }
 
+/* Icône ronde avec dégradé */
 .features .cards .card .icon {
     width: 45px;
     height: 45px;
@@ -1290,15 +1390,17 @@ html {
     font-size: 18px;
 }
 
-/* Fin features */
+/* Fin Features */
 /* ================================================ */
-/* Début comment-ca-marche */
+/* Début Comment ça marche */
 /* ================================================ */
+
 .how-it-works {
     background-color: var(--bg-section2);
     padding-block: var(--main-padding);
 }
 
+/* Disposition image à droite, étapes à gauche */
 .how {
     display: flex;
     flex-direction: row-reverse;
@@ -1306,6 +1408,7 @@ html {
     gap: 30px;
 }
 
+/* Colonne image */
 .how .right {
     flex: 1;
     display: flex;
@@ -1319,10 +1422,12 @@ html {
     transition: transform 0.4s ease-in-out;
 }
 
+/* Image zoome au survol */
 .how .right:hover img {
     transform: scale(1.15);
 }
 
+/* Colonne étapes */
 .how .left {
     width: 60%;
     display: flex;
@@ -1333,6 +1438,7 @@ html {
     padding: 15px
 }
 
+/* Une étape sur 3 colonnes : texte gauche, numéro centre, image droite */
 .how .step {
     height: 150px;
     display: grid;
@@ -1350,6 +1456,7 @@ html {
     transform: translateY(-5px);
 }
 
+/* Ligne verticale entre les étapes */
 .how .step:not(:last-child)::after {
     content: '';
     position: absolute;
@@ -1361,6 +1468,7 @@ html {
     background: linear-gradient(to bottom, rgba(124, 58, 237, 0.5), transparent);
 }
 
+/* Texte de l'étape */
 .how .step .text {
     padding: 0 5px;
     text-align: center;
@@ -1374,6 +1482,7 @@ html {
     transition: color 0.3s ease;
 }
 
+/* Titre violet au survol */
 .how .step:hover .text h5 {
     color: #c4b5fd;
 }
@@ -1384,6 +1493,7 @@ html {
     line-height: 1.65;
 }
 
+/* Numéro de l'étape */
 .how .step .num {
     text-align: center;
     line-height: 1;
@@ -1398,6 +1508,7 @@ html {
     margin-bottom: 2px;
 }
 
+/* Grand chiffre en arrière-plan */
 .how .step .num strong {
     display: block;
     font-size: 2.3rem;
@@ -1407,6 +1518,7 @@ html {
     transition: all 0.3s ease;
 }
 
+/* Chiffre s'illumine au survol */
 .how .step:hover .num strong {
     color: rgba(167, 139, 250, 0.8);
     text-shadow: 0 0 15px rgba(167, 139, 250, 0.4);
@@ -1424,7 +1536,7 @@ html {
     object-fit: contain;
 }
 
-
+/* Responsive tablette */
 @media (max-width: 992px) {
     .how {
         flex-direction: column;
@@ -1444,6 +1556,7 @@ html {
     }
 }
 
+/* Responsive mobile */
 @media (max-width: 500px) {
     .how .step {
         grid-template-columns: 1fr 50px 1fr;
@@ -1467,15 +1580,17 @@ html {
     }
 }
 
-/* Fin comment-ca-marche */
+/* Fin Comment ça marche */
 /* ================================================ */
-/* Début testimonials */
+/* Début Témoignages */
 /* ================================================ */
+
 .testimonials {
     background-color: var(--bg-section1);
     padding-block: var(--main-padding) 100px;
 }
 
+/* Grille des témoignages */
 .testimonials-container {
     padding-top: 30px;
     max-width: 980px;
@@ -1485,12 +1600,14 @@ html {
     gap: 14px;
 }
 
+/* Ligne de cartes */
 .row {
     display: flex;
     gap: 14px;
     align-items: stretch;
 }
 
+/* Carte témoignage */
 .testimonials-container .card {
     position: relative;
     border-radius: 20px;
@@ -1505,6 +1622,7 @@ html {
     box-shadow: 0 16px 36px rgba(124, 58, 237, 0.28);
 }
 
+/* Tailles des cartes ligne 1 */
 .row-1 .c1 {
     flex: 9;
     aspect-ratio: 1/1;
@@ -1520,6 +1638,7 @@ html {
     aspect-ratio: 4/3;
 }
 
+/* Tailles des cartes ligne 2 */
 .row-2 .c4 {
     flex: 16;
     aspect-ratio: 16/9;
@@ -1535,6 +1654,7 @@ html {
     aspect-ratio: 1/1;
 }
 
+/* Image de fond de la carte */
 .testimonials-container .card img.bg {
     position: absolute;
     inset: 0;
@@ -1545,12 +1665,14 @@ html {
     transition: filter 0.3s, transform 0.3s;
 }
 
+/* Image nette au survol ou si active */
 .testimonials-container .card:hover img.bg,
 .testimonials-container .card.active img.bg {
     filter: brightness(1) saturate(1);
     transform: scale(1.05);
 }
 
+/* Dégradé sombre du bas vers le haut */
 .testimonials-container .card::before {
     content: '';
     position: absolute;
@@ -1559,6 +1681,7 @@ html {
     z-index: 1;
 }
 
+/* Bordure violette au survol */
 .testimonials-container .card::after {
     content: '';
     position: absolute;
@@ -1575,6 +1698,7 @@ html {
     border-color: rgba(124, 58, 237, 0.5);
 }
 
+/* Corps du témoignage caché par défaut */
 .testimonials-container .card-body {
     position: absolute;
     bottom: 60px;
@@ -1587,12 +1711,14 @@ html {
     transition: all 0.35s ease;
 }
 
+/* Corps visible au survol ou si actif */
 .testimonials-container .card:hover .card-body,
 .testimonials-container .card.active .card-body {
     transform: translateY(0);
     opacity: 1;
 }
 
+/* Texte du témoignage */
 .testimonials-container .card-body p {
     font-size: 0.8rem;
     font-weight: bold;
@@ -1601,6 +1727,7 @@ html {
     margin-bottom: -15px;
 }
 
+/* Nom et étoiles en bas de la carte */
 .card-bottom {
     position: absolute;
     bottom: 12px;
@@ -1612,12 +1739,14 @@ html {
     z-index: 3;
 }
 
+/* Nom du client */
 .name {
     font-size: 0.9rem;
     font-weight: 700;
     color: var(--text-color);
 }
 
+/* Étoiles jaunes */
 .stars {
     font-size: 0.7rem;
     color: #f59e0b;
@@ -1625,6 +1754,7 @@ html {
     margin-top: 3px;
 }
 
+/* Photo de profil en bas à droite */
 .testimonials-container .card-pic {
     position: absolute;
     bottom: 12px;
@@ -1637,6 +1767,7 @@ html {
     z-index: 3;
 }
 
+/* Responsive mobile : cartes en colonne */
 @media (max-width: 640px) {
     .row {
         flex-direction: column;
@@ -1648,9 +1779,11 @@ html {
         aspect-ratio: 16/9 !important;
     }
 
+    /* Corps toujours visible sur mobile */
     .testimonials-container .card-body {
         transform: translateY(0);
     }
 }
 
-/* Fin testimonials */
+/* Fin Témoignages */
+/* ================================================ */

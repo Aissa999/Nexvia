@@ -287,6 +287,7 @@
     </footer>
     <!-- Fin Footer -->
     <!-- Début Scripts -->
+    <script src="../JavaScript/translation-data.js"></script>
     <script src="../JavaScript/langage.js"></script>
     <script src="../JavaScript/main.js"></script>
     <script>
@@ -296,9 +297,7 @@
 
             tabBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    // Remove active from all
                     tabBtns.forEach(b => b.classList.remove('active'));
-                    // Add active to clicked
                     btn.classList.add('active');
 
                     const filter = btn.getAttribute('data-filter');

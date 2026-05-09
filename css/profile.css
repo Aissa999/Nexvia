@@ -1,7 +1,13 @@
+/* ================================================ */
+/* Début Profil */
+/* ================================================ */
+
+/* Header couleur section2 */
 header {
     background-color: var(--bg-section2);
 }
 
+/* Page profil centrée verticalement */
 .profile-page {
     padding: 100px 0;
     min-height: calc(100vh - 80px);
@@ -11,6 +17,7 @@ header {
     background-color: var(--bg-section1);
 }
 
+/* Carte principale du profil */
 .profile-card {
     background-color: var(--bg-card);
     padding: 40px;
@@ -22,6 +29,7 @@ header {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
+/* Titre de la page profil */
 .profile-card h2 {
     font-size: 28px;
     margin-bottom: 30px;
@@ -29,6 +37,11 @@ header {
     color: var(--text-color);
 }
 
+/* ================================================ */
+/* Champs du formulaire */
+/* ================================================ */
+
+/* Groupe label + champ */
 .input-group {
     margin-bottom: 25px;
 }
@@ -40,6 +53,7 @@ header {
     font-size: 14px;
 }
 
+/* Champs texte, email et select */
 .input-group input[type="text"],
 .input-group input[type="email"],
 .input-group select {
@@ -54,11 +68,17 @@ header {
     transition: 0.3s;
 }
 
+/* Bordure violette au focus */
 .input-group input:focus,
 .input-group select:focus {
     border-color: var(--main-color2);
 }
 
+/* ================================================ */
+/* Grille de choix d'avatar */
+/* ================================================ */
+
+/* 3 avatars par ligne */
 .avatar-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -66,6 +86,7 @@ header {
     margin-top: 10px;
 }
 
+/* Label cliquable autour de l'image */
 .avatar-grid label {
     cursor: pointer;
     text-align: center;
@@ -73,10 +94,12 @@ header {
     border-radius: 50%;
 }
 
+/* Radio caché */
 .avatar-grid input {
     display: none;
 }
 
+/* Image avatar */
 .avatar-grid img {
     width: 60px !important;
     height: 60px !important;
@@ -86,12 +109,18 @@ header {
     object-fit: cover !important;
 }
 
+/* Avatar sélectionné : bordure violette et zoom */
 .avatar-grid input:checked+img {
     border-color: var(--main-color2);
     transform: scale(1.1);
     box-shadow: 0 0 15px var(--main-color2);
 }
 
+/* ================================================ */
+/* Boutons */
+/* ================================================ */
+
+/* Style commun des deux boutons */
 .btn-save,
 .btn-logout {
     width: 100%;
@@ -105,6 +134,7 @@ header {
     margin-bottom: 10px;
 }
 
+/* Bouton sauvegarder avec dégradé */
 .btn-save {
     background: var(--gradient);
     color: white;
@@ -114,6 +144,7 @@ header {
     box-shadow: var(--box-shadow);
 }
 
+/* Bouton déconnexion en rouge discret */
 .btn-logout {
     background-color: transparent;
     color: #ef4444;
@@ -124,9 +155,13 @@ header {
     background-color: rgba(239, 68, 68, 0.1);
 }
 
+/* Message de confirmation caché par défaut */
 #profile-msg {
     margin-bottom: 20px;
     text-align: center;
     font-size: 14px;
     display: none;
 }
+
+/* Fin Profil */
+/* ================================================ */

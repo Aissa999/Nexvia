@@ -1,3 +1,8 @@
+
+/* ================================================ */
+/* Début variables globales */
+/* ================================================ */
+
 :root {
   --main-color1: #22a7f0;
   --main-color2: #8a3ffc;
@@ -11,10 +16,26 @@
   --tr: all .2s ease-in-out;
 }
 
+/* Fin variables globales */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début header et footer */
+/* ================================================ */
+
 header,
 footer {
   background-color: var(--bg-section1) !important;
 }
+
+/* Fin header et footer */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début section marketplace */
+/* ================================================ */
 
 section.marketplace {
   background-color: #121c2e;
@@ -22,6 +43,15 @@ section.marketplace {
   margin-top: var(--main-padding);
 }
 
+/* Fin section marketplace */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début layout principal */
+/* ================================================ */
+
+/* Conteneur principal */
 .main-wrap {
   display: flex;
   min-height: calc(100vh - 72px);
@@ -30,6 +60,15 @@ section.marketplace {
   gap: 20px;
 }
 
+/* Fin layout principal */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début sidebar */
+/* ================================================ */
+
+/* Sidebar cachée par défaut */
 #sidebar {
   width: 252px;
   min-width: 252px;
@@ -45,10 +84,12 @@ section.marketplace {
   border-radius: 12px;
 }
 
+/* Sidebar visible */
 #sidebar.visible {
   display: flex;
 }
 
+/* Titre de section dans la sidebar */
 .sb-title {
   font-size: .66rem;
   font-weight: 700;
@@ -59,6 +100,7 @@ section.marketplace {
   margin-bottom: 9px;
 }
 
+/* Item de la sidebar */
 .sb-item {
   display: flex;
   align-items: flex-start;
@@ -78,12 +120,14 @@ section.marketplace {
   margin-top: 2px;
 }
 
+/* Hover item sidebar */
 .sb-item:hover {
   background: rgba(255, 255, 255, 0.04);
   color: var(--text);
   transform: translateX(4px);
 }
 
+/* Item actif */
 .sb-item.active {
   background: rgba(59, 130, 246, 0.15);
   border: 1px solid rgba(59, 130, 246, 0.3);
@@ -91,6 +135,7 @@ section.marketplace {
   box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
 }
 
+/* Badge compteur */
 .sb-count {
   margin-left: auto;
   background: rgba(255, 255, 255, 0.08);
@@ -101,11 +146,13 @@ section.marketplace {
   border-radius: 999px;
 }
 
+/* Badge actif */
 .sb-item.active .sb-count {
   background: rgba(59, 130, 246, 0.2);
   color: var(--main-color1);
 }
 
+/* Bouton fermer la sidebar */
 .sb-close {
   display: none;
   position: absolute;
@@ -122,9 +169,18 @@ section.marketplace {
   justify-content: center;
 }
 
+/* Bouton fermer visible quand sidebar ouverte sur mobile */
 #sidebar.mob-open .sb-close {
   display: flex;
 }
+
+/* Fin sidebar */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début overlay mobile */
+/* ================================================ */
 
 .overlay {
   display: none;
@@ -139,6 +195,15 @@ section.marketplace {
   display: block;
 }
 
+/* Fin overlay mobile */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début catégories mobile */
+/* ================================================ */
+
+/* Barre de catégories mobile */
 .mob-cats {
   display: none;
   overflow-x: auto;
@@ -150,6 +215,7 @@ section.marketplace {
   scrollbar-width: none;
 }
 
+/* Cacher la scrollbar */
 .mob-cats::-webkit-scrollbar {
   display: none;
 }
@@ -158,6 +224,7 @@ section.marketplace {
   display: flex;
 }
 
+/* Pastille de catégorie */
 .mob-pill {
   flex-shrink: 0;
   display: flex;
@@ -175,12 +242,21 @@ section.marketplace {
   white-space: nowrap;
 }
 
+/* Pastille hover et active */
 .mob-pill:hover,
 .mob-pill.active {
   background: rgba(34, 167, 240, .11);
   border-color: rgba(34, 167, 240, .28);
   color: var(--main-color1);
 }
+
+/* Fin catégories mobile */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début contenu principal */
+/* ================================================ */
 
 #content {
   flex: 1;
@@ -190,6 +266,7 @@ section.marketplace {
   border-radius: 12px;
 }
 
+/* En-tête de section */
 .sec-hdr {
   margin-bottom: 24px;
 }
@@ -205,12 +282,21 @@ section.marketplace {
   font-size: .88rem;
 }
 
+/* Fin contenu principal */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début grille des catégories */
+/* ================================================ */
+
 .cat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
   gap: 26px;
 }
 
+/* Carte catégorie */
 .cat-card {
   background: var(--bg-section2);
   border-radius: 28px;
@@ -224,6 +310,7 @@ section.marketplace {
   transform: translateY(-14px);
 }
 
+/* Image de la carte */
 .cat-img {
   width: 100%;
   height: 185px;
@@ -231,6 +318,7 @@ section.marketplace {
   display: block;
 }
 
+/* Corps de la carte */
 .cat-body {
   padding: 16px 16px 14px;
 }
@@ -250,6 +338,7 @@ section.marketplace {
   min-height: 40px;
 }
 
+/* Tags de la carte */
 .cat-tags {
   display: flex;
   flex-wrap: wrap;
@@ -271,17 +360,20 @@ section.marketplace {
   background: var(--bg1);
 }
 
+/* Séparateur */
 .cat-hr {
   height: 1px;
   background: rgba(128, 128, 128, .22);
   margin-bottom: 11px;
 }
 
+/* Ligne bouton */
 .cat-btn-row {
   display: flex;
   justify-content: flex-end;
 }
 
+/* Bouton de la carte */
 .cat-btn {
   border: 1px solid transparent;
   border-radius: 11px;
@@ -296,6 +388,7 @@ section.marketplace {
   gap: 5px;
 }
 
+/* Animation flèche au hover */
 .cat-card:hover .cat-btn .arr {
   animation: arr .4s ease-in-out infinite alternate;
 }
@@ -310,6 +403,15 @@ section.marketplace {
   }
 }
 
+/* Fin grille des catégories */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début couleurs par catégorie */
+/* ================================================ */
+
+/* Films */
 .c-films .cat-title {
   background: linear-gradient(90deg, #F53C4F, #fff 70%);
   -webkit-background-clip: text;
@@ -333,6 +435,7 @@ section.marketplace {
   box-shadow: 0 0 0 .5px rgba(245, 60, 79, .3), 0 12px 28px rgba(245, 60, 79, .15);
 }
 
+/* Musique */
 .c-music .cat-title {
   background: linear-gradient(90deg, #385849, #fff 80%);
   -webkit-background-clip: text;
@@ -356,6 +459,7 @@ section.marketplace {
   box-shadow: 0 0 0 .5px rgba(56, 88, 73, .3), 0 12px 28px rgba(56, 88, 73, .15);
 }
 
+/* Intelligence artificielle */
 .c-ai .cat-title {
   background: linear-gradient(90deg, #4EF0F5, #fff 70%);
   -webkit-background-clip: text;
@@ -379,6 +483,7 @@ section.marketplace {
   box-shadow: 0 0 0 .5px rgba(78, 240, 245, .2), 0 12px 28px rgba(78, 240, 245, .08);
 }
 
+/* Cloud */
 .c-cloud .cat-title {
   background: linear-gradient(90deg, #22a7f0, #fff 70%);
   -webkit-background-clip: text;
@@ -402,6 +507,7 @@ section.marketplace {
   box-shadow: 0 0 0 .5px rgba(34, 167, 240, .3), 0 12px 28px rgba(34, 167, 240, .15);
 }
 
+/* Éducation */
 .c-education .cat-title {
   background: linear-gradient(90deg, #f59e0b, #fff 70%);
   -webkit-background-clip: text;
@@ -425,6 +531,7 @@ section.marketplace {
   box-shadow: 0 0 0 .5px rgba(245, 158, 11, .3), 0 12px 28px rgba(245, 158, 11, .15);
 }
 
+/* Productivité */
 .c-productivity .cat-title {
   background: linear-gradient(90deg, #7C49C6, #fff 70%);
   -webkit-background-clip: text;
@@ -448,6 +555,7 @@ section.marketplace {
   box-shadow: 0 0 0 .5px rgba(124, 73, 198, .3), 0 12px 28px rgba(124, 73, 198, .15);
 }
 
+/* Jeux */
 .c-games .cat-title {
   background: linear-gradient(90deg, #AB3DBC, #fff 70%);
   -webkit-background-clip: text;
@@ -471,6 +579,7 @@ section.marketplace {
   box-shadow: 0 0 0 .5px rgba(171, 61, 188, .3), 0 12px 28px rgba(171, 61, 188, .15);
 }
 
+/* VPN */
 .c-vpn .cat-title {
   background: linear-gradient(90deg, #7C49C6, #fff 70%);
   -webkit-background-clip: text;
@@ -494,6 +603,7 @@ section.marketplace {
   box-shadow: 0 0 0 .5px rgba(124, 73, 198, .3), 0 12px 28px rgba(124, 73, 198, .15);
 }
 
+/* Fitness */
 .c-fitness .cat-title {
   background: linear-gradient(90deg, #22c55e, #fff 70%);
   -webkit-background-clip: text;
@@ -517,7 +627,7 @@ section.marketplace {
   box-shadow: 0 0 0 .5px rgba(34, 197, 94, .3), 0 12px 28px rgba(34, 197, 94, .15);
 }
 
-/* ── Recharge Mobile ── */
+/* Recharge mobile */
 .c-mobile .cat-title {
   background: linear-gradient(90deg, #31B9A3, #fff 70%);
   -webkit-background-clip: text;
@@ -541,7 +651,7 @@ section.marketplace {
   box-shadow: 0 0 0 .5px rgba(49, 185, 163, .3), 0 12px 28px rgba(49, 185, 163, .15);
 }
 
-/* ── Cartes Cadeaux ── */
+/* Cartes cadeaux */
 .c-giftcards .cat-title {
   background: linear-gradient(90deg, #e879a0, #fff 70%);
   -webkit-background-clip: text;
@@ -565,7 +675,7 @@ section.marketplace {
   box-shadow: 0 0 0 .5px rgba(232, 121, 160, .3), 0 12px 28px rgba(232, 121, 160, .15);
 }
 
-/* ── Finance & Crypto ── */
+/* Finance et crypto */
 .c-finance .cat-title {
   background: linear-gradient(90deg, #eab308, #fff 70%);
   -webkit-background-clip: text;
@@ -589,6 +699,15 @@ section.marketplace {
   box-shadow: 0 0 0 .5px rgba(234, 179, 8, .3), 0 12px 28px rgba(234, 179, 8, .15);
 }
 
+/* Fin couleurs par catégorie */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début vues produits */
+/* ================================================ */
+
+/* Vue produits cachée par défaut */
 #products-view {
   display: none;
 }
@@ -597,10 +716,12 @@ section.marketplace {
   display: block;
 }
 
+/* Vue catégories cachée */
 #categories-view.hidden {
   display: none;
 }
 
+/* En-tête de la vue */
 .view-hdr {
   display: flex;
   align-items: center;
@@ -609,6 +730,7 @@ section.marketplace {
   flex-wrap: wrap;
 }
 
+/* Bouton retour */
 .back-btn {
   display: flex;
   align-items: center;
@@ -635,6 +757,7 @@ section.marketplace {
   font-weight: 800;
 }
 
+/* Titre avec dégradé */
 .view-hdr h2 span {
   background: var(--gradient);
   -webkit-background-clip: text;
@@ -642,12 +765,14 @@ section.marketplace {
   background-clip: text;
 }
 
+/* Grille des produits */
 .prod-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
   gap: 16px;
 }
 
+/* Carte produit */
 .prod-card {
   background: var(--bg-section1);
   border: .02px solid rgba(128, 128, 128, .33);
@@ -665,6 +790,7 @@ section.marketplace {
   box-shadow: 0 8px 25px rgba(106, 0, 255, .15);
 }
 
+/* Haut de la carte */
 .prod-top {
   display: flex;
   align-items: center;
@@ -673,6 +799,7 @@ section.marketplace {
   position: relative;
 }
 
+/* Logo du produit */
 .prod-logo {
   width: 60px;
   height: 60px;
@@ -708,6 +835,7 @@ section.marketplace {
   font-size: .76rem;
 }
 
+/* Badge promo */
 .prod-badge {
   position: absolute;
   top: 0;
@@ -720,6 +848,7 @@ section.marketplace {
   font-weight: 700;
 }
 
+/* Prix du produit */
 .prod-price-row {
   margin-bottom: 2px;
 }
@@ -736,12 +865,14 @@ section.marketplace {
   color: var(--muted);
 }
 
+/* Séparateur */
 .prod-div {
   height: 1px;
   background: rgba(128, 128, 128, .22);
   margin: 13px 0;
 }
 
+/* Infos sociales */
 .prod-social {
   display: flex;
   justify-content: space-between;
@@ -750,6 +881,7 @@ section.marketplace {
   margin-bottom: 13px;
 }
 
+/* Pastilles stock et note */
 .s-pill {
   display: flex;
   align-items: center;
@@ -762,6 +894,7 @@ section.marketplace {
   font-weight: 500;
 }
 
+/* Point de stock */
 .s-dot {
   width: 7px;
   height: 7px;
@@ -770,10 +903,12 @@ section.marketplace {
   flex-shrink: 0;
 }
 
+/* Étoile de note */
 .s-star {
   color: #facc15;
 }
 
+/* Animation point rouge au hover */
 @keyframes glRed {
   0% {
     text-shadow: 0 0 5px rgba(255, 59, 59, .5);
@@ -791,6 +926,7 @@ section.marketplace {
   }
 }
 
+/* Animation étoile au hover */
 @keyframes glStar {
   0% {
     text-shadow: 0 0 5px rgba(250, 204, 21, .5);
@@ -813,6 +949,7 @@ section.marketplace {
   animation: glStar .5s infinite;
 }
 
+/* Bouton acheter */
 .buy-btn {
   width: 100%;
   background: var(--gradient);
@@ -832,6 +969,15 @@ section.marketplace {
   box-shadow: var(--shadow);
 }
 
+/* Fin vues produits */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début vue détail */
+/* ================================================ */
+
+/* Vue détail cachée par défaut */
 #detail-view {
   display: none;
 }
@@ -840,12 +986,14 @@ section.marketplace {
   display: block;
 }
 
+/* Grille détail */
 .detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 22px;
 }
 
+/* Panneau détail */
 .d-panel {
   background: var(--bg-section1);
   border: 1px solid rgba(255, 255, 255, .07);
@@ -853,6 +1001,7 @@ section.marketplace {
   padding: 26px;
 }
 
+/* Logo et nom */
 .d-logo-row {
   display: flex;
   align-items: center;
@@ -893,6 +1042,7 @@ section.marketplace {
   line-height: 1.5;
 }
 
+/* Label features */
 .feat-lbl {
   font-size: .66rem;
   font-weight: 700;
@@ -902,6 +1052,7 @@ section.marketplace {
   margin: 18px 0 10px;
 }
 
+/* Ligne de feature */
 .feat-row {
   display: flex;
   align-items: center;
@@ -911,6 +1062,7 @@ section.marketplace {
   margin-bottom: 8px;
 }
 
+/* Icône check */
 .chk {
   width: 20px;
   height: 20px;
@@ -925,6 +1077,7 @@ section.marketplace {
   font-size: .58rem;
 }
 
+/* Options durée ou type */
 .opt-section {
   margin-bottom: 20px;
 }
@@ -945,6 +1098,7 @@ section.marketplace {
   margin-bottom: 16px;
 }
 
+/* Pastille option */
 .opt-pill {
   padding: 7px 16px;
   border-radius: 15px;
@@ -962,6 +1116,7 @@ section.marketplace {
   color: var(--text);
 }
 
+/* Pastille option sélectionnée */
 .opt-pill.active {
   background: rgba(34, 167, 240, .09);
   border-color: var(--main-color1);
@@ -969,6 +1124,7 @@ section.marketplace {
   font-weight: 600;
 }
 
+/* Label paiement */
 .pay-lbl {
   color: white;
   font-size: .92rem;
@@ -976,6 +1132,7 @@ section.marketplace {
   margin-bottom: 11px;
 }
 
+/* Options de paiement */
 .pay-opts {
   display: flex;
   gap: 9px;
@@ -983,6 +1140,7 @@ section.marketplace {
   margin-bottom: 18px;
 }
 
+/* Bouton de paiement */
 .pay-opt {
   flex: 1;
   min-width: 108px;
@@ -1011,12 +1169,14 @@ section.marketplace {
   color: var(--text);
 }
 
+/* Paiement sélectionné */
 .pay-opt.active {
   border-color: var(--main-color1);
   background: rgba(34, 167, 240, .08);
   color: var(--text);
 }
 
+/* Boîte du prix */
 .price-box {
   background: rgba(34, 167, 240, .06);
   border: 1px solid rgba(34, 167, 240, .17);
@@ -1039,6 +1199,7 @@ section.marketplace {
   font-weight: 500;
 }
 
+/* Bouton acheter détail */
 .d-buy {
   width: 100%;
   background: var(--gradient);
@@ -1058,6 +1219,15 @@ section.marketplace {
   box-shadow: var(--shadow);
 }
 
+/* Fin vue détail */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début animations */
+/* ================================================ */
+
+/* Animation d'apparition */
 @keyframes fiu {
   from {
     opacity: 0;
@@ -1070,6 +1240,7 @@ section.marketplace {
   }
 }
 
+/* Entrée décalée des éléments */
 .stagger>* {
   opacity: 0;
   animation: fiu .35s ease forwards;
@@ -1111,6 +1282,14 @@ section.marketplace {
   animation-delay: .45s;
 }
 
+/* Fin animations */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début responsive */
+/* ================================================ */
+
 @media (max-width: 900px) {
   .detail-grid {
     grid-template-columns: 1fr;
@@ -1126,10 +1305,12 @@ section.marketplace {
     grid-template-columns: 1fr;
   }
 
+  /* Sidebar cachée sur mobile */
   #sidebar {
     display: none !important;
   }
 
+  /* Sidebar ouverte en position fixe sur mobile */
   #sidebar.mob-open {
     display: flex !important;
     position: fixed;
@@ -1151,3 +1332,6 @@ section.marketplace {
     padding: 18px;
   }
 }
+
+/* Fin responsive */
+/* ================================================ */

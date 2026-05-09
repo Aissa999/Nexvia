@@ -1,23 +1,32 @@
+/* ================================================ */
+/* Début Auth */
+/* ================================================ */
+
+/* Fond de la page connexion/inscription */
 body {
   background-color: var(--bg-section2);
 }
 
+/* Header et footer en couleur foncée */
 header,
 footer {
   background-color: var(--bg-section1) !important;
 }
 
+/* Padding réduit sur très petit écran */
 @media(max-width:620px) {
   section.sing-up {
     padding: 20px !important;
   }
 }
 
+/* Liens dans les sections auth en bleu */
 section.sign-in a,
 section.sign-up a {
   color: var(--main-color1);
 }
 
+/* Grand padding sur desktop */
 @media(min-width:992px) {
 
   section.sign-in,
@@ -26,11 +35,17 @@ section.sign-up a {
   }
 }
 
+/* Titres en blanc */
 h1,
 h2 {
   color: var(--text-color);
 }
 
+/* ================================================ */
+/* Carte auth (contient les deux panneaux) */
+/* ================================================ */
+
+/* Carte principale avec fond flouté */
 .auth-card {
   display: flex;
   background: rgba(30, 41, 59, 0.6);
@@ -43,6 +58,7 @@ h2 {
   position: relative;
 }
 
+/* Lueur dégradée au survol de la carte */
 .auth-card::after {
   content: '';
   position: absolute;
@@ -59,6 +75,10 @@ h2 {
   opacity: 0.12;
 }
 
+/* ================================================ */
+/* Panneau gauche (connexion sociale) */
+/* ================================================ */
+
 .panel-social {
   flex: 0 0 40%;
   padding: 48px 36px;
@@ -69,6 +89,7 @@ h2 {
   justify-content: center;
 }
 
+/* Petite étiquette au dessus du titre */
 .panel-label {
   font-size: 11px;
   font-weight: 700;
@@ -92,6 +113,7 @@ h2 {
   margin-bottom: 30px;
 }
 
+/* Bouton connexion via réseau social */
 .social-btn {
   display: flex;
   align-items: center;
@@ -116,6 +138,7 @@ h2 {
   margin-bottom: 0;
 }
 
+/* Dégradé au survol du bouton social */
 .social-btn::before {
   content: '';
   position: absolute;
@@ -141,11 +164,16 @@ h2 {
   flex-shrink: 0;
 }
 
+/* Séparateur vertical entre les deux panneaux */
 .divider-v {
   width: 1px;
   background: rgba(255, 255, 255, 0.06);
   flex-shrink: 0;
 }
+
+/* ================================================ */
+/* Panneau droit (formulaire) */
+/* ================================================ */
 
 .panel-form {
   flex: 1;
@@ -162,18 +190,21 @@ h2 {
   margin-bottom: 5px;
 }
 
+/* Sous-titre du formulaire */
 .panel-form .subtitle {
   color: var(--p-color);
   font-size: 13.5px;
   margin-bottom: 28px;
 }
 
+/* Deux champs côte à côte */
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
 
+/* Groupe label + input */
 .form-group {
   margin-bottom: 15px;
 }
@@ -186,6 +217,7 @@ h2 {
   margin-bottom: 7px;
 }
 
+/* Champ de saisie */
 .form-group input {
   width: 100%;
   padding: 12px 15px;
@@ -202,11 +234,13 @@ h2 {
   color: rgba(148, 163, 184, 0.45);
 }
 
+/* Bordure violette quand le champ est actif */
 .form-group input:focus {
   border-color: rgba(138, 63, 252, 0.6);
   box-shadow: 0 0 0 3px rgba(138, 63, 252, 0.1), 0 0 15px rgba(138, 63, 252, 0.08);
 }
 
+/* Lien mot de passe oublié */
 .forgot-link {
   display: block;
   text-align: right;
@@ -218,6 +252,7 @@ h2 {
   transition: opacity 0.2s;
 }
 
+/* Checkbox conditions d'utilisation */
 .terms {
   display: flex;
   align-items: flex-start;
@@ -236,6 +271,7 @@ h2 {
   color: var(--p-color);
 }
 
+/* Bouton principal du formulaire */
 .btn-primary {
   width: 100%;
   padding: 13px;
@@ -249,6 +285,7 @@ h2 {
   transition: var(--transition);
 }
 
+/* Lien en bas du formulaire */
 .auth-footer {
   text-align: center;
   margin-top: 20px;
@@ -261,12 +298,14 @@ h2 {
   display: inline-block;
 }
 
+/* Responsive tablette */
 @media(max-width:992px) {
   .auth-card {
     margin: 100px 20px;
   }
 }
 
+/* Responsive mobile : panneau en colonne */
 @media (max-width: 720px) {
   .auth-card {
     flex-direction: column;
@@ -279,6 +318,7 @@ h2 {
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 
+  /* Séparateur vertical inutile sur mobile */
   .divider-v {
     display: none;
   }
@@ -287,11 +327,17 @@ h2 {
     padding: 28px 22px;
   }
 
+  /* Un seul champ par ligne sur mobile */
   .form-row {
     grid-template-columns: 1fr;
   }
 }
 
+/* ================================================ */
+/* Indicateur de force du mot de passe */
+/* ================================================ */
+
+/* Barres de force */
 .strength-bars {
   display: flex;
   gap: 4px;
@@ -306,6 +352,7 @@ h2 {
   transition: background 0.3s;
 }
 
+/* Couleurs selon le niveau */
 .s-bar.s1 {
   background: #ef4444;
 }
@@ -321,6 +368,10 @@ h2 {
 .s-bar.s4 {
   background: #22c55e;
 }
+
+/* ================================================ */
+/* Checkbox conditions (version complète) */
+/* ================================================ */
 
 .terms {
   display: flex;
@@ -355,6 +406,11 @@ h2 {
   text-decoration: underline;
 }
 
+/* ================================================ */
+/* Animation d'apparition des sections */
+/* ================================================ */
+
+/* Sections cachées par défaut */
 section.sign-in,
 section.sign-up {
   opacity: 0;
@@ -362,8 +418,12 @@ section.sign-up {
   transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
 }
 
+/* Section visible */
 section.sign-in.active,
 section.sign-up.active {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Fin Auth */
+/* ================================================ */

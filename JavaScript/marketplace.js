@@ -1,25 +1,52 @@
-// ================================================================
-// DOMContentLoaded init
-// Point d'entrée: initialise toutes les vues et branche les événements au chargement de la page
-// ================================================================
-document.addEventListener("DOMContentLoaded", async () => {
-    // ================================================================
-    // Data import / products array
-    // Données des produits importées depuis products.json (catalogue complet)
-    // ================================================================
+
+const GET_BASE_PATH = () => {
+    const isInPages = window.location.pathname.includes('/pages/') || window.location.pathname.includes('\\pages\\');
+    return isInPages ? '../JavaScript/' : 'JavaScript/';
+};
+const MARKETPLACE_SCRIPT_BASE = GET_BASE_PATH();
+
+async function startMarketplace() {
+
     let data;
+    const FALLBACK_PRODUCTS = {
+        "categories": [
+            { "id": "c-films", "name": "Films & séries", "description": "Accédez aux meilleures plateformes de streaming et profitez de milliers de films, séries et animés en illimité.", "tags": ["Netflix", "Disney+", "Apple TV+", "Prime Video", "Crunchyroll"], "image": "../images/categories/movies.jpg", "cssClass": "c-films" },
+            { "id": "c-music", "name": "Musique", "description": "Écoutez vos artistes préférés sans interruption, en ligne ou hors connexion, avec une qualité audio irréprochable.", "tags": ["Spotify", "Apple Music", "Youtube Music", "Tidal", "Deezer"], "image": "../images/categories/music.jpg", "cssClass": "c-music" },
+            { "id": "c-ai", "name": "Intelligence Artificielle", "description": "Boostez votre productivité avec les assistants IA les plus puissants du moment — rédigez, codez et créez.", "tags": ["ChatGPT", "Claude", "Gemini", "Grok", "ElevenLabs"], "image": "../images/categories/ai.jpg", "cssClass": "c-ai" },
+            { "id": "c-cloud", "name": "Stockage Cloud", "description": "Sauvegardez et accédez à vos fichiers depuis n'importe quel appareil — choisissez le volume de stockage qui vous convient.", "tags": ["Google Drive", "iCloud", "OneDrive"], "image": "../images/categories/cloud.jpg", "cssClass": "c-cloud" },
+            { "id": "c-education", "name": "Éducation", "description": "Apprenez une nouvelle langue, maîtrisez une compétence ou obtenez une certification reconnue, à votre rythme.", "tags": ["Duolingo", "Coursera", "Udemy", "LinkedIn Learning", "Skillshare"], "image": "../images/categories/education.jpg", "cssClass": "c-education" },
+            { "id": "c-productivity", "name": "Productivité", "description": "Organisez vos projets, gérez vos tâches et collaborez efficacement avec les outils qui font la différence au quotidien.", "tags": ["Canva", "Notion", "Google Workspace", "Grammarly"], "image": "../images/categories/productivity.jpg", "cssClass": "c-productivity" },
+            { "id": "c-games", "name": "Jeux Vidéo", "description": "Obtenez des avantages exclusifs et du contenu premium sur vos jeux préférés avec nos offres spéciales.", "tags": ["FIFA", "eFootball", "Fortnite", "PUBG", "Free Fire", "Minecraft"], "image": "../images/categories/games.jpg", "cssClass": "c-games" },
+            { "id": "c-vpn", "name": "VPN & Proxy", "description": "Naviguez en toute sécurité et débloquez le contenu du monde entier avec nos solutions VPN rapides et fiables.", "tags": ["NordVPN", "Secure VPN", "Smart Proxy", "ExpressVPN", "Surfshark"], "image": "../images/categories/vpn.jpg", "cssClass": "c-vpn" },
+            { "id": "c-fitness", "name": "Sport & Santé", "description": "Atteignez vos objectifs de remise en forme avec des plans d'entraînement et de nutrition personnalisés.", "tags": ["MyFitnessPal", "Nike Training", "Yazio", "Strava", "Freeletics"], "image": "../images/categories/fitness.jpg", "cssClass": "c-fitness" },
+            { "id": "c-mobile", "name": "Recharge Mobile", "description": "Rechargez votre forfait Mobilis, Djezzy ou Ooredoo instantanément — livraison directe sur votre numéro.", "tags": ["Mobilis", "Djezzy", "Ooredoo"], "image": "../images/categories/recharge.jpg", "cssClass": "c-mobile" },
+            { "id": "c-giftcards", "name": "Cartes Cadeaux", "description": "Offrez ou utilisez des cartes cadeaux numériques pour vos plateformes préférées — livraison instantanée par code.", "tags": ["iTunes", "Google Play", "Amazon", "Steam", "PlayStation", "Xbox"], "image": "../images/categories/gift-cards.jpg", "cssClass": "c-giftcards" },
+            { "id": "c-finance", "name": "Finance & Crypto", "description": "Accédez aux meilleurs outils d'analyse financière, de suivi de portefeuille et de trading crypto avancé sécurisé.", "tags": ["TradingView", "CoinStats", "Binance", "Kucoin"], "image": "../images/categories/finance.jpg", "cssClass": "c-finance" }
+        ],
+        "products": [
+            { "id": "netflix", "categoryId": "c-films", "name": "Netflix", "subtitle": "Abonnement Premium", "price": 650, "logo": "../images/products/netflix.png", "rating": "4.9", "clients": "5200", "description": "Accédez aux meilleures séries et films du moment en 4K Ultra HD.", "features": ["Qualité 4K Ultra HD + HDR", "Audio Spatial Dolby Atmos", "Téléchargement hors-ligne", "Catalogue mondial complet"] },
+            { "id": "youtube-premium", "categoryId": "c-films", "name": "YouTube Premium", "subtitle": "Vidéo sans publicité", "price": 550, "logo": "../images/products/youtube.png", "rating": "4.8", "clients": "4200", "description": "Profitez de YouTube sans publicité, hors connexion et en arrière-plan.", "features": ["Zéro publicité sur toutes les vidéos", "Lecture en arrière-plan", "Téléchargements vidéo offline", "YouTube Music inclus"] },
+            { "id": "disney", "categoryId": "c-films", "name": "Disney+", "subtitle": "Offre Standard", "price": 700, "logo": "../images/products/disney.png", "rating": "4.7", "clients": "2100", "description": "La maison de Disney, Pixar, Marvel, Star Wars et National Geographic.", "features": ["Contenu familial illimité", "Format IMAX Enhanced", "4 visionnages simultanés", "Contrôle parental avancé"] },
+            { "id": "prime-video", "categoryId": "c-films", "name": "Prime Video", "subtitle": "Amazon Prime", "price": 600, "logo": "../images/products/prime-video.png", "rating": "4.6", "clients": "1850", "description": "Films et séries originaux Amazon primés, disponibles à la demande.", "features": ["Séries Amazon Originals primées", "Contenu 4K HDR disponible", "Téléchargement hors-ligne", "Accès aux chaînes Amazon add-on"] },
+            { "id": "crunchyroll", "categoryId": "c-films", "name": "Crunchyroll", "subtitle": "Mega Fan", "price": 450, "logo": "../images/products/crunchrool.png", "rating": "4.8", "clients": "1500", "description": "La plus grande bibliothèque mondiale d'animés et mangas.", "features": ["Simulcasts 1h après la diffusion au Japon", "Sans publicité", "Accès à 1000+ séries animées", "Multi-appareils (TV, mobile, PC)"] },
+            { "id": "spotify", "categoryId": "c-music", "name": "Spotify", "subtitle": "Premium Individuel", "price": 700, "logo": "../images/products/spotify.png", "rating": "4.9", "clients": "4200", "description": "Écoutez 100 millions de titres et podcasts sans publicité.", "features": ["Aucune publicité", "Lecture hors connexion (jusqu'à 10 000 titres)", "Qualité audio jusqu'à 320 kbps", "Saut de titres illimité"] },
+            { "id": "chatgpt", "categoryId": "c-ai", "name": "ChatGPT", "subtitle": "Abonnement Plus", "price": 2800, "logo": "../images/products/chatGpt.png", "rating": "5.0", "clients": "5100", "description": "Accédez à GPT-5.5, génération d'images et analyse de données ultra-avancée.", "features": ["GPT-5.5 (dernier modèle ultra-performant)", "Génération d'images ultra-réalistes", "Analyse de fichiers & code (Advanced Data Analysis)", "Mode vocal avancé et accès prioritaire"] },
+            { "id": "canva", "categoryId": "c-productivity", "name": "Canva Pro", "subtitle": "Design Graphique Premium", "price": 650, "logo": "../images/products/canva.png", "rating": "4.9", "clients": "8400", "description": "L'outil de design n°1 avec tous les éléments, templates et IA débloqués.", "features": ["100+ millions d'images, vidéos et éléments premium", "Suppression d'arrière-plan en 1 clic (Magic Studio)", "Génération d'images par IA (Dream Lab)", "Export SVG, PDF haute qualité et formats pro"] }
+        ]
+    };
+
     try {
-        const isPagesDir = window.location.pathname.includes('/pages/') || window.location.pathname.includes('\\pages\\');
-        const jsonPath = isPagesDir ? '../JavaScript/products.json' : 'JavaScript/products.json';
-        const response = await fetch(jsonPath);
-        if (!response.ok) throw new Error("Network response was not ok");
-        data = await response.json();
+        if (window.NEXVIA_PRODUCTS_DATA) {
+            data = window.NEXVIA_PRODUCTS_DATA;
+        } else {
+            const response = await fetch(MARKETPLACE_SCRIPT_BASE + 'products.json');
+            if (!response.ok) throw new Error("Fetch failed");
+            data = await response.json();
+        }
     } catch (error) {
-        console.error("Marketplace Data not found or could not be loaded!", error);
-        return;
+        data = FALLBACK_PRODUCTS;
     }
 
-    // Références des vues principales (catégories, produits, détails, sidebar, mobile)
     const catView = document.getElementById("categories-view");
     const prodView = document.getElementById("products-view");
     const detailView = document.getElementById("detail-view");
@@ -27,7 +54,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const overlay = document.getElementById("overlay");
     const mobCats = document.getElementById("mob-cats");
 
-    // Conteneurs de contenu dynamique
     const catGrid = document.getElementById("cat-grid");
     const prodGrid = document.getElementById("prod-grid");
     const detLeft = document.getElementById("det-left");
@@ -35,18 +61,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     const prodTitle = document.getElementById("prod-title");
     const detTitle = document.getElementById("det-title");
 
-    // Boutons de navigation (retour et sidebar)
     const backToCats = document.getElementById("back-to-cats");
     const backToProds = document.getElementById("back-to-prods");
     const sbClose = document.getElementById("sb-close");
 
-    // Variables d’état (catégorie active, produit actif, options, paiement)
+    if (!catView || !prodView || !detailView || !sidebar || !overlay || !mobCats ||
+        !catGrid || !prodGrid || !detLeft || !detRight || !prodTitle || !detTitle ||
+        !backToCats || !backToProds || !sbClose) {
+        return;
+    }
+
     let activeCategoryId = null;
     let activeProduct = null;
     let selectedOptions = {};
     let selectedPayment = 'baridimob';
 
-    // Helper de traduction
     function t(text) {
         if (!text) return text;
         if (window.NexviaI18n && typeof window.NexviaI18n.translateText === 'function') {
@@ -55,10 +84,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         return text;
     }
 
-    // Lance l'initialisation générale
     init();
 
-    // Initialise l’interface (render + événements + routing URL)
     function init() {
         renderCategories();
         renderSidebar();
@@ -67,16 +94,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         backToCats.addEventListener("click", showCategoriesView);
         backToProds.addEventListener("click", () => showProductsView(activeCategoryId));
 
-        sbClose.addEventListener("click", closeMobileSidebar);
+        const closeBtn = document.getElementById("sb-close");
+        if (closeBtn) closeBtn.addEventListener("click", closeMobileSidebar);
         overlay.addEventListener("click", closeMobileSidebar);
 
-        // Events for search and filters
         const fSearch = document.getElementById("filter-search");
         const fSort = document.getElementById("filter-sort");
         if (fSearch) fSearch.addEventListener("input", () => { if (activeCategoryId) renderProducts(activeCategoryId) });
         if (fSort) fSort.addEventListener("change", () => { if (activeCategoryId) renderProducts(activeCategoryId) });
 
-        // Gère la navigation via paramètres URL (?cat= ou ?prod=)
         const params = new URLSearchParams(window.location.search);
         if (params.get('prod')) {
             const pid = params.get('prod');
@@ -92,7 +118,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         }
 
-        // Ecouteur pour la langue
         window.addEventListener('nexvia:languagechange', () => {
             renderCategories();
             renderSidebar();
@@ -110,10 +135,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // ================================================================
-    // renderCategories()
-    // Génère et affiche les cartes de catégories dans la grille principale
-    // ================================================================
+
     function renderCategories() {
         catGrid.innerHTML = "";
         data.categories.forEach(cat => {
@@ -142,10 +164,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // ================================================================
-    // renderSidebar()
-    // Construit le menu latéral de filtrage par catégorie sur desktop
-    // ================================================================
+
     function renderSidebar() {
         sidebar.innerHTML = `<button class="sb-close" id="sb-close">✕</button><div class="sb-title">${t("CATÉGORIES")}</div>`;
         document.getElementById("sb-close").addEventListener("click", closeMobileSidebar);
@@ -165,10 +184,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // ================================================================
-    // renderMobCats()
-    // Génère les boutons de catégories pour la navigation mobile horizontale
-    // ================================================================
     function renderMobCats() {
         mobCats.innerHTML = "";
         data.categories.forEach(cat => {
@@ -181,7 +196,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // Met à jour l’état actif dans sidebar et mobile
     function updateSidebarActiveState() {
         sidebar.querySelectorAll(".sb-item").forEach(item => {
             if (item.dataset.id === activeCategoryId) {
@@ -200,10 +214,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // ================================================================
-    // selectCategory()
-    // Sélectionne une catégorie et met à jour la vue produits + l'URL
-    // ================================================================
+
     function showProductsView(categoryId) {
         activeCategoryId = categoryId;
         catView.classList.add("hidden");
@@ -216,10 +227,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ================================================================
-    // renderProducts()
-    // Filtre et affiche les produits de la catégorie active selon la recherche et le tri
-    // ================================================================
+
     function renderProducts(categoryId) {
         prodGrid.innerHTML = "";
         const categoryData = data.categories.find(c => c.id === categoryId) || { name: 'Offres Spéciales' };
@@ -227,7 +235,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         let categoryProducts = data.products.filter(p => p.categoryId === categoryId);
 
-        // Apply search filter
         const sTerm = document.getElementById("filter-search")?.value.toLowerCase().trim();
         const sSort = document.getElementById("filter-sort")?.value || "popularity";
 
@@ -235,7 +242,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             categoryProducts = categoryProducts.filter(p => p.name.toLowerCase().includes(sTerm) || p.description.toLowerCase().includes(sTerm));
         }
 
-        // Apply sorting
         if (sSort === "price-asc") {
             categoryProducts.sort((a, b) => a.price - b.price);
         } else if (sSort === "price-desc") {
@@ -253,7 +259,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             return;
         }
 
-        // Determine which product is the "most popular" in the original (unsorted) list
         const originalList = data.products.filter(p => p.categoryId === categoryId);
         const popularId = originalList.reduce((best, p) => {
             const bClients = parseFloat((best.clients || '0').toString().replace(/,/g, '')) || 0;
@@ -293,7 +298,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // Retour à la vue catégories
     function showCategoriesView() {
         activeCategoryId = null;
         prodView.classList.remove("on");
@@ -303,10 +307,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ================================================================
-    // openDetail() / renderDetailLeft() / renderDetailRight()
-    // Affiche la page de détail d'un produit avec images, description et bouton d'achat
-    // ================================================================
     function showDetailView(productId) {
         const originalProduct = data.products.find(p => p.id === productId);
         activeProduct = JSON.parse(JSON.stringify(originalProduct));
@@ -340,7 +340,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Affiche les infos du produit (logo, description, features, carousel)
     function renderDetailLeft() {
         const featHTML = activeProduct.features.map(f => `
             <div class="feat-row">
@@ -349,7 +348,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             </div>
         `).join("");
 
-        // Map product IDs to their actual description image base names
         const descMap = {
             'netflix': 'netflix',
             'youtube-premium': 'youtube',
@@ -463,10 +461,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
     }
 
-    // ================================================================
-    // Cart add to detail
-    // Gère l'ajout au panier depuis la page de détail avec feedback visuel
-    // ================================================================
     function renderDetailRight() {
         detRight.innerHTML = "";
 
@@ -657,9 +651,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
     }
 
-    // Gère la fermeture de la sidebar mobile
     function closeMobileSidebar() {
         sidebar.classList.remove("mob-open");
         overlay.classList.remove("visible");
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startMarketplace);
+} else {
+    startMarketplace();
+}

@@ -1,3 +1,5 @@
+
+
 (function () {
   'use strict';
 
@@ -8,14 +10,38 @@
   const originalTextNodes = new WeakMap();
 
   const state = {
-    data: null,
+    data: window.NEXVIA_TRANSLATION_DATA || null,
     lang: localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG,
     ready: null
   };
 
+  const FALLBACK_DATA = {
+    languages: {
+      fr: { label: 'Français', shortLabel: 'FR', flag: '🇫🇷', flagImage: 'france-flag-icon.webp' },
+      en: { label: 'English', shortLabel: 'EN', flag: '🇬🇧', flagImage: 'united-kingdom-flag-icon.webp' }
+    },
+    phrases: {
+      en: {
+        "Accueil": "Home",
+        "À propos": "About",
+        "Catégories": "Categories",
+        "Offres": "Offers",
+        "Contact": "Contact",
+        "Sign In": "Sign In",
+        "Sign Up": "Sign Up",
+        "Voir les abonnements": "View subscriptions",
+        "Comment ça marche": "How it works",
+        "Explorer les catégories": "Explore categories",
+        "Films & séries": "Movies & Series",
+        "Musique": "Music Streaming"
+      }
+    },
+    replacements: {}
+  };
+
   function scriptBase() {
-    const script = document.currentScript || document.querySelector('script[src$="langage.js"]');
-    return script ? script.src.replace(/langage\.js(?:\?.*)?$/, '') : 'JavaScript/';
+    const isInPages = window.location.pathname.includes('/pages/') || window.location.pathname.includes('\\pages\\');
+    return isInPages ? '../JavaScript/' : 'JavaScript/';
   }
 
   function imageBase() {
@@ -267,20 +293,28 @@
     });
   }
 
-  state.ready = fetch(scriptBase() + 'translation.json')
-    .then((res) => {
-      if (!res.ok) throw new Error('Unable to load translation.json');
-      return res.json();
-    })
-    .then((data) => {
-      state.data = data;
-      if (!state.data.languages[state.lang]) state.lang = DEFAULT_LANG;
-      return data;
-    })
-    .catch((err) => {
-      console.error('Nexvia i18n unavailable:', err);
-      state.lang = DEFAULT_LANG;
-    });
+
+  state.ready = state.data
+    ? Promise.resolve(state.data)
+    : fetch(scriptBase() + 'translation.json')
+      .then((res) => {
+        if (!res.ok) throw new Error('Unable to load translation.json');
+        return res.json();
+      })
+      .then((data) => {
+        state.data = data;
+        return data;
+      })
+      .catch((err) => {
+        console.error('Nexvia i18n unavailable:', err);
+        state.data = FALLBACK_DATA;
+        return state.data;
+      });
+
+  state.ready.then(() => {
+    if (!state.data?.languages?.[state.lang]) state.lang = DEFAULT_LANG;
+  });
+
 
   document.addEventListener('DOMContentLoaded', async () => {
     await state.ready;
@@ -288,6 +322,7 @@
     translateElement(document.body, state.lang);
     observeMutations();
   });
+
 
   window.NexviaI18n = {
     ready: state.ready,

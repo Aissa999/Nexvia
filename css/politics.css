@@ -1,12 +1,27 @@
+
+/* ================================================ */
+/* Début header et footer */
+/* ================================================ */
+
 footer,
 header {
     background-color: var(--bg-section1) !important;
 }
 
+/* Fin header et footer */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début page conditions */
+/* ================================================ */
+
+/* Fond de la page */
 .conditions {
     background-color: var(--bg-section2);
 }
 
+/* Conteneur principal */
 .conditions-container {
     display: flex;
     align-items: flex-start;
@@ -16,6 +31,15 @@ header {
     margin-top: 60px;
 }
 
+/* Fin page conditions */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début contenu texte */
+/* ================================================ */
+
+/* Colonne de gauche avec le texte */
 .page-wrapper {
     flex: 0 0 60%;
     max-width: 60%;
@@ -29,6 +53,7 @@ header {
     border-radius: 20px;
 }
 
+/* Scrollbar fine */
 .page-wrapper::-webkit-scrollbar {
     width: 4px;
 }
@@ -41,6 +66,15 @@ header {
     border-radius: 4px;
 }
 
+/* Fin contenu texte */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début image décorative */
+/* ================================================ */
+
+/* Colonne de droite avec l'image */
 .img-container {
     flex: 1;
     display: flex;
@@ -55,6 +89,15 @@ header {
     display: block;
 }
 
+/* Fin image décorative */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début animations */
+/* ================================================ */
+
+/* Entrée depuis la gauche */
 @keyframes fadeInLeft {
     from {
         opacity: 0;
@@ -67,6 +110,7 @@ header {
     }
 }
 
+/* Entrée depuis la droite */
 @keyframes fadeInRight {
     from {
         opacity: 0;
@@ -79,17 +123,28 @@ header {
     }
 }
 
+/* Fin animations */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début sections légales */
+/* ================================================ */
+
+/* Section avec séparateur */
 .legal-section {
     margin-bottom: 36px;
     padding-bottom: 36px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.228);
 }
 
+/* Pas de bordure sur la dernière section */
 .legal-section:last-child {
     border-bottom: none;
     margin-bottom: 0;
 }
 
+/* En-tête de section */
 .section-header {
     display: flex;
     align-items: baseline;
@@ -97,6 +152,7 @@ header {
     margin-bottom: 12px;
 }
 
+/* Numéro de section avec dégradé */
 .section-num {
     font-size: 25px;
     font-weight: 700;
@@ -109,6 +165,7 @@ header {
     flex-shrink: 0;
 }
 
+/* Titre de section */
 .section-title {
     font-size: 20px;
     font-weight: 700;
@@ -116,6 +173,7 @@ header {
     letter-spacing: -0.2px;
 }
 
+/* Corps de la section */
 .section-body {
     font-size: 15px;
     color: var(--p-color);
@@ -130,6 +188,7 @@ header {
     margin-bottom: 0;
 }
 
+/* Liste sans style par défaut */
 .section-body ul {
     list-style: none;
     padding: 0;
@@ -139,6 +198,7 @@ header {
     gap: 5px;
 }
 
+/* Flèche devant chaque item */
 .section-body ul li {
     padding-left: 16px;
     position: relative;
@@ -153,6 +213,15 @@ header {
     top: 2px;
 }
 
+/* Fin sections légales */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début boîte info et paiements */
+/* ================================================ */
+
+/* Encadré d'information */
 .info-box {
     display: inline-flex;
     align-items: flex-start;
@@ -168,6 +237,7 @@ header {
     width: 100%;
 }
 
+/* Liste des moyens de paiement */
 .payment-methods {
     display: flex;
     gap: 10px;
@@ -175,6 +245,7 @@ header {
     margin-top: 12px;
 }
 
+/* Badge d'un moyen de paiement */
 .payment-badge {
     display: flex;
     align-items: center;
@@ -193,6 +264,7 @@ header {
     border-color: rgba(138, 63, 252, 0.35);
 }
 
+/* Icône du badge paiement */
 .badge-icon {
     width: 26px;
     height: 26px;
@@ -203,19 +275,30 @@ header {
     font-size: 13px;
 }
 
+/* Couleur fond PayPal */
 .paypal-badge .badge-icon {
     background: #003087;
 }
 
+/* Couleur fond Baridi */
 .baridi-badge .badge-icon {
     background: #ccc;
 }
+
+/* Fin boîte info et paiements */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début responsive */
+/* ================================================ */
 
 @media (max-width: 992px) {
     .conditions .container {
         padding: 0 20px;
     }
 
+    /* Passe en colonne sur tablette */
     .conditions-container {
         flex-direction: column;
         height: auto;
@@ -231,6 +314,7 @@ header {
         overflow-y: visible;
     }
 
+    /* Image remontée en haut */
     .img-container {
         flex: unset;
         max-width: 100%;
@@ -245,10 +329,19 @@ header {
         padding: 0 14px;
     }
 
+    /* Paiements en colonne sur petit écran */
     .payment-methods {
         flex-direction: column;
     }
 }
+
+/* Fin responsive */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début chips de données */
+/* ================================================ */
 
 .data-chips {
     display: flex;
@@ -257,6 +350,7 @@ header {
     margin-top: 10px;
 }
 
+/* Pastille de donnée */
 .chip {
     display: flex;
     align-items: center;
@@ -273,6 +367,15 @@ header {
     font-size: 13px;
 }
 
+/* Fin chips de données */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début tableau cookies */
+/* ================================================ */
+
+/* Ligne de cookie */
 .cookie-row {
     display: flex;
     align-items: center;
@@ -286,6 +389,7 @@ header {
     border-bottom: none;
 }
 
+/* Badge type de cookie */
 .cookie-type {
     display: inline-block;
     padding: 2px 9px;
@@ -297,6 +401,7 @@ header {
     text-align: center;
 }
 
+/* Couleurs par type */
 .essential {
     background: rgba(34, 167, 240, 0.14);
     color: #22a7f0;
@@ -316,10 +421,20 @@ header {
     color: var(--p-color);
 }
 
+/* Fin tableau cookies */
+/* ================================================ */
+
+
+/* ================================================ */
+/* Début droits utilisateur */
+/* ================================================ */
+
+/* Hover sur carte droit */
 .right-card:hover {
     border-color: rgba(34, 167, 240, 0.3);
 }
 
+/* Titre et description */
 .right-card .rt {
     font-size: 12.5px;
     font-weight: 600;
@@ -333,6 +448,7 @@ header {
     line-height: 1.45;
 }
 
+/* Chips données en double déclaration */
 .data-chips {
     display: flex;
     flex-wrap: wrap;
@@ -356,6 +472,7 @@ header {
     font-size: 13px;
 }
 
+/* Grille des droits */
 .rights-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -363,6 +480,7 @@ header {
     margin-top: 10px;
 }
 
+/* Carte droit */
 .right-card {
     background: rgba(22, 34, 56, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.07);
@@ -370,3 +488,6 @@ header {
     padding: 12px 14px;
     transition: border-color 0.2s;
 }
+
+/* Fin droits utilisateur */
+/* ================================================ */

@@ -1,8 +1,13 @@
+/* ================================================ */
+/* Début panier */
+/* ================================================ */
+
 header,
 footer {
     background-color: var(--bg-section1) !important;
 }
 
+/* Section panier */
 .cart-section {
     margin-top: 60px;
     background-color: var(--bg-section2);
@@ -10,6 +15,7 @@ footer {
     min-height: calc(100vh - 350px);
 }
 
+/* Conteneur principal */
 .cart-container {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -17,18 +23,21 @@ footer {
     margin-top: 30px;
 }
 
+/* Responsive tablette */
 @media(max-width: 992px) {
     .cart-container {
         grid-template-columns: 1fr;
     }
 }
 
+/* Produits */
 .cart-items {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
+/* Carte produit */
 .cart-item {
     background: rgba(30, 41, 59, 0.4);
     backdrop-filter: blur(12px);
@@ -50,6 +59,7 @@ footer {
     transform: translateY(-2px);
 }
 
+/* Image produit */
 .item-img {
     width: 80px;
     height: 80px;
@@ -67,10 +77,12 @@ footer {
     object-fit: contain;
 }
 
+/* Informations produit */
 .item-details {
     flex: 1;
 }
 
+/* Nom produit */
 .item-name {
     font-size: 1.2rem;
     font-weight: 700;
@@ -78,12 +90,14 @@ footer {
     color: #fff;
 }
 
+/* Options produit */
 .item-options {
     font-size: 0.9rem;
     color: var(--p-color);
     margin-bottom: 10px;
 }
 
+/* Paiement */
 .item-payment {
     display: inline-flex;
     align-items: center;
@@ -100,12 +114,14 @@ footer {
     border-radius: 2px;
 }
 
+/* Prix */
 .item-price {
     font-size: 1.1rem;
     font-weight: bold;
     color: var(--text-color);
 }
 
+/* Boutons suppression */
 .remove-btn,
 .clear-cart-btn {
     background-color: transparent;
@@ -122,6 +138,8 @@ footer {
 .clear-cart-btn:hover {
     text-decoration: underline;
 }
+
+/* Résumé panier */
 .cart-summary {
     background: rgba(30, 41, 59, 0.4);
     backdrop-filter: blur(12px);
@@ -135,6 +153,7 @@ footer {
     top: 100px;
 }
 
+/* Titre résumé */
 .summary-title {
     color: white;
     font-size: 1.3rem;
@@ -144,6 +163,7 @@ footer {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Lignes résumé */
 .summary-row {
     display: flex;
     justify-content: space-between;
@@ -152,6 +172,7 @@ footer {
     font-size: 1rem;
 }
 
+/* Total */
 .summary-total {
     display: flex;
     justify-content: space-between;
@@ -170,6 +191,7 @@ footer {
     -webkit-text-fill-color: transparent;
 }
 
+/* Bouton commander */
 .checkout-btn {
     width: 100%;
     margin-top: 30px;
@@ -196,6 +218,8 @@ footer {
     cursor: not-allowed;
     transform: none;
 }
+
+/* Panier vide */
 .empty-cart {
     text-align: center;
     padding: 60px 20px;
@@ -240,6 +264,7 @@ footer {
     box-shadow: var(--box-shadow);
 }
 
+/* Responsive mobile */
 @media(max-width: 600px) {
     .cart-item {
         flex-direction: column;
@@ -253,3 +278,6 @@ footer {
         right: 10px;
     }
 }
+
+/* Fin panier */
+/* ================================================ */

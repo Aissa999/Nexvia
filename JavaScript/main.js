@@ -1,22 +1,27 @@
-// ================================================================
-// Configuration de l'URL de base de l'API backend
-// Changer cette valeur selon l'environnement de déploiement
-// ================================================================
+// ================================================
+// Configuration API
+// ================================================
+
+// URL de base pour le backend (local ou production)
 const API_BASE = (window.location.hostname === 'localhost' ||
   window.location.hostname === '127.0.0.1' ||
   window.location.protocol === 'file:')
   ? 'http://localhost:5000'
   : 'https://nexvia-backend.onrender.com';
-// Wake up Render backend on page load to reduce cold start delay
+
+// Réveil du backend au chargement pour éviter les délais
 (function pingBackend() {
   fetch(API_BASE)
     .then(() => console.log('Backend awake'))
     .catch(() => console.log('Backend waking up...'));
 })();
-// ================================================================
-// Menu mobile toggle
-// Ouvre/ferme la navbar mobile et change l'icône hamburger ↔ X
-// ================================================================
+
+
+// ================================================
+// Menu mobile
+// ================================================
+
+// Toggle du menu et changement d'icône
 const toggleButton = document.querySelector('.toggle-btn i');
 const navBar = document.querySelector('.nav-bar');
 
@@ -29,10 +34,11 @@ if (toggleButton && navBar) {
 }
 
 
-// ================================================================
+// ================================================
 // Slider des offres
-// Fait défiler les cartes d'offres avec navigation, swipe tactile et points indicateurs
-// ================================================================
+// ================================================
+
+// Gestion du défilement des cartes avec navigation et swipe
 (function () {
   const track = document.querySelector('.offers-container');
   const nextBtn = document.querySelector('.swap i:last-child');
@@ -45,22 +51,26 @@ if (toggleButton && navBar) {
   const total = cards.length;
   let current = 0;
 
+  // Nombre de cartes visibles selon la taille d'écran
   function visibleCount() {
     if (window.innerWidth <= 600) return 1;
     if (window.innerWidth <= 992) return 2;
     return 3;
   }
 
+  // Nombre total de slides possibles
   function totalSlides() {
     return total - visibleCount() + 1;
   }
 
+  // Calcul de la largeur d'une carte + gap
   function cardWidth() {
     const style = window.getComputedStyle(track);
     const gap = parseFloat(style.gap) || 0;
     return cards[0].getBoundingClientRect().width + gap;
   }
 
+  // Création des points de navigation
   function buildDots() {
     if (!dotsWrap) return;
     dotsWrap.innerHTML = '';
@@ -72,6 +82,7 @@ if (toggleButton && navBar) {
     }
   }
 
+  // Mise à jour du point actif
   function updateDots() {
     if (!dotsWrap) return;
     dotsWrap.querySelectorAll('button').forEach((b, i) =>
@@ -79,6 +90,7 @@ if (toggleButton && navBar) {
     );
   }
 
+  // Aller à un slide spécifique
   function goTo(index) {
     const n = totalSlides();
     if (index >= n) index = 0;
@@ -88,9 +100,11 @@ if (toggleButton && navBar) {
     updateDots();
   }
 
+  // Boutons précédent/suivant
   prevBtn.addEventListener('click', () => goTo(current - 1));
   nextBtn.addEventListener('click', () => goTo(current + 1));
 
+  // Swipe tactile
   let touchStartX = 0;
   track.addEventListener('touchstart', e => {
     touchStartX = e.touches[0].clientX;
@@ -101,6 +115,7 @@ if (toggleButton && navBar) {
     if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
   });
 
+  // Reset au redimensionnement
   window.addEventListener('resize', () => {
     buildDots();
     goTo(0);
@@ -110,16 +125,18 @@ if (toggleButton && navBar) {
 })();
 
 
-// ================================================================
+// ================================================
 // Formulaire de contact
-// Valide les champs du formulaire de contact et affiche le message de succès
-// ================================================================
+// ================================================
+
+// Validation et affichage du message de succès
 const form = document.getElementById('contactForm');
 
 if (form) {
   const formView = document.getElementById('formView');
   const successMsg = document.getElementById('successMessage');
 
+  // Fonction de validation d'un champ
   function validate(id, errorId, fn) {
     const el = document.getElementById(id);
     const err = document.getElementById(errorId);
@@ -133,6 +150,7 @@ if (form) {
     return true;
   }
 
+  // Retrait des erreurs à la saisie
   ['nom', 'email', 'message'].forEach(id => {
     document.getElementById(id)?.addEventListener('input', () => {
       document.getElementById(id).classList.remove('invalid');
@@ -140,6 +158,7 @@ if (form) {
     });
   });
 
+  // Soumission du formulaire
   form.addEventListener('submit', e => {
     e.preventDefault();
     const v1 = validate('nom', 'nomError', v => v.length >= 2);
@@ -158,10 +177,11 @@ if (form) {
 }
 
 
-// ================================================================
-// FAQ accordion
-// Gère l'ouverture/fermeture des questions de la FAQ (un seul ouvert à la fois)
-// ================================================================
+// ================================================
+// FAQ accordéon
+// ================================================
+
+// Ouverture/fermeture des questions (un seul ouvert à la fois)
 document.querySelectorAll('.faq-item').forEach(item => {
   item.querySelector('.faq-question')?.addEventListener('click', () => {
     const isOpen = item.classList.contains('open');
@@ -171,10 +191,11 @@ document.querySelectorAll('.faq-item').forEach(item => {
 });
 
 
-// ================================================================
-// Password strength checker
-// Vérifie la force du mot de passe et colore les barres indicatrices
-// ================================================================
+// ================================================
+// Vérification force du mot de passe
+// ================================================
+
+// Coloration des barres selon la force
 function checkStrength(v) {
   const bars = [
     document.getElementById('b1'),
@@ -195,7 +216,11 @@ function checkStrength(v) {
 }
 
 
-// Gère le switch entre Sign In et Sign Up avec animation et paramètre URL
+// ================================================
+// Switch Sign In / Sign Up
+// ================================================
+
+// Animation entre les deux formulaires
 document.addEventListener("DOMContentLoaded", () => {
 
   const signin = document.getElementById("signin-section");
@@ -205,6 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let isAnimating = false;
 
+  // Afficher le formulaire de connexion
   function showSignIn() {
     if (signin.style.display === "block" || isAnimating) return;
     isAnimating = true;
@@ -218,6 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 400);
   }
 
+  // Afficher le formulaire d'inscription
   function showSignUp() {
     if (signup.style.display === "block" || isAnimating) return;
     isAnimating = true;
@@ -231,6 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 400);
   }
 
+  // Événements des liens de navigation
   document.getElementById("nav-signin")?.addEventListener("click", (e) => {
     e.preventDefault();
     showSignIn();
@@ -251,6 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
     showSignIn();
   });
 
+  // Gestion du paramètre URL pour le mode initial
   const params = new URLSearchParams(window.location.search);
   const mode = params.get("mode");
 
@@ -268,13 +297,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// --- LOGIQUE DU PANIER ---
-// Gère le panier avec localStorage (ajout, suppression, sauvegarde)
+// ================================================
+// Gestion du panier
+// ================================================
 
 const CART_KEY = 'nexvia_cart';
 
-
-// Récupère le panier depuis localStorage de manière sécurisée
+// Récupérer le panier depuis localStorage
 function getCart() {
   const cartStr = localStorage.getItem(CART_KEY);
   if (!cartStr) return [];
@@ -287,15 +316,13 @@ function getCart() {
   }
 }
 
-
-// Sauvegarde le panier et met à jour le badge
+// Sauvegarder le panier
 function saveCart(cart) {
   localStorage.setItem(CART_KEY, JSON.stringify(cart));
   updateCartBadge();
 }
 
-
-// Ajoute un produit au panier + notification
+// Ajouter un produit au panier
 window.addToCart = function (productToAdd) {
   const cart = getCart();
 
@@ -307,8 +334,7 @@ window.addToCart = function (productToAdd) {
   showCartNotification(productToAdd.name);
 };
 
-
-// Supprime un produit du panier
+// Supprimer un produit du panier
 window.removeFromCart = function (cartItemId) {
   let cart = getCart();
   cart = cart.filter(item => item.id !== cartItemId);
@@ -319,8 +345,7 @@ window.removeFromCart = function (cartItemId) {
   }
 };
 
-
-// Vide complètement le panier
+// Vider le panier
 window.clearCart = function () {
   localStorage.removeItem(CART_KEY);
   updateCartBadge();
@@ -330,8 +355,7 @@ window.clearCart = function () {
   }
 };
 
-
-// Met à jour le badge du panier dans le header
+// Mise à jour du badge panier dans le header
 function updateCartBadge() {
   const cart = getCart();
   const badges = document.querySelectorAll('.cart-badge');
@@ -353,8 +377,7 @@ function updateCartBadge() {
   });
 }
 
-
-// Affiche une notification visuelle lors de l'ajout au panier
+// Notification d'ajout au panier
 function showCartNotification(productName) {
   const notif = document.createElement('div');
   notif.className = 'cart-notification';
@@ -370,11 +393,11 @@ function showCartNotification(productName) {
   }, 3000);
 }
 
-
-// Synchronise le panier au chargement et entre onglets
+// Synchronisation du panier au chargement
 document.addEventListener('DOMContentLoaded', () => {
   updateCartBadge();
 
+  // Sync entre onglets
   window.addEventListener('storage', (e) => {
     if (e.key === CART_KEY) {
       updateCartBadge();
@@ -386,8 +409,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// --- PAGE PANIER ---
-// Affiche les produits, le résumé et l'état vide
+// ================================================
+// Page panier
+// ================================================
+
+// Affichage des produits et du résumé
 window.renderCartPage = function () {
   const itemsContainer = document.getElementById('cart-items');
   const summaryPanel = document.getElementById('cart-summary');
@@ -402,6 +428,7 @@ window.renderCartPage = function () {
 
   itemsContainer.innerHTML = '';
 
+  // Panier vide
   if (cart.length === 0) {
     summaryPanel.style.display = 'none';
     emptyState.style.display = 'block';
@@ -413,6 +440,7 @@ window.renderCartPage = function () {
 
   let total = 0;
 
+  // Affichage de chaque produit
   cart.forEach((item) => {
     total += item.price;
 
@@ -446,12 +474,17 @@ window.renderCartPage = function () {
     itemsContainer.insertAdjacentHTML('beforeend', html);
   });
 
+  // Mise à jour des totaux
   subtotalEl.innerText = `${total} DA`;
   totalEl.innerText = `${total} DA`;
 };
 
 
-// Gère le processus de paiement — modal de confirmation professionnel
+// ================================================
+// Processus de paiement
+// ================================================
+
+// Modal de paiement avec formulaires carte/PayPal
 window.processCheckout = function () {
   const imgPath = window.location.pathname.includes('/pages/') || window.location.pathname.includes('\\pages\\') ? '../images/' : 'images/';
   const overlay = document.createElement('div');
@@ -508,6 +541,7 @@ window.processCheckout = function () {
   `;
   document.body.appendChild(overlay);
 
+  // Gestion des boutons de méthode de paiement
   const cardBtn = document.getElementById('pay-card-btn');
   const paypalBtn = document.getElementById('pay-paypal-btn');
   const cardForm = document.getElementById('card-form');
@@ -534,6 +568,7 @@ window.processCheckout = function () {
     cardForm.style.display = 'none';
   };
 
+  // Formatage automatique de la date d'expiration
   const expInput = document.getElementById('card-exp');
   if (expInput) {
     expInput.addEventListener('input', (e) => {
@@ -546,13 +581,16 @@ window.processCheckout = function () {
     });
   }
 
+  // Bouton annuler
   document.getElementById('cancel-pay-btn').onclick = () => {
     document.body.removeChild(overlay);
   };
 
+  // Confirmation du paiement
   document.getElementById('confirm-pay-btn').onclick = () => {
     const warning = document.getElementById('payment-warning');
 
+    // Validation carte
     if (selectedMethod === 'card') {
       const num = document.getElementById('card-number').value.trim();
       const exp = document.getElementById('card-exp').value.trim();
@@ -582,6 +620,7 @@ window.processCheckout = function () {
         return;
       }
     } else {
+      // Validation PayPal
       const email = document.getElementById('paypal-email').value.trim();
       const phone = document.getElementById('paypal-phone').value.trim();
       if (!email || !email.includes('@') || !phone) {
@@ -592,7 +631,7 @@ window.processCheckout = function () {
     }
     warning.style.display = 'none';
 
-    // Proceed to success
+    // Traitement du paiement
     const btn = document.getElementById('confirm-pay-btn');
     btn.disabled = true;
     btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Traitement...';
@@ -618,23 +657,24 @@ window.processCheckout = function () {
   };
 };
 
-
-// Charge automatiquement le panier sur la page panier.html
+// Chargement automatique du panier sur la page panier
 document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('cart-items')) {
     window.renderCartPage();
   }
 });
 
-// ================================================================
-// initAuthForms()
-// Gère la soumission des formulaires de connexion et d'inscription via l'API backend
-// ================================================================
+
+// ================================================
+// Formulaires d'authentification
+// ================================================
+
+// Gestion connexion et inscription via l'API
 function initAuthForms() {
   const signinForm = document.querySelector('#signin-section form');
   const signupForm = document.querySelector('#signup-section form');
 
-  // Gestion du login
+  // Connexion
   if (signinForm) {
     signinForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -654,7 +694,6 @@ function initAuthForms() {
           showAuthError(signinForm, data.message || "Erreur de connexion.");
         } else {
           localStorage.setItem('nexvia_token', data.token);
-          // Save user snapshot to localStorage for instant header rendering
           saveUserSession(data.user?.name || email.split('@')[0], email, data.user?.profileImage || 'avatar1');
           showAuthSuccess(signinForm, 'Connexion réussie !');
           setTimeout(() => window.location.href = '../index.html', 1500);
@@ -665,7 +704,7 @@ function initAuthForms() {
     });
   }
 
-  // Gestion de l'inscription
+  // Inscription
   if (signupForm) {
     signupForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -676,7 +715,7 @@ function initAuthForms() {
       const confirm = document.getElementById('signup-confirm').value;
       const agree = document.getElementById('agree').checked;
 
-      // Validation simple des champs
+      // Validation des champs
       if (!name || !email || !password) {
         return showAuthError(signupForm, "Veuillez remplir tous les champs.");
       }
@@ -699,7 +738,6 @@ function initAuthForms() {
           showAuthError(signupForm, data.message || "Erreur lors de l'inscription.");
         } else {
           localStorage.setItem('nexvia_token', data.token);
-          // Save user snapshot to localStorage for instant header rendering
           saveUserSession(name, email, 'avatar1');
           showAuthSuccess(signupForm, 'Compte créé avec succès !');
           setTimeout(() => window.location.href = '../index.html', 2000);
@@ -711,10 +749,7 @@ function initAuthForms() {
   }
 }
 
-// ================================================================
-// showAuthError / showAuthSuccess
-// Affiche un message d'erreur ou de succès stylisé sous le formulaire
-// ================================================================
+// Afficher message d'erreur
 function showAuthError(form, message) {
   let msgEl = form.querySelector('.auth-msg');
 
@@ -728,6 +763,7 @@ function showAuthError(form, message) {
   msgEl.textContent = message;
 }
 
+// Afficher message de succès
 function showAuthSuccess(form, message) {
   let msgEl = form.querySelector('.auth-msg');
 
@@ -746,10 +782,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// ================================================================
-// Testimonials cards
-// Active le retournement des cartes témoignages au clic sur mobile
-// ================================================================
+// ================================================
+// Cartes témoignages
+// ================================================
+
+// Retournement au clic sur mobile
 document.addEventListener('DOMContentLoaded', () => {
   const tCards = document.querySelectorAll('.testimonials-container .card');
   tCards.forEach(card => {
@@ -761,33 +798,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-/* =================================================================
-   SESSION MANAGEMENT — localStorage-based (works without network)
-   ================================================================= */
 
-// ================================================================
-// saveUserSession / getUser
-// Enregistre et lit les données utilisateur dans le localStorage
-// ================================================================
+// ================================================
+// Gestion de la session utilisateur
+// ================================================
+
+// Sauvegarde des infos utilisateur
 function saveUserSession(name, email, avatarKey) {
   const user = {
     name: name || 'Utilisateur',
     email: email || '',
-    avatar: avatarKey || 'avatar1'  // key e.g. "avatar3" or a DiceBear URL or base64
+    avatar: avatarKey || 'avatar1'
   };
   localStorage.setItem('nexvia_user', JSON.stringify(user));
   updateHeader();
 }
 
-
+// Récupérer l'utilisateur connecté
 function getUser() {
   try { return JSON.parse(localStorage.getItem('nexvia_user') || 'null'); } catch (e) { return null; }
 }
 
-// ================================================================
-// resolveAvatarSrc
-// Construit le chemin correct vers l'image d'avatar (clé prédéfinie, URL ou base64)
-// ================================================================
+// Résoudre le chemin de l'avatar
 function resolveAvatarSrc(avatarValue, isInPages) {
   if (!avatarValue) {
     const pre = isInPages ? '../images/' : 'images/';
@@ -798,14 +830,11 @@ function resolveAvatarSrc(avatarValue, isInPages) {
   return pre + avatarValue + '.jpeg';
 }
 
-/* ── Preset avatars (using existing image files) ── */
+// Avatars prédéfinis disponibles
 const PRESET_AVATARS = ['avatar1', 'avatar2', 'avatar3', 'avatar4', 'avatar5', 'avatar6'];
 let _selectedAvatar = null;
 
-// ================================================================
-// updateHeader()
-// Met à jour la navbar selon l'état de connexion: affiche avatar+dropdown ou boutons Sign In/Up
-// ================================================================
+// Mise à jour du header selon l'état de connexion
 function updateHeader() {
   const user = getUser();
   const navLinksContainer = document.querySelector('.nav-bar .links.nav-right-actions') ||
@@ -819,6 +848,7 @@ function updateHeader() {
   const isInPages = window.location.pathname.includes('/pages/') || window.location.pathname.includes('\\pages\\');
   const profileHref = (isInPages ? '' : 'pages/') + 'profile.html';
 
+  // Utilisateur connecté
   if (user) {
     if (signInBtn) signInBtn.style.display = 'none';
     if (signUpBtn) signUpBtn.style.display = 'none';
@@ -854,6 +884,7 @@ function updateHeader() {
     `;
     wrapper.style.display = 'inline-flex';
 
+    // Événements du dropdown
     document.getElementById('nav-profile-avatar').addEventListener('click', (e) => {
       e.stopPropagation();
       document.getElementById('nav-profile-dropdown').classList.toggle('open');
@@ -874,13 +905,14 @@ function updateHeader() {
     }, { once: false });
 
   } else {
+    // Utilisateur non connecté
     if (signInBtn) signInBtn.style.display = '';
     if (signUpBtn) signUpBtn.style.display = '';
     if (wrapper) wrapper.style.display = 'none';
   }
 }
 
-/* ── Edit Profile Modal (injected once) ── */
+// Création de la modal d'édition de profil
 function _ensureModal() {
   if (document.getElementById('edit-profile-modal')) return;
   const modal = document.createElement('div');
@@ -889,10 +921,7 @@ function _ensureModal() {
   document.body.appendChild(modal);
 }
 
-// ================================================================
-// openEditProfile / closeEditProfile
-// Ouvre/ferme la modal d'édition de profil avec le sélecteur d'avatar
-// ================================================================
+// Ouvrir la modal d'édition de profil
 function openEditProfile() {
   const dd = document.getElementById('nav-profile-dropdown');
   if (dd) dd.classList.remove('open');
@@ -904,6 +933,7 @@ function openEditProfile() {
   const isInPages = window.location.pathname.includes('/pages/');
   const imgBase = isInPages ? '../images/' : 'images/';
 
+  // Grille des avatars prédéfinis
   const avatarGrid = PRESET_AVATARS.map(key => {
     const selected = (_selectedAvatar === key);
     return `<label style="cursor:pointer;position:relative;">
@@ -941,7 +971,7 @@ function openEditProfile() {
   `;
   document.getElementById('edit-profile-modal').style.display = 'flex';
 
-  // File upload listener
+  // Upload de photo personnalisée
   document.getElementById('avatar-upload-input').addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -951,15 +981,13 @@ function openEditProfile() {
   });
 }
 
+// Fermer la modal d'édition
 function closeEditProfile() {
   const m = document.getElementById('edit-profile-modal');
   if (m) m.style.display = 'none';
 }
 
-// ================================================================
-// saveProfile()
-// Sauvegarde les modifications du profil dans localStorage et les synchronise avec le backend
-// ================================================================
+// Sauvegarder les modifications du profil
 function saveProfile() {
   const user = getUser() || {};
   user.name = document.getElementById('edit-name').value.trim() || user.name;
@@ -967,6 +995,7 @@ function saveProfile() {
   user.avatar = _selectedAvatar || user.avatar || 'avatar1';
   localStorage.setItem('nexvia_user', JSON.stringify(user));
 
+  // Sync avec le backend si connecté
   const token = localStorage.getItem('nexvia_token');
   if (token) {
     fetch(API_BASE + '/api/profile', {
@@ -980,16 +1009,14 @@ function saveProfile() {
   closeEditProfile();
 }
 
-// ================================================================
-// DOMContentLoaded session init
-// Au chargement: affiche le header immédiatement depuis localStorage, puis vérifie le token avec le backend
-// ================================================================
+// Initialisation de la session au chargement
 document.addEventListener('DOMContentLoaded', async () => {
   updateHeader();
 
   const token = localStorage.getItem('nexvia_token');
   const isInProfilePage = window.location.pathname.includes('profile.html');
 
+  // Vérification du token avec le backend
   if (token && !isInProfilePage) {
     try {
       const res = await fetch(API_BASE + '/api/profile', {
@@ -999,7 +1026,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const backendUser = await res.json();
         const local = getUser() || {};
 
-        // Merge backend data into localStorage
+        // Fusion des données backend et locales
         const merged = {
           name: backendUser.name || local.name,
           email: backendUser.email || local.email,
@@ -1018,6 +1045,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
+
+// ================================================
+// Exports globaux
+// ================================================
 
 window.openEditProfile = openEditProfile;
 window.closeEditProfile = closeEditProfile;

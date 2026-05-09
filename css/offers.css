@@ -1,3 +1,7 @@
+/* ================================================ */
+/* Début offres */
+/* ================================================ */
+
 header {
     background-color: var(--bg-section1);
 }
@@ -6,9 +10,7 @@ footer {
     background-color: var(--bg-section1) !important;
 }
 
-/* ================================================ */
-/* Début offres */
-/* ================================================ */
+/* Section offres */
 .offers {
     padding-block: var(--main-padding);
     background-color: var(--bg-section2);
@@ -18,6 +20,7 @@ footer {
     overflow: hidden;
 }
 
+/* Boutons catégories */
 .offers-tabs {
     margin-top: 10px;
     display: flex;
@@ -48,6 +51,7 @@ footer {
     background: rgba(255, 255, 255, 0.1);
 }
 
+/* Conteneur offres */
 .offers-container {
     padding-top: 10px;
     display: grid;
@@ -55,18 +59,21 @@ footer {
     gap: 40px;
 }
 
+/* Responsive tablette */
 @media(max-width: 992px) {
     .offers-container {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
+/* Responsive mobile */
 @media(max-width: 665px) {
     .offers-container {
         grid-template-columns: 1fr;
     }
 }
 
+/* Carte offre */
 .offers-container .offer {
     color: var(--text-color);
     background-color: var(--bg-section1);
@@ -88,6 +95,7 @@ footer {
     box-shadow: 0 0 15px rgba(123, 47, 247, 0.4);
 }
 
+/* Badge offre */
 .offer-label {
     position: absolute;
     top: 15px;
@@ -102,6 +110,7 @@ footer {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Promotion */
 .offer-badge {
     position: absolute;
     top: 15px;
@@ -144,6 +153,7 @@ footer {
     position: absolute;
 }
 
+/* Animation badge */
 @keyframes badgePulse {
     0% {
         box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
@@ -158,6 +168,7 @@ footer {
     }
 }
 
+/* Effet lumière */
 .offer-badge::after {
     content: '';
     position: absolute;
@@ -175,6 +186,7 @@ footer {
     }
 }
 
+/* Image offre */
 .offer-cover {
     width: 100%;
     height: 120px;
@@ -190,6 +202,7 @@ footer {
     object-fit: cover;
 }
 
+/* Logos */
 .logos-row {
     display: flex;
     justify-content: center;
@@ -207,6 +220,7 @@ footer {
     object-fit: contain;
 }
 
+/* Haut carte */
 .offers-container .offer .top {
     display: flex;
     align-items: center;
@@ -215,6 +229,7 @@ footer {
     margin-top: 25px;
 }
 
+/* Icône */
 .offers-container .offer .top .img-container {
     width: 60px;
     height: 60px;
@@ -232,12 +247,14 @@ footer {
     object-fit: contain;
 }
 
+/* Texte */
 .offers-container .offer .top .text-container {
     width: calc(100% - 75px);
     text-align: left;
     margin-left: 15px;
 }
 
+/* Titre */
 .offers-container .offer h5 {
     font-weight: bold;
     font-size: 1.5rem;
@@ -247,6 +264,7 @@ footer {
     background-clip: text;
 }
 
+/* Prix */
 .price-box {
     margin-bottom: 15px;
     display: flex;
@@ -276,6 +294,7 @@ footer {
     font-weight: normal;
 }
 
+/* Réduction */
 .price-box .savings {
     display: inline-block;
     background: linear-gradient(90deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.05));
@@ -291,6 +310,7 @@ footer {
     order: 3;
 }
 
+/* Avantages */
 .offers-container .offer .pros {
     padding-top: 8px;
     margin-bottom: 15px;
@@ -311,6 +331,7 @@ footer {
     text-align: center;
 }
 
+/* Statistiques */
 .offers-container .offer .live-counter {
     margin-top: 20px;
     display: flex;
@@ -347,12 +368,12 @@ footer {
     color: yellow;
 }
 
-/* Premium Hover Animations */
 .offers-container .offer .live-counter p:hover {
     color: white;
     background: rgba(255, 255, 255, 0.08);
 }
 
+/* Animation étoiles */
 @keyframes starGlow {
     0% {
         text-shadow: 0 0 5px rgba(250, 204, 21, 0.5);
@@ -372,6 +393,7 @@ footer {
     }
 }
 
+/* Animation rouge */
 @keyframes redGlow {
     0% {
         text-shadow: 0 0 5px rgba(255, 59, 59, 0.5);
@@ -391,7 +413,7 @@ footer {
     }
 }
 
-/* Star Icon Hover */
+/* Animation hover */
 .offers-container .offer:hover .live-counter p:first-child i {
     animation: redGlow 1s infinite;
 }
@@ -400,7 +422,7 @@ footer {
     animation: starGlow 1s infinite;
 }
 
-/* removed glowStar entirely here */
+/* Bouton achat */
 .offers-container .offer button {
     background: linear-gradient(90deg, #00b4ff, #7b2ff7);
     color: white;
@@ -420,7 +442,7 @@ footer {
     box-shadow: 0 8px 20px rgba(123, 47, 247, 0.4);
 }
 
-/* Animations previously placed here are now in generic definitions above */
+/* Flèches */
 .offers .swap {
     text-align: right;
     color: white;
@@ -453,6 +475,7 @@ footer {
     border-color: var(--main-color2);
 }
 
+/* Padding titre */
 .special-heading.offpadding {
     padding-bottom: 10px;
 }
@@ -463,6 +486,7 @@ footer {
     }
 }
 
+/* Points slider */
 .offers-dots {
     display: flex;
     justify-content: center;
@@ -488,3 +512,4 @@ footer {
 }
 
 /* Fin offres */
+/* ================================================ */
