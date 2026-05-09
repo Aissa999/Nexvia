@@ -1,97 +1,177 @@
 <div align="center">
 
-# ⚡ Nexvia
+# ⚡ NEXVIA
 
-**La marketplace d'abonnements numériques pensée pour l'Algérie.**
+### La nouvelle génération des marketplaces d’abonnements numériques en Algérie
 
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/fr/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://developer.mozilla.org/fr/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/fr/docs/Web/JavaScript)
-[![Statut](https://img.shields.io/badge/Statut-Actif-10B981?style=flat-square)]()
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+  <img src="https://img.shields.io/badge/Responsive-Yes-8B5CF6?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Status-Active-10B981?style=for-the-badge" />
+</p>
+
+<p align="center">
+  <strong>Conçu pour le marché numérique algérien 🇩🇿</strong>
+</p>
+
+---
 
 </div>
 
----
+# ✨ Présentation
 
-## 📌 Description
+Nexvia est une plateforme e-commerce moderne spécialisée dans la vente d’abonnements numériques et de services en ligne.
 
-Nexvia est un site e-commerce moderne dédié à la vente d'abonnements et de produits numériques (streaming, IA, gaming, design, etc.), conçu spécifiquement pour le marché algérien.
+Le projet combine une interface sombre premium, des animations fluides, un catalogue dynamique et une expérience utilisateur inspirée des plateformes SaaS modernes.
 
-L'interface est entièrement en français, avec des prix en **Dinars Algériens (DA)**, un design sombre inspiré des plateformes SaaS modernes, et une expérience utilisateur fluide sans rechargement de page.
+Contrairement à un simple projet statique, Nexvia intègre un système d’authentification, des sessions par token, un rendu dynamique des produits, un panier interactif et une gestion persistante des utilisateurs.
 
----
-
-## ✨ Fonctionnalités
-
-- 🛍️ Catalogue de **59 produits** répartis en **12 catégories**, chargés dynamiquement en JavaScript
-- 🔍 Filtrage par catégorie instantané sans rechargement de page
-- 🌙 Toggle Dark / Light mode
-- 🛒 Panier interactif avec calcul automatique du total en DA
-- 🔐 Inscription / Connexion avec validation des champs et simulation de session
-- 💳 Carrousel d'offres populaires avec transitions animées
-- 📱 Design 100% responsive (mobile, tablette, desktop)
-- 🎨 Effets glassmorphism et animations CSS sur les sections clés
-- 📬 Formulaire de contact avec validation côté client et section FAQ
+Le design s’inspire d’interfaces modernes comme Stripe, Framer, Vercel ou Linear tout en gardant une identité visuelle adaptée au marché algérien.
 
 ---
 
-## 🗂️ Structure du projet
+# 🌌 Pourquoi Nexvia ?
 
+La majorité des marketplaces d’abonnements numériques possèdent des interfaces anciennes, surchargées ou peu cohérentes.
+
+Nexvia a été imaginé avec une vision différente :
+
+* Une interface futuriste et immersive
+* Une identité visuelle premium
+* Une navigation fluide et rapide
+* Une expérience moderne adaptée aux utilisateurs algériens
+* Une architecture propre et scalable
+* Un design sombre cohérent sur toutes les pages
+
+L’objectif est de rendre les abonnements numériques plus modernes, accessibles et agréables à utiliser.
+
+---
+
+# 🚀 Fonctionnalités principales
+
+| Fonctionnalité              | Description                                          |
+| --------------------------- | ---------------------------------------------------- |
+| 🔐 Authentification         | Inscription et connexion avec sessions par token     |
+| 🛍️ Catalogue dynamique     | Produits chargés dynamiquement avec JavaScript       |
+| 🎯 Filtrage instantané      | Navigation par catégories sans rechargement          |
+| 🛒 Panier interactif        | Ajout et suppression des produits en temps réel      |
+| 👤 Profil utilisateur       | Modification des informations et de l’avatar         |
+| 📱 Responsive Design        | Compatible mobile, tablette et desktop               |
+| ⚡ Animations fluides        | Transitions modernes et interactions dynamiques      |
+| 🌍 Interface française      | Expérience pensée pour les utilisateurs francophones |
+| 💰 Prix en Dinars Algériens | Produits affichés en DA/DZD                          |
+
+---
+
+# 🏗️ Architecture du projet
+
+```bash
+NEXVIA/
+│
+├── backend/                     # Backend API et gestion des utilisateurs
+│
+├── css/                         # Tous les fichiers de style du projet
+│   ├── about.css                # Styles de la page À propos
+│   ├── all.min.css              # Bibliothèque Font Awesome minifiée
+│   ├── categories.css           # Styles du catalogue et des catégories
+│   ├── contact.css              # Styles de la page Contact et FAQ
+│   ├── header_footer.css        # Header, footer et composants globaux
+│   ├── home.css                 # Styles de la page d’accueil
+│   ├── login.css                # Styles connexion / inscription
+│   ├── offers.css               # Styles des offres populaires
+│   ├── panier.css               # Styles du panier d’achat
+│   ├── politics.css             # Styles des pages privacy & conditions
+│   └── profile.css              # Styles du profil utilisateur
+│
+├── images/                      # Logos, illustrations et images produits
+│
+├── JavaScript/                  # Scripts dynamiques du projet
+│   ├── langage.js               # Gestion des langues et traductions
+│   ├── main.js                  # Fonctions globales et logique principale
+│   ├── marketplace.js           # Gestion du catalogue et des produits
+│   ├── products.json            # Base de données des produits
+│   └── translation.json         # Contenu multilingue du site
+│
+├── pages/                       # Pages secondaires du site
+│   ├── about.html               # Présentation du projet Nexvia
+│   ├── categories.html          # Catalogue avec filtrage par catégories
+│   ├── conditions.html          # Conditions générales d’utilisation
+│   ├── contact.html             # Contact utilisateur et FAQ
+│   ├── login.html               # Connexion et création de compte
+│   ├── offers.html              # Offres et abonnements populaires
+│   ├── panier.html              # Panier et récapitulatif des achats
+│   ├── privacy.html             # Politique de confidentialité
+│   └── profile.html             # Gestion du profil utilisateur
+│
+├── webfonts/                    # Polices et icônes Font Awesome locales
+│
+├── index.html                   # Page d’accueil principale
+│
+└── README.md                    # Documentation complète du projet
 ```
-Nexvia/
-│
-├── index.html                  # Page d'accueil
-│
-├── pages/
-│   ├── about.html              # À propos
-│   ├── categories.html         # Catalogue produits avec filtres
-│   ├── offers.html             # Offres populaires
-│   ├── panier.html             # Panier d'achat
-│   ├── login.html              # Connexion / Inscription
-│   ├── contact.html            # Contact & FAQ
-│   ├── conditions.html         # Conditions d'utilisation
-│   └── privacy.html            # Politique de confidentialité
-│
-├── css/                        # Feuilles de style par page
-├── JavaScript/                 # Logique dynamique (produits, panier, auth...)
-├── images/                     # Logo, visuels produits, illustrations
-├── webfonts/                   # Icônes Font Awesome (locaux)
-└── .vscode/                    # Configuration éditeur
-```
+
 
 ---
 
-## 🛠️ Technologies
+# 🛠️ Technologies utilisées
 
-- **HTML5** — structure sémantique multi-pages
-- **CSS3** — variables, Flexbox, Grid, animations, glassmorphism
-- **JavaScript Vanilla** — manipulation du DOM, filtres, panier, session
-- **Font Awesome** — iconographie (webfonts locaux)
-
-Aucune bibliothèque externe. Projet léger et déployable partout.
-
----
-
-## 🔮 Améliorations futures
-
-- [ ] Connexion à un backend réel (API REST)
-- [ ] Paiement en ligne (CIB / Dahabia / BaridiMob)
-- [ ] Support de la langue arabe / darija
-- [ ] Tableau de bord administrateur
-- [ ] Recommandations personnalisées par IA
-- [ ] Application PWA installable sur mobile
+| Technologie  | Utilisation                              |
+| ------------ | ---------------------------------------- |
+| HTML5        | Structure sémantique multi-pages         |
+| CSS3         | Layouts, animations, responsive design   |
+| JavaScript   | Dynamisme, filtres, panier, interactions |
+| Fetch API    | Communication frontend/backend           |
+| JSON         | Gestion des données dynamiques           |
+| Font Awesome | Icônes et éléments visuels               |
 
 ---
 
-## 👥 Équipe
+# 📱 Expérience Responsive
 
-| Membre | Rôle |
-|---|---|
-| GUELLIL Aïssa | Développeur Full Stack |
-| MEZRAG Amayas | Développeur Frontend |
-| AHMED ZAID Aya | Développeur Frontend |
-| BOUCELLAM Sabrina | Développeur Frontend |
-| AMROUNI Nabil | Développeur Frontend |
+Le site a été entièrement optimisé pour différents formats d’écran.
+
+✅ Mobile
+✅ Tablette
+✅ Desktop
+
+L’interface conserve la même cohérence visuelle sur tous les appareils.
 
 ---
 
+# ⚡ Performance & Optimisation
+
+Nexvia a été développé avec une approche légère et performante.
+
+* Aucun framework lourd
+* Chargement rapide
+* Architecture claire
+* Organisation modulaire du CSS et JavaScript
+* Navigation fluide
+* Effets visuels optimisés
+
+---
+
+
+# 👥 Équipe
+
+| Membre            | Rôle                   |
+| ----------------- | ---------------------- |
+| GUELLIL Aissa     | Développeur |
+| MEZRAG Amayas     | Développeur  |
+| AHMED ZAID Aya    | Développeuse |
+| BOUCELLAM Sabrina | Développeuse  |
+| AMROUNI Nabil     | Développeur  |
+
+---
+
+
+<div align="center">
+
+## ⚡ NEXVIA
+
+
+© 2026 Nexvia — Tous droits réservés.
+
+</div>
