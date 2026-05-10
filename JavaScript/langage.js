@@ -1,5 +1,3 @@
-
-
 (function () {
   'use strict';
 
@@ -10,49 +8,46 @@
   const originalTextNodes = new WeakMap();
 
   const state = {
-    data: window.NEXVIA_TRANSLATION_DATA || null,
+    data: null,
     lang: localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG,
     ready: null
   };
 
-  const FALLBACK_DATA = {
-    languages: {
-      fr: { label: 'Français', shortLabel: 'FR', flag: '🇫🇷', flagImage: 'france-flag-icon.webp' },
-      en: { label: 'English', shortLabel: 'EN', flag: '🇬🇧', flagImage: 'united-kingdom-flag-icon.webp' }
-    },
-    phrases: {
-      en: {
-        "Accueil": "Home",
-        "À propos": "About",
-        "Catégories": "Categories",
-        "Offres": "Offers",
-        "Contact": "Contact",
-        "Sign In": "Sign In",
-        "Sign Up": "Sign Up",
-        "Voir les abonnements": "View subscriptions",
-        "Comment ça marche": "How it works",
-        "Explorer les catégories": "Explore categories",
-        "Films & séries": "Movies & Series",
-        "Musique": "Music Streaming"
-      }
-    },
-    replacements: {}
-  };
-
-  function scriptBase() {
-    const isInPages = window.location.pathname.includes('/pages/') || window.location.pathname.includes('\\pages\\');
-    return isInPages ? '../JavaScript/' : 'JavaScript/';
+  function getRootPath() {
+    return (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || !window.location.pathname.includes('/pages/')) ? '' : '../';
   }
 
-  function imageBase() {
-    return window.location.pathname.includes('/pages/') || window.location.pathname.includes('\\pages\\')
-      ? '../images/'
-      : 'images/';
+  function fetchTranslationData() {
+    const path = getRootPath() + 'JavaScript/translation.json';
+    return fetch(path)
+      .then(res => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+      })
+      .then(data => {
+        state.data = data;
+        if (!state.data?.languages?.[state.lang]) state.lang = DEFAULT_LANG;
+        return data;
+      })
+      .catch(err => {
+        console.error('Error loading translation data:', err);
+        // Fallback data
+        state.data = {
+          defaultLanguage: "fr",
+          languages: {
+            "fr": { label: "Français", shortLabel: "FR", flag: "🇫🇷", flagImage: "france-flag-icon.webp" },
+            "en": { label: "English", shortLabel: "EN", flag: "🇬🇧", flagImage: "united-kingdom-flag-icon.webp" }
+          },
+          phrases: {}
+        };
+        return state.data;
+      });
   }
 
   function flagMarkup(config) {
     if (config.flagImage) {
-      return `<img class="language-flag-img" src="${imageBase()}${config.flagImage}" alt="${config.label}">`;
+      const path = getRootPath() + 'images/' + config.flagImage;
+      return `<img src="${path}" class="language-flag-img" alt="${config.label}">`;
     }
     return `<span class="language-flag">${config.flag}</span>`;
   }
@@ -62,8 +57,10 @@
   }
 
   function withOriginalSpacing(source, translated) {
-    const leading = String(source).match(/^\s*/)[0];
-    const trailing = String(source).match(/\s*$/)[0];
+    const leadingMatch = String(source).match(/^\s*/);
+    const trailingMatch = String(source).match(/\s*$/);
+    const leading = leadingMatch ? leadingMatch[0] : '';
+    const trailing = trailingMatch ? trailingMatch[0] : '';
     return leading + translated + trailing;
   }
 
@@ -293,28 +290,7 @@
     });
   }
 
-
-  state.ready = state.data
-    ? Promise.resolve(state.data)
-    : fetch(scriptBase() + 'translation.json')
-      .then((res) => {
-        if (!res.ok) throw new Error('Unable to load translation.json');
-        return res.json();
-      })
-      .then((data) => {
-        state.data = data;
-        return data;
-      })
-      .catch((err) => {
-        console.error('Nexvia i18n unavailable:', err);
-        state.data = FALLBACK_DATA;
-        return state.data;
-      });
-
-  state.ready.then(() => {
-    if (!state.data?.languages?.[state.lang]) state.lang = DEFAULT_LANG;
-  });
-
+  state.ready = fetchTranslationData();
 
   document.addEventListener('DOMContentLoaded', async () => {
     await state.ready;
@@ -322,7 +298,6 @@
     translateElement(document.body, state.lang);
     observeMutations();
   });
-
 
   window.NexviaI18n = {
     ready: state.ready,
