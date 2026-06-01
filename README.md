@@ -68,50 +68,49 @@ L’objectif est de rendre les abonnements numériques plus modernes, accessible
 # 🏗️ Architecture du projet
 
 ```bash
-NEXVIA/
+📁 NEXVIA/
 │
-├── backend/                     # Backend API et gestion des utilisateurs
+├── 📁 backend/                     # Backend API et gestion des utilisateurs
 │
-├── css/                         # Tous les fichiers de style du projet
-│   ├── about.css                # Styles de la page À propos
-│   ├── all.min.css              # Bibliothèque Font Awesome minifiée
-│   ├── categories.css           # Styles du catalogue et des catégories
-│   ├── contact.css              # Styles de la page Contact et FAQ
-│   ├── header_footer.css        # Header, footer et composants globaux
-│   ├── home.css                 # Styles de la page d’accueil
-│   ├── login.css                # Styles connexion / inscription
-│   ├── offers.css               # Styles des offres populaires
-│   ├── panier.css               # Styles du panier d’achat
-│   ├── politics.css             # Styles des pages privacy & conditions
-│   └── profile.css              # Styles du profil utilisateur
+├── 📁 css/                         # Tous les fichiers de style du projet
+│   ├── 📄 about.css                # Styles de la page À propos
+│   ├── 📄 all.min.css              # Bibliothèque Font Awesome minifiée
+│   ├── 📄 categories.css           # Styles du catalogue et des catégories
+│   ├── 📄 contact.css              # Styles de la page Contact et FAQ
+│   ├── 📄 header_footer.css        # Header, footer et composants globaux
+│   ├── 📄 home.css                 # Styles de la page d’accueil
+│   ├── 📄 login.css                # Styles connexion / inscription
+│   ├── 📄 offers.css               # Styles des offres populaires
+│   ├── 📄 panier.css               # Styles du panier d’achat
+│   ├── 📄 politics.css             # Styles des pages privacy & conditions
+│   └── 📄 profile.css              # Styles du profil utilisateur
 │
-├── images/                      # Logos, illustrations et images produits
+├── 📁 images/                      # Logos, illustrations et images produits
 │
-├── JavaScript/                  # Scripts dynamiques du projet
-│   ├── langage.js               # Gestion des langues et traductions
-│   ├── main.js                  # Fonctions globales et logique principale
-│   ├── marketplace.js           # Gestion du catalogue et des produits
-│   ├── products.json            # Base de données des produits
-│   └── translation.json         # Contenu multilingue du site
+├── 📁 JavaScript/                  # Scripts dynamiques du projet
+│   ├── 📄 langage.js               # Gestion des langues et traductions
+│   ├── 📄 main.js                  # Fonctions globales et logique principale
+│   ├── 📄 marketplace.js           # Gestion du catalogue et des produits
+│   ├── 📄 products.json            # Base de données des produits
+│   └── 📄 translation.json         # Contenu multilingue du site
 │
-├── pages/                       # Pages secondaires du site
-│   ├── about.html               # Présentation du projet Nexvia
-│   ├── categories.html          # Catalogue avec filtrage par catégories
-│   ├── conditions.html          # Conditions générales d’utilisation
-│   ├── contact.html             # Contact utilisateur et FAQ
-│   ├── login.html               # Connexion et création de compte
-│   ├── offers.html              # Offres et abonnements populaires
-│   ├── panier.html              # Panier et récapitulatif des achats
-│   ├── privacy.html             # Politique de confidentialité
-│   └── profile.html             # Gestion du profil utilisateur
+├── 📁 pages/                       # Pages secondaires du site
+│   ├── 📄 about.html               # Présentation du projet Nexvia
+│   ├── 📄 categories.html          # Catalogue avec filtrage par catégories
+│   ├── 📄 conditions.html          # Conditions générales d’utilisation
+│   ├── 📄 contact.html             # Contact utilisateur et FAQ
+│   ├── 📄 login.html               # Connexion et création de compte
+│   ├── 📄 offers.html              # Offres et abonnements populaires
+│   ├── 📄 panier.html              # Panier et récapitulatif des achats
+│   ├── 📄 privacy.html             # Politique de confidentialité
+│   └── 📄 profile.html             # Gestion du profil utilisateur
 │
-├── webfonts/                    # Polices et icônes Font Awesome locales
+├── 📁 webfonts/                    # Polices et icônes Font Awesome locales
 │
-├── index.html                   # Page d’accueil principale
+├── 📄 index.html                   # Page d’accueil principale
 │
-└── README.md                    # Documentation complète du projet
+└── 📄 README.md                    # Documentation complète du projet
 ```
-
 
 ---
 
@@ -153,19 +152,46 @@ Nexvia a été développé avec une approche légère et performante.
 
 ---
 
+# 🔑 Compte de démonstration
 
-# 👥 Équipe
-
-| Membre            | Rôle                   |
-| ----------------- | ---------------------- |
-| GUELLIL Aissa     | Développeur |
-| MEZRAG Amayas     | Développeur  |
-| AHMED ZAID Aya    | Développeuse |
-| BOUCELLAM Sabrina | Développeuse  |
-| AMROUNI Nabil     | Développeur  |
+Pour faciliter la démonstration et l'évaluation du projet, un compte administrateur est mis à disposition.
+> ⚠️ Ce compte est uniquement destiné à la démonstration du projet.
+```text
+Email          : admin123@gmail.com
+Mot de passe   : admin123
+```
 
 ---
 
+
+# 👥 Équipe
+
+| Membre | Rôle | Groupe |
+|:--------|:--------|:-----:|
+| GUELLIL Aissa | Développeur | 2 |
+| MEZRAG Amayas | Développeur | 10 |
+| AHMED ZAID Aya | Développeuse | 7 |
+| BOUCELLAM Sabrina | Développeuse | 10 |
+| AMROUNI Nabil | Développeur | 10 |
+
+---
+
+
+# 🎓 Cadre académique
+
+Ce projet a été réalisé dans le cadre du module :
+
+### Développement d'Applications Web
+
+🏛️ **Université Mouloud Mammeri de Tizi Ouzou (UMMTO)**
+
+📅 **Année universitaire : 2025 / 2026**
+
+👩‍🏫 **Enseignante : Madame Bousnina**
+
+Le projet **Nexvia** a été conçu comme projet académique afin d'appliquer les concepts du développement web moderne, de l'UX/UI, de la gestion des données dynamiques et de l'architecture des applications web.
+
+---
 
 <div align="center">
 
