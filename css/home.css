@@ -106,10 +106,6 @@ html {
     background: linear-gradient(180deg, #7C3AED, #A855F7);
 }
 
-/* Survol de la barre */
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #9333EA, #C084FC);
-}
 
 /* Fin Scrollbar */
 /* ================================================ */
