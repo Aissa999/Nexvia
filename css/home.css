@@ -510,7 +510,7 @@ html {
 
 @media(min-width:992px) {
     .categories-container {
-        padding: 0px 60px 20px !important;
+        padding: 0px 20px 20px !important;
     }
 }
 
@@ -527,7 +527,7 @@ html {
 
 /* Carte monte au survol */
 .categories-container .card:hover {
-    transform: translateY(-14px);
+    transform: translateY(-5px);
 }
 
 /* Image de la catégorie */
@@ -1575,8 +1575,8 @@ html {
     }
 
     .how .step .img-container img {
-        width: 48px;
-        height: 48px;
+        width: 105px;
+        height: 120px;
     }
 }
 

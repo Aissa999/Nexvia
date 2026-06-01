@@ -133,7 +133,7 @@
         "Djezzy",
         "Ooredoo"
       ],
-      "image": "../images/categories/recharge.jpg",
+      "image": "../images/categories/recharge.png",
       "cssClass": "c-mobile"
     },
     {
@@ -161,7 +161,7 @@
         "Binance",
         "Kucoin"
       ],
-      "image": "../images/categories/finance.jpg",
+      "image": "../images/categories/finance.png",
       "cssClass": "c-finance"
     }
   ],
@@ -175,12 +175,12 @@
       "logo": "../images/products/netflix.png",
       "rating": "4.9",
       "clients": "5200",
-      "description": "Accédez aux meilleures séries et films du moment en 4K Ultra HD.",
+      "description": "Profitez des derniers films et séries en 4K Ultra HD avec HDR et audio spatial Dolby Atmos.",
       "features": [
-        "Qualité 4K Ultra HD + HDR",
-        "Audio Spatial Dolby Atmos",
-        "Téléchargement hors-ligne",
-        "Catalogue mondial complet"
+        "Qualité d'image 4K Ultra HD + HDR10",
+        "Audio spatial Dolby Atmos immersif",
+        "Jusqu'à 4 écrans en simultané",
+        "Téléchargement hors-ligne sur mobile et tablette"
       ],
       "options": [
         {
@@ -228,12 +228,12 @@
       "logo": "../images/products/youtube.png",
       "rating": "4.8",
       "clients": "4200",
-      "description": "Profitez de YouTube sans publicité, hors connexion et en arrière-plan.",
+      "description": "Regardez vos vidéos préférées sans interruption publicitaire, hors connexion et en arrière-plan.",
       "features": [
         "Zéro publicité sur toutes les vidéos",
-        "Lecture en arrière-plan",
-        "Téléchargements vidéo offline",
-        "YouTube Music inclus"
+        "Lecture en arrière-plan et écran éteint",
+        "Téléchargements de vidéos hors connexion",
+        "Abonnement YouTube Music Premium inclus"
       ],
       "options": [
         {
@@ -276,17 +276,17 @@
       "id": "disney",
       "categoryId": "c-films",
       "name": "Disney+",
-      "subtitle": "Offre Standard",
+      "subtitle": "Abonnement Premium",
       "price": 700,
       "logo": "../images/products/disney.png",
       "rating": "4.7",
       "clients": "2100",
-      "description": "La maison de Disney, Pixar, Marvel, Star Wars et National Geographic.",
+      "description": "Retrouvez les mondes de Disney, Pixar, Marvel, Star Wars et Star en qualité 4K UHD avec HDR.",
       "features": [
-        "Contenu familial illimité",
-        "Format IMAX Enhanced",
-        "4 visionnages simultanés",
-        "Contrôle parental avancé"
+        "Qualité vidéo 4K UHD avec HDR et Dolby Vision",
+        "Son immersif Dolby Atmos",
+        "Jusqu'à 4 visionnages simultanés",
+        "Téléchargement illimité sur 10 appareils"
       ],
       "options": [
         {
@@ -325,17 +325,17 @@
       "id": "prime-video",
       "categoryId": "c-films",
       "name": "Prime Video",
-      "subtitle": "Amazon Prime",
+      "subtitle": "Abonnement Premium",
       "price": 600,
       "logo": "../images/products/prime-video.png",
       "rating": "4.6",
       "clients": "1850",
-      "description": "Films et séries originaux Amazon primés, disponibles à la demande.",
+      "description": "Accédez aux séries Amazon Originals à succès et à un large catalogue de films et animés.",
       "features": [
-        "Séries Amazon Originals primées",
-        "Contenu 4K HDR disponible",
-        "Téléchargement hors-ligne",
-        "Accès aux chaînes Amazon add-on"
+        "Séries exclusives Amazon Originals (The Boys, Fallout...)",
+        "Qualité vidéo 4K Ultra HD & HDR",
+        "Téléchargement pour visionnage hors-ligne",
+        "Jusqu'à 3 écrans en simultané"
       ],
       "options": [
         {
@@ -374,17 +374,17 @@
       "id": "crunchyroll",
       "categoryId": "c-films",
       "name": "Crunchyroll",
-      "subtitle": "Mega Fan",
+      "subtitle": "Abonnement Mega Fan",
       "price": 450,
       "logo": "../images/products/crunchrool.png",
       "rating": "4.8",
       "clients": "1500",
-      "description": "La plus grande bibliothèque mondiale d'animés et mangas.",
+      "description": "La plus grande bibliothèque d'animés au monde, disponible en simulcast juste après le Japon.",
       "features": [
-        "Simulcasts 1h après la diffusion au Japon",
-        "Sans publicité",
-        "Accès à 1000+ séries animées",
-        "Multi-appareils (TV, mobile, PC)"
+        "Simulcast 1 heure après la diffusion au Japon",
+        "Lecture en Haute Définition (HD) sans publicité",
+        "Accès illimité aux animés et mangas",
+        "Mode hors-ligne pour regarder partout"
       ],
       "options": [
         {
@@ -436,17 +436,17 @@
       "id": "apple-tv",
       "categoryId": "c-films",
       "name": "Apple TV+",
-      "subtitle": "Séries exclusives",
+      "subtitle": "Apple Originals",
       "price": 800,
       "logo": "../images/products/apple-tv.png",
       "rating": "4.5",
       "clients": "800",
-      "description": "Des séries originales multi-primées aux Emmys et aux Oscars.",
+      "description": "Découvrez des productions originales Apple exclusives, récompensées par les plus grands prix.",
       "features": [
-        "Apple Originals exclusifs (Ted Lasso, Severance…)",
-        "Qualité 4K Dolby Vision HDR",
-        "Audio Spatial Dolby Atmos",
-        "Partage familial (6 personnes)"
+        "Séries et films originaux Apple exclusifs",
+        "Qualité d'image 4K Dolby Vision et HDR",
+        "Audio spatial Dolby Atmos",
+        "Partage familial inclus jusqu'à 6 personnes"
       ],
       "options": [
         {
@@ -485,17 +485,17 @@
       "id": "spotify",
       "categoryId": "c-music",
       "name": "Spotify",
-      "subtitle": "Premium Individuel",
+      "subtitle": "Spotify Premium",
       "price": 700,
       "logo": "../images/products/spotify.png",
       "rating": "4.9",
       "clients": "4200",
-      "description": "Écoutez 100 millions de titres et podcasts sans publicité.",
+      "description": "Écoutez plus de 100 millions de chansons et des milliers de podcasts sans interruption publicitaire.",
       "features": [
-        "Aucune publicité",
-        "Lecture hors connexion (jusqu'à 10 000 titres)",
-        "Qualité audio jusqu'à 320 kbps",
-        "Saut de titres illimité"
+        "Écoute musicale sans aucune publicité",
+        "Téléchargement pour écoute hors connexion",
+        "Sauts de titres illimités",
+        "Qualité audio supérieure (320 kbps)"
       ],
       "options": [
         {
@@ -543,12 +543,12 @@
       "logo": "../images/products/apple-music.png",
       "rating": "4.8",
       "clients": "1200",
-      "description": "100 millions de titres en qualité sans perte avec audio spatial.",
+      "description": "Plus de 100 millions de titres en haute résolution audio sans perte et audio spatial.",
       "features": [
-        "Audio Spatial Dolby Atmos",
-        "Qualité Lossless / Hi-Res (24 bits)",
-        "Téléchargement pour écoute hors-ligne",
-        "Paroles en temps réel"
+        "Audio spatial avec Dolby Atmos",
+        "Qualité Lossless et Hi-Res Lossless (sans perte)",
+        "Écoute sans publicité en ligne ou hors connexion",
+        "Paroles de chansons synchronisées en temps réel"
       ],
       "options": [
         {
@@ -583,17 +583,17 @@
       "id": "youtube-music",
       "categoryId": "c-music",
       "name": "YouTube Music",
-      "subtitle": "Inclus avec YouTube Premium",
+      "subtitle": "Premium",
       "price": 550,
       "logo": "../images/products/youtube-music.png",
       "rating": "4.6",
       "clients": "1900",
-      "description": "Musique officielle + covers, remixes et lives exclusifs YouTube.",
+      "description": "Accédez à tout l'univers musical de YouTube sans pub, en arrière-plan et hors connexion.",
       "features": [
-        "Clips vidéo et audio dans la même app",
-        "Lecture en arrière-plan (écran éteint)",
-        "Catalogue illimité YouTube",
-        "Playlists générées par IA"
+        "Musique, albums officiels, remixes et lives",
+        "Lecture en arrière-plan et écran éteint",
+        "Mode audio seul disponible",
+        "Playlists personnalisées selon vos goûts"
       ],
       "options": [
         {
@@ -619,29 +619,29 @@
       "id": "tidal",
       "categoryId": "c-music",
       "name": "Tidal HiFi",
-      "subtitle": "Qualité Audio Maximale",
+      "subtitle": "Son Haute Fidélité",
       "price": 900,
       "logo": "../images/products/tidal.jpg",
       "rating": "4.7",
       "clients": "950",
-      "description": "La seule plateforme musicale en qualité MQA et Dolby Atmos à la fois.",
+      "description": "Écoutez votre musique en qualité Hi-Res FLAC et Dolby Atmos sans aucune compression.",
       "features": [
-        "Audio Master Quality Authenticated (MQA)",
-        "Dolby Atmos & Sony 360 Reality Audio",
-        "100+ millions de titres sans compression",
-        "Vidéos et concerts exclusifs"
+        "Qualité audio Hi-Res FLAC (jusqu'à 24 bits, 192 kHz)",
+        "Formats sonores immersifs Dolby Atmos",
+        "Plus de 100 millions de titres sans publicité",
+        "Écoute hors ligne et transferts de playlists"
       ],
       "options": [
         {
           "name": "Plan",
           "values": [
             {
-              "label": "HiFi",
+              "label": "Individuel",
               "priceAdd": 0
             },
             {
-              "label": "HiFi Plus",
-              "priceAdd": 600
+              "label": "Famille",
+              "priceAdd": 500
             }
           ]
         },
@@ -664,17 +664,17 @@
       "id": "deezer",
       "categoryId": "c-music",
       "name": "Deezer Premium",
-      "subtitle": "Musique sans limite",
+      "subtitle": "Deezer Premium",
       "price": 650,
       "logo": "../images/products/deezer.png",
       "rating": "4.5",
       "clients": "1400",
-      "description": "90 millions de titres, podcasts et livres audio en qualité FLAC.",
+      "description": "Découvrez des millions de morceaux en haute qualité audio FLAC avec des playlists personnalisées.",
       "features": [
-        "Qualité audio FLAC sans perte",
-        "Lecture hors-ligne illimitée",
-        "Flow IA — radio personnalisée infinie",
-        "Paroles synchronisées en temps réel"
+        "Qualité audio haute fidélité (Hi-Fi FLAC)",
+        "Flow : votre mix infini personnalisé par IA",
+        "Paroles et traduction des chansons intégrées",
+        "Téléchargement pour écoute hors connexion"
       ],
       "options": [
         {
@@ -713,17 +713,17 @@
       "id": "chatgpt",
       "categoryId": "c-ai",
       "name": "ChatGPT",
-      "subtitle": "Abonnement Plus",
+      "subtitle": "ChatGPT Plus",
       "price": 2800,
       "logo": "../images/products/chatGpt.png",
       "rating": "5.0",
       "clients": "5100",
-      "description": "Accédez à GPT-5.5, génération d'images et analyse de données ultra-avancée.",
+      "description": "Accédez en priorité au dernier modèle d'OpenAI (GPT-5.5) et au mode vocal avancé.",
       "features": [
-        "GPT-5.5 (dernier modèle ultra-performant)",
-        "Génération d'images ultra-réalistes",
-        "Analyse de fichiers & code (Advanced Data Analysis)",
-        "Mode vocal avancé et accès prioritaire"
+        "Accès prioritaire à GPT-5.5 (dernier modèle)",
+        "Mode vocal avancé (Advanced Voice Mode) en temps réel",
+        "Génération d'images haute définition avec DALL-E 3",
+        "Création de GPTs personnalisés et analyse de données"
       ],
       "options": [
         {
@@ -750,12 +750,12 @@
       "logo": "../images/products/claude.png",
       "rating": "4.9",
       "clients": "1500",
-      "description": "L'IA la plus avancée en codage, raisonnement et traitement de longs documents.",
+      "description": "Accédez en priorité aux derniers modèles d'Anthropic (Claude 4.7 Opus et Claude 4.6 Sonnet).",
       "features": [
-        "Claude 3.7 Sonnet & Opus (derniers modèles)",
-        "Fenêtre de contexte 200 000 tokens",
-        "Mode de réflexion étendue (Extended Thinking)",
-        "Accès prioritaire aux serveurs"
+        "Accès prioritaire à Claude 4.7 Opus et Claude 4.6 Sonnet",
+        "Raisonnement logique avec mode de réflexion étendue",
+        "Large fenêtre de contexte de 200 000 tokens",
+        "Création d'espaces de projets collaboratifs"
       ],
       "options": [
         {
@@ -782,12 +782,12 @@
       "logo": "../images/products/gemeni.jpeg",
       "rating": "4.5",
       "clients": "2300",
-      "description": "Gemini 2.5 Pro intégré à tout l'écosystème Google + 2 To de stockage.",
+      "description": "Accédez au dernier modèle Gemini 3.5 intégré dans Gmail et Google Docs avec 2 To de stockage Cloud.",
       "features": [
-        "Gemini 2.5 Pro (dernier modèle)",
-        "Intégré dans Gmail, Docs, Sheets & Meet",
-        "2 To Google One Cloud inclus",
-        "Deep Research & Canvas"
+        "Accès prioritaire à Gemini 3.5 (dernier modèle de Google)",
+        "Intégration directe dans Gmail, Docs, Sheets et Meet",
+        "2 To de stockage cloud sécurisé Google One",
+        "Deep Research et fonctionnalités d'édition IA avancées"
       ],
       "options": [
         {
@@ -814,12 +814,12 @@
       "logo": "../images/products/grok.png",
       "rating": "4.3",
       "clients": "800",
-      "description": "L'IA de xAI connectée en temps réel à l'actu via X (Twitter).",
+      "description": "L'intelligence artificielle de xAI (Grok 4) connectée en temps réel aux données et tendances mondiales de X.",
       "features": [
-        "Grok 3 avec mode Think (raisonnement)",
-        "Accès en temps réel aux tendances X",
-        "Génération d'images Aurora",
-        "Badge bleu certifié X inclus"
+        "Accès exclusif à Grok 4 (dernier modèle de xAI)",
+        "Génération d'images réalistes de dernière génération",
+        "Modes de discussion fun, rebelle ou standard",
+        "Abonnement X Premium+ complet et badge bleu inclus"
       ],
       "options": [
         {
@@ -841,17 +841,17 @@
       "id": "elevenlabs",
       "categoryId": "c-ai",
       "name": "ElevenLabs",
-      "subtitle": "Plan Créateur",
+      "subtitle": "Synthèse Vocale IA",
       "price": 1400,
       "logo": "../images/products/elevenLabs.png",
       "rating": "4.9",
       "clients": "3100",
-      "description": "Le leader mondial de la synthèse vocale IA pour vos vidéos et contenus.",
+      "description": "Générez des voix off ultra-réalistes par IA et clonez votre propre voix en quelques secondes.",
       "features": [
-        "100 000 caractères/mois inclus",
-        "Clonage vocal instantané",
-        "Licence commerciale incluse",
-        "30+ langues supportées"
+        "Synthèse vocale ultra-réaliste dans plus de 30 langues",
+        "Clonage vocal instantané à partir d'un fichier audio",
+        "Doublage automatique de vidéos avec préservation de voix",
+        "Génération d'effets sonores à partir de descriptions textuelles"
       ],
       "options": [
         {
@@ -889,18 +889,18 @@
     {
       "id": "flow-ai",
       "categoryId": "c-ai",
-      "name": "Flow AI",
-      "subtitle": "Générateur Visuel UI/UX",
+      "name": "Google Flow",
+      "subtitle": "Création de Contenu IA",
       "price": 2500,
       "logo": "../images/products/flow.png",
       "rating": "4.8",
       "clients": "2100",
-      "description": "Générez des interfaces utilisateur prêtes à l'emploi et du code propre (React, Tailwind) à partir de simples requêtes textuelles.",
+      "description": "Créez des images avec nano banana et des vidéos avec veo3 dans un workflow pour créer du contenu et être créatif.",
       "features": [
-        "Génération de composants UI instantanée",
-        "Export de code propre (React, Vue, HTML/CSS)",
-        "Intégration directe avec Figma",
-        "Itérations de design assistées par l'IA"
+        "Création d'images avec nano banana",
+        "Génération de vidéos avec veo3",
+        "Workflow intégré pour créer du contenu",
+        "Outils d'édition et création assistée"
       ],
       "options": [
         {
@@ -921,18 +921,18 @@
     {
       "id": "icloud",
       "categoryId": "c-cloud",
-      "name": "Apple iCloud+",
+      "name": "iCloud+",
       "subtitle": "Stockage & Confidentialité",
       "price": 200,
       "logo": "../images/products/iCloud.png",
       "rating": "4.9",
       "clients": "4100",
-      "description": "Vos photos, fichiers et mots de passe synchronisés et sécurisés.",
+      "description": "Sauvegardez vos données Apple en toute sécurité et protégez votre vie privée en ligne.",
       "features": [
-        "Relais privé iCloud (VPN intégré)",
-        "Masquer mon adresse e-mail",
-        "Partage familial (jusqu'à 5 personnes)",
-        "Vidéo sécurisée HomeKit"
+        "Stockage cloud sécurisé pour tous vos appareils Apple",
+        "Relais privé iCloud pour anonymiser votre navigation Safari",
+        "Masquer mon adresse e-mail pour éviter les spams",
+        "Prise en charge de la vidéo sécurisée HomeKit"
       ],
       "options": [
         {
@@ -976,12 +976,12 @@
       "logo": "../images/products/google-drive.png",
       "rating": "4.8",
       "clients": "5000",
-      "description": "Stockage partagé entre Drive, Gmail et Photos avec avantages Google.",
+      "description": "Augmentez le stockage cloud partagé de votre compte Google (Drive, Gmail et Photos).",
       "features": [
-        "Partagé avec Gmail, Drive & Google Photos",
-        "Partage familial (jusqu'à 5 personnes)",
-        "Retouche photo IA Magic Eraser",
-        "Assistance Google prioritaire"
+        "Stockage étendu partagé sur Gmail, Drive et Photos",
+        "Sauvegarde automatique de vos appareils et partage familial",
+        "Retouche photo avancée (Gomme magique, Flou d'arrière-plan)",
+        "Assistance prioritaire des experts Google"
       ],
       "options": [
         {
@@ -1019,18 +1019,18 @@
     {
       "id": "onedrive",
       "categoryId": "c-cloud",
-      "name": "Microsoft OneDrive",
-      "subtitle": "Stockage Personnel",
+      "name": "Microsoft 365 Personnel",
+      "subtitle": "Office Apps + Stockage",
       "price": 250,
       "logo": "../images/products/one-drive.jpg",
       "rating": "4.7",
       "clients": "3200",
-      "description": "Sauvegardez, protégez, synchronisez et accédez à vos photos et fichiers sur tous vos appareils.",
+      "description": "Profitez des applications Office premium et de 1 To de stockage cloud sécurisé OneDrive.",
       "features": [
-        "Coffre-fort personnel sécurisé",
-        "Sauvegarde automatique des photos",
-        "Partage de fichiers simplifié",
-        "Intégration native avec Windows & Office"
+        "1 To de stockage cloud sécurisé OneDrive",
+        "Applications Office premium (Word, Excel, PowerPoint, Outlook)",
+        "Coffre-fort personnel sécurisé et détection des ransomwares",
+        "Installation sur 5 appareils en simultané par utilisateur"
       ],
       "options": [
         {
@@ -1069,17 +1069,17 @@
       "id": "duolingo",
       "categoryId": "c-education",
       "name": "Duolingo Super",
-      "subtitle": "Apprentissage des langues sans pub",
+      "subtitle": "Apprentissage sans pub",
       "price": 400,
       "logo": "../images/products/doulingo.png",
       "rating": "4.8",
       "clients": "3600",
-      "description": "Apprenez une langue rapidement sans publicité ni limites.",
+      "description": "Apprenez une nouvelle langue rapidement, à votre rythme, sans publicité et sans limite de vies.",
       "features": [
-        "Vies illimitées",
-        "Aucune publicité",
-        "Entraînements personnalisés par IA",
-        "Restauration de série (streak repair)"
+        "Vies illimitées pour apprendre sans interruption",
+        "Zéro publicité pour une concentration maximale",
+        "Entraînements personnalisés pour corriger vos erreurs",
+        "Restauration de série (streak repair) mensuelle gratuite"
       ],
       "options": [
         {
@@ -1105,17 +1105,17 @@
       "id": "coursera",
       "categoryId": "c-education",
       "name": "Coursera Plus",
-      "subtitle": "Accès illimité aux certifications",
+      "subtitle": "Certifications illimitées",
       "price": 2500,
       "logo": "../images/products/coursera.png",
       "rating": "4.9",
       "clients": "1400",
-      "description": "Accédez à 7 000+ cours et certifications de Google, IBM, Stanford et plus.",
+      "description": "Accédez de manière illimitée à plus de 7 000 cours et programmes certifiants des meilleures universités.",
       "features": [
-        "7 000+ cours inclus sans surcoût",
-        "Certificats reconnus par les entreprises",
-        "Projets guidés et apprentissage hors-ligne",
-        "Accès aux Specializations & Professional Certificates"
+        "Accès illimité à plus de 7 000 cours et spécialisations",
+        "Certificats officiels de Google, IBM, Yale, Stanford",
+        "Projets pratiques guidés pour booster vos compétences",
+        "Apprentissage flexible et 100% en ligne"
       ],
       "options": [
         {
@@ -1141,17 +1141,17 @@
       "id": "udemy",
       "categoryId": "c-education",
       "name": "Udemy Personal Plan",
-      "subtitle": "Apprentissage Pro",
+      "subtitle": "Abonnement Individuel",
       "price": 2000,
       "logo": "../images/products/udemy.png",
       "rating": "4.7",
       "clients": "2050",
-      "description": "Accédez à plus de 12 000 cours de top instructeurs (IT, business, design…).",
+      "description": "Accédez à plus de 11 000 cours vidéo de développement, business, design et informatique.",
       "features": [
-        "12 000+ cours top-rated inclus",
-        "Certificats de réalisation officiels",
-        "Projets pratiques & labs IT",
-        "Application mobile pour apprendre hors-ligne"
+        "Accès illimité à plus de 11 000 cours les mieux notés",
+        "Certificats de fin de formation officiels",
+        "Nouveaux cours ajoutés régulièrement sans surcoût",
+        "Quiz et exercices de codage pratiques intégrés"
       ],
       "options": [
         {
@@ -1177,17 +1177,17 @@
       "id": "linkedin-learning",
       "categoryId": "c-education",
       "name": "LinkedIn Learning",
-      "subtitle": "Formation Professionnelle",
+      "subtitle": "Abonnement Premium",
       "price": 2200,
       "logo": "../images/products/linked-in.png",
       "rating": "4.6",
       "clients": "1100",
-      "description": "Des milliers de formations certifiées pour booster votre carrière professionnelle.",
+      "description": "Développez vos compétences professionnelles et obtenez des certificats directement publiables.",
       "features": [
-        "22 000+ cours en business, tech & créativité",
-        "Certificats ajoutables directement sur LinkedIn",
-        "Recommandations personnalisées par IA",
-        "Accès hors-ligne sur mobile"
+        "Accès à plus de 21 000 formations en tech, business et création",
+        "Certificats de réussite à afficher sur votre profil LinkedIn",
+        "Abonnement LinkedIn Premium complet inclus",
+        "Accès hors-ligne sur application mobile"
       ],
       "options": [
         {
@@ -1213,17 +1213,17 @@
       "id": "skillshare",
       "categoryId": "c-education",
       "name": "Skillshare Premium",
-      "subtitle": "Créativité & Design",
+      "subtitle": "Cours pour créatifs",
       "price": 1500,
       "logo": "../images/products/skillshare.png",
       "rating": "4.5",
       "clients": "880",
-      "description": "La plateforme de référence pour apprendre le design, la photo, la vidéo et le business.",
+      "description": "Trouvez l'inspiration avec des milliers de cours sur le design, l'illustration et la vidéo.",
       "features": [
-        "40 000+ cours en création et business",
-        "Projets pratiques à chaque cours",
-        "Communauté active d'apprenants",
-        "Téléchargement pour apprentissage hors-ligne"
+        "Des milliers de cours axés sur la pratique et la création",
+        "Projets concrets et retours de la communauté",
+        "Apprentissage en déplacement avec l'application mobile",
+        "Cours dispensés par des professionnels du secteur"
       ],
       "options": [
         {
@@ -1249,17 +1249,17 @@
       "id": "canva",
       "categoryId": "c-productivity",
       "name": "Canva Pro",
-      "subtitle": "Design Graphique Premium",
+      "subtitle": "Design Professionnel",
       "price": 650,
       "logo": "../images/products/canva.png",
       "rating": "4.9",
       "clients": "8400",
-      "description": "L'outil de design n°1 avec tous les éléments, templates et IA débloqués.",
+      "description": "Concevez de superbes visuels grâce à des millions de templates et des outils d'IA magiques.",
       "features": [
-        "100+ millions d'images, vidéos et éléments premium",
-        "Suppression d'arrière-plan en 1 clic (Magic Studio)",
-        "Génération d'images par IA (Dream Lab)",
-        "Export SVG, PDF haute qualité et formats pro"
+        "100+ millions de photos, vidéos et éléments premium",
+        "Suppression d'arrière-plan en un clic pour photos et vidéos",
+        "Outils d'intelligence artificielle Magic Studio débloqués",
+        "Planification de publications sur les réseaux sociaux"
       ],
       "options": [
         {
@@ -1285,17 +1285,17 @@
       "id": "notion",
       "categoryId": "c-productivity",
       "name": "Notion Plus",
-      "subtitle": "Notes & Gestion de projet",
+      "subtitle": "Workspace Collaboratif",
       "price": 900,
       "logo": "../images/products/notion.png",
       "rating": "4.8",
       "clients": "2600",
-      "description": "Votre second cerveau tout-en-un : notes, bases de données, projets et wikis.",
+      "description": "Organisez vos notes, bases de données, wikis et projets au même endroit.",
       "features": [
-        "Blocs & pages illimités",
-        "Historique des versions (90 jours)",
-        "Upload de fichiers illimité",
-        "Collaboration avec invités illimités"
+        "Blocs de contenu et téléchargements de fichiers illimités",
+        "Historique complet des versions de page sur 30 jours",
+        "Bases de données avancées avec filtres personnalisés",
+        "Invitations de collaborateurs externes facilitées"
       ],
       "options": [
         {
@@ -1330,17 +1330,17 @@
       "id": "google-workspace",
       "categoryId": "c-productivity",
       "name": "Google Workspace",
-      "subtitle": "Business Starter",
+      "subtitle": "Messagerie Professionnelle",
       "price": 900,
       "logo": "../images/products/google-workspace.png",
       "rating": "4.6",
       "clients": "1200",
-      "description": "Suite Google pro avec email d'entreprise, Meet avancé et Drive dédié.",
+      "description": "Professionnalisez votre activité avec une adresse e-mail personnalisée et des outils collaboratifs.",
       "features": [
-        "Email professionnel @votredomaine",
-        "Google Meet jusqu'à 100 participants",
-        "30 Go de stockage Drive par utilisateur",
-        "Sécurité et administration avancées"
+        "Adresse e-mail professionnelle personnalisée (@votredomaine)",
+        "Visioconférences sécurisées via Google Meet",
+        "Stockage cloud sécurisé par utilisateur",
+        "Création collaborative en temps réel (Docs, Sheets)"
       ],
       "options": [
         {
@@ -1378,18 +1378,18 @@
     {
       "id": "google-antigravity",
       "categoryId": "c-productivity",
-      "name": "AntiGravity",
-      "subtitle": "IDE Vibe Coding",
+      "name": "AntiGravity AI",
+      "subtitle": "Assistant de Code Autonome",
       "price": 1200,
       "logo": "../images/products/antigravity.png",
       "rating": "4.7",
       "clients": "1500",
-      "description": "L'IDE propulsé par l'IA de nouvelle génération. Codez à l'instinct (vibe coding) et laissez l'IA construire vos applications entières.",
+      "description": "Développez vos applications entières en écrivant simplement vos consignes en langage naturel.",
       "features": [
-        "Vibe Coding : création d'apps via le langage naturel",
-        "Agents IA autonomes multi-fichiers",
-        "Intégration native avec GPT-5.5 & Claude Opus",
-        "Déploiement en 1 clic"
+        "Agents IA de codage autonomes multi-fichiers",
+        "Intégration directe avec les meilleurs modèles du marché",
+        "Détection et résolution automatique de bugs de code",
+        "Déploiement et intégration continue en un clic"
       ],
       "options": [
         {
@@ -1415,17 +1415,17 @@
       "id": "grammarly",
       "categoryId": "c-productivity",
       "name": "Grammarly Premium",
-      "subtitle": "Rédaction & Correction IA",
+      "subtitle": "Aide à la rédaction",
       "price": 1800,
       "logo": "../images/products/grammarly.png",
       "rating": "4.8",
       "clients": "3200",
-      "description": "L'assistant IA de rédaction qui corrige, améliore et réécrit vos textes en anglais.",
+      "description": "Rédigez des textes clairs, professionnels et sans fautes en anglais grâce à l'IA.",
       "features": [
-        "Correction grammaticale avancée en temps réel",
-        "Suggestions de style et de ton",
-        "Réécriture et résumé assistés par IA",
-        "Compatible avec tous les navigateurs & apps"
+        "Suggestions avancées de grammaire et d'orthographe",
+        "Ajustement du ton et de la clarté de vos écrits",
+        "Détecteur de plagiat intégré très performant",
+        "Réécriture et suggestions intelligentes par IA"
       ],
       "options": [
         {
@@ -1451,17 +1451,17 @@
       "id": "free-fire",
       "categoryId": "c-games",
       "name": "Diamants Free Fire",
-      "subtitle": "Recharge Player ID",
+      "subtitle": "Recharge instantanée",
       "price": 140,
       "logo": "../images/products/free-fire.jpg",
       "rating": "4.5",
       "clients": "9400",
-      "description": "Rechargez votre compte Free Fire via votre Player ID — réception en moins de 3 minutes.",
+      "description": "Rechargez vos diamants Free Fire directement sur votre Player ID de manière rapide et sécurisée.",
       "features": [
-        "Seulement votre Player ID requis",
-        "Livraison en moins de 3 minutes",
-        "Utilisables pour l'Elite Pass & skins",
-        "Offres bonus disponibles régulièrement"
+        "Recharge directe via Player ID en quelques minutes",
+        "Achat de pass de combat, skins et emotes exclusifs",
+        "Aucune information de connexion de compte requise",
+        "Service de rechargement sécurisé et fiable"
       ],
       "options": [
         {
@@ -1496,17 +1496,17 @@
       "id": "fifa",
       "categoryId": "c-games",
       "name": "FC Points (EA FC 25)",
-      "subtitle": "Recharge instantanée",
+      "subtitle": "Points EA Sports FC",
       "price": 700,
       "logo": "../images/products/fifa.jpg",
       "rating": "4.7",
       "clients": "6200",
-      "description": "Construisez votre équipe Ultimate Team avec des FC Points officiels.",
+      "description": "Achetez des packs et construisez votre équipe de rêve Ultimate Team sur EA Sports FC 25.",
       "features": [
-        "Transfert immédiat sur votre compte EA",
-        "Compatible PC, PlayStation, Xbox",
-        "Achat de packs & accès aux Drafts",
-        "Valable sur EA FC 25"
+        "Transfert rapide de points sur votre compte de jeu",
+        "Achat de packs de joueurs et tickets de Draft",
+        "Compatible avec PC, PlayStation et Xbox",
+        "Points officiels sécurisés garantis"
       ],
       "options": [
         {
@@ -1537,17 +1537,17 @@
       "id": "fortnite",
       "categoryId": "c-games",
       "name": "V-Bucks Fortnite",
-      "subtitle": "Recharge officielle Epic Games",
+      "subtitle": "Recharge V-Bucks",
       "price": 550,
       "logo": "../images/products/fortnite.png",
       "rating": "4.8",
       "clients": "7800",
-      "description": "Achetez skins, Battle Pass et cosmétiques Fortnite avec des V-Bucks officiels.",
+      "description": "Achetez des tenues de personnages, des emotes et le Battle Pass officiel de Fortnite.",
       "features": [
-        "Code numérique livré instantanément",
-        "Utilisables sur toutes les plateformes (PC, PS, Xbox, Switch)",
-        "Valables pour le Battle Pass & la boutique",
-        "Sécurisé 100%"
+        "Livraison sous forme de code numérique officiel",
+        "Utilisable sur toutes les plateformes de jeu",
+        "Achat de skins, emotes et pass de combat",
+        "Transactions 100% sécurisées Epic Games"
       ],
       "options": [
         {
@@ -1578,17 +1578,17 @@
       "id": "minecraft",
       "categoryId": "c-games",
       "name": "Minecraft",
-      "subtitle": "Compte Java + Bedrock — Achat Unique à vie",
+      "subtitle": "Achat unique à vie",
       "price": 5500,
       "logo": "../images/products/minecraft.png",
       "rating": "4.9",
       "clients": "4500",
-      "description": "Achat unique et définitif : jouez à Minecraft Java & Bedrock Edition à vie sur PC.",
+      "description": "Obtenez les versions Java et Bedrock de Minecraft sur PC avec un accès à vie.",
       "features": [
-        "Java Edition + Bedrock Edition inclus (un seul achat)",
-        "Toutes les mises à jour futures gratuites à vie",
+        "Java Edition et Bedrock Edition incluses",
+        "Mises à jour de jeu gratuites à vie",
         "Accès aux serveurs multijoueurs officiels",
-        "Skins & capes personnalisables"
+        "Personnalisation complète de skins et de mods"
       ],
       "options": [
         {
@@ -1615,17 +1615,17 @@
       "id": "pubg",
       "categoryId": "c-games",
       "name": "PUBG Mobile UC",
-      "subtitle": "Recharge instantanée",
+      "subtitle": "Unknown Cash",
       "price": 110,
       "logo": "../images/products/pubg.png",
       "rating": "4.6",
       "clients": "8900",
-      "description": "Rechargez vos Unknown Cash PUBG Mobile pour débloquer le Royal Pass et des skins exclusifs.",
+      "description": "Achetez des Unknown Cash pour PUBG Mobile et débloquez le Royale Pass et des skins.",
       "features": [
-        "Seulement votre Player ID requis",
-        "Livraison officielle immédiate",
-        "Débloque le Royal Pass & tenues exclusives",
-        "Sécurisé à 100%"
+        "Recharge sécurisée directement via Player ID",
+        "Débloquez le Royale Pass et des caisses de skins",
+        "Livraison ultra-rapide par nos serveurs",
+        "Crédits de jeu officiels PUBG Mobile"
       ],
       "options": [
         {
@@ -1660,17 +1660,17 @@
       "id": "efootball",
       "categoryId": "c-games",
       "name": "eFootball",
-      "subtitle": "Pièces MyClub",
+      "subtitle": "Pièces eFootball",
       "price": 550,
       "logo": "../images/products/eFootball.png",
       "rating": "4.5",
       "clients": "3100",
-      "description": "Achète des pièces eFootball pour recruter les meilleurs joueurs et légendes.",
+      "description": "Recrutez des joueurs légendaires et améliorez votre équipe de rêve dans eFootball.",
       "features": [
-        "Ouverture de packs de joueurs",
-        "Légendes et icônes disponibles",
-        "Compatible Mobile & Console (PS/Xbox)",
-        "Renforcez votre équipe rapidement"
+        "Pièces officielles pour le recrutement de joueurs",
+        "Compatible avec mobiles, PlayStation et Xbox",
+        "Renforcez rapidement votre équipe de rêve",
+        "Livraison rapide sur votre identifiant de jeu"
       ],
       "options": [
         {
@@ -1697,17 +1697,17 @@
       "id": "smart-proxy",
       "categoryId": "c-vpn",
       "name": "Smart Proxy",
-      "subtitle": "IP Résidentielles",
+      "subtitle": "Proxys Résidentiels",
       "price": 2000,
       "logo": "../images/products/smart-proxy.png",
       "rating": "4.6",
       "clients": "850",
-      "description": "Proxys résidentiels rotatifs ultra-rapides pour vos besoins professionnels.",
+      "description": "Proxys résidentiels haut de gamme pour le web scraping, le SEO et le multi-accounting.",
       "features": [
-        "Rotation IP automatique",
-        "Taux de succès de 99%",
-        "Requêtes illimitées",
-        "Support API REST complet"
+        "Rotation d'IP automatique et géociblage précis",
+        "Accès à des millions d'adresses IP résidentielles propres",
+        "Bande passante flexible avec connexion rapide",
+        "Intégration d'API simple pour les professionnels"
       ],
       "options": [
         {
@@ -1733,17 +1733,17 @@
       "id": "nord-vpn",
       "categoryId": "c-vpn",
       "name": "NordVPN",
-      "subtitle": "Sécurité & Confidentialité",
+      "subtitle": "Sécurité & VPN",
       "price": 900,
       "logo": "../images/products/nord-vpn.png",
       "rating": "4.8",
       "clients": "3500",
-      "description": "Le leader mondial du VPN avec une sécurité de niveau militaire et des serveurs ultra-rapides.",
+      "description": "Protégez vos données personnelles et naviguez anonymement avec des serveurs ultra-rapides.",
       "features": [
-        "Double VPN & Onion Over VPN",
-        "Protection contre les menaces (CyberSec)",
-        "6 connexions simultanées",
-        "Accès à 5000+ serveurs mondiaux"
+        "Chiffrement de niveau militaire sur tous vos appareils",
+        "Protection contre les malwares et bloqueur de pub",
+        "Sécurisez jusqu'à 10 appareils en simultané",
+        "Plus de 6 000 serveurs ultra-rapides dans le monde"
       ],
       "options": [
         {
@@ -1769,17 +1769,17 @@
       "id": "expressvpn",
       "categoryId": "c-vpn",
       "name": "ExpressVPN",
-      "subtitle": "Le VPN le plus rapide",
+      "subtitle": "VPN Ultra-Rapide",
       "price": 1100,
       "logo": "../images/products/expressVpn.png",
       "rating": "4.8",
       "clients": "1900",
-      "description": "Le VPN le plus rapide du marché avec des serveurs optimisés pour le streaming.",
+      "description": "Le VPN le plus rapide et sécurisé du marché, idéal pour le streaming et le téléchargement.",
       "features": [
-        "Serveurs dans 105 pays",
-        "Protocole Lightway ultra-rapide (propriétaire)",
-        "Débloque Netflix, Disney+, BBC iPlayer",
-        "Kill Switch & split tunneling"
+        "Serveurs ultra-rapides répartis dans 105 pays",
+        "Protocole exclusif Lightway pour une vitesse optimale",
+        "Accès à tous vos contenus préférés en déplacement",
+        "Kill Switch de sécurité pour parer toute déconnexion"
       ],
       "options": [
         {
@@ -1805,17 +1805,17 @@
       "id": "surfshark",
       "categoryId": "c-vpn",
       "name": "Surfshark",
-      "subtitle": "Appareils illimités",
+      "subtitle": "VPN Appareils Illimités",
       "price": 700,
       "logo": "../images/products/surfshark.png",
       "rating": "4.7",
       "clients": "1600",
-      "description": "Un seul abonnement pour un nombre illimité d'appareils — idéal pour toute la famille.",
+      "description": "Sécurisez un nombre illimité d'appareils avec un seul abonnement VPN pour toute la famille.",
       "features": [
-        "Connexions simultanées illimitées",
-        "CleanWeb — bloqueur de pub & malware",
-        "Mode Camouflage (obfuscation DPI)",
-        "Adresse IP dédiée disponible"
+        "Connexions simultanées illimitées avec un seul compte",
+        "CleanWeb pour bloquer pubs, trackers et malwares",
+        "Mode camouflage pour masquer l'utilisation du VPN",
+        "Politique stricte d'absence de journaux d'activité"
       ],
       "options": [
         {
@@ -1841,17 +1841,17 @@
       "id": "my-fitness-pal",
       "categoryId": "c-fitness",
       "name": "MyFitnessPal Premium",
-      "subtitle": "Nutrition & Suivi Santé Pro",
+      "subtitle": "Compteur de Calories",
       "price": 800,
       "logo": "../images/products/myFitness.png",
       "rating": "4.7",
       "clients": "2200",
-      "description": "Suivez vos calories, macros et atteignez votre physique idéal sans pub.",
+      "description": "Suivez vos repas, vos macronutriments et atteignez vos objectifs physiques sans publicité.",
       "features": [
-        "Base de données de 14 millions d'aliments",
-        "Scanner de code-barres illimité",
-        "Suivi des macronutriments par repas",
-        "Analyses et tendances nutritionnelles avancées"
+        "Scanner de codes-barres illimité d'aliments",
+        "Analyse approfondie des macros et micronutriments",
+        "Programmes de coaching nutritionnel personnalisés",
+        "Zéro publicité pour un suivi agréable au quotidien"
       ],
       "options": [
         {
@@ -1877,17 +1877,17 @@
       "id": "yazio",
       "categoryId": "c-fitness",
       "name": "YAZIO PRO",
-      "subtitle": "Tracker Calories & Santé",
+      "subtitle": "Compteur Calories & Jeûne",
       "price": 600,
       "logo": "../images/products/yazio.png",
       "rating": "4.8",
       "clients": "1800",
-      "description": "Le compteur de calories le plus design d'Europe avec coach IA.",
+      "description": "Calculez vos calories, suivez vos jeûnes intermittents et découvrez des recettes saines.",
       "features": [
-        "500+ recettes diététiques et plans de repas",
-        "Suivi de l'hydratation quotidienne",
-        "Jeûne intermittent guidé",
-        "Coach IA personnalisé"
+        "Plans de repas sains et recettes de cuisine diététiques",
+        "Tracker de jeûne intermittent avec différents programmes",
+        "Suivi automatique de vos pas et activités physiques",
+        "Rapports d'analyse nutritionnelle précis et complets"
       ],
       "options": [
         {
@@ -1913,17 +1913,17 @@
       "id": "nike-training",
       "categoryId": "c-fitness",
       "name": "Nike Training Club",
-      "subtitle": "Abonnement Premium",
+      "subtitle": "Programmes de Fitness",
       "price": 1200,
       "logo": "../images/products/nike-traning.png",
       "rating": "4.9",
       "clients": "2500",
-      "description": "Des programmes guidés par les meilleurs entraîneurs Nike pour tous niveaux.",
+      "description": "Accédez à des entraînements de fitness et de musculation guidés par les coachs experts Nike.",
       "features": [
-        "200+ entraînements guidés (force, cardio, yoga…)",
-        "Plans d'entraînement personnalisés",
-        "Conseils nutrition par des experts Nike",
-        "Intégration Apple Watch & Nike Run Club"
+        "Entraînements vidéo HD guidés par des experts",
+        "Programmes de sport adaptés à tous les niveaux",
+        "Conseils en nutrition et bien-être général",
+        "Suivi d'activité et intégration de montres connectées"
       ],
       "options": [
         {
@@ -1949,17 +1949,17 @@
       "id": "strava",
       "categoryId": "c-fitness",
       "name": "Strava Premium",
-      "subtitle": "Analyse & Performance",
+      "subtitle": "Réseau Social Sportif",
       "price": 700,
       "logo": "../images/products/strava.png",
       "rating": "4.7",
       "clients": "1300",
-      "description": "L'app de running et cyclisme n°1 avec des analyses de performance avancées.",
+      "description": "Analysez vos performances de running et cyclisme et partagez vos parcours.",
       "features": [
-        "Analyse de segments & classements KOM/QOM",
-        "Tableaux de bord de performance détaillés",
-        "Plans d'entraînement adaptatifs",
-        "Comparaison avec vos activités passées"
+        "Analyse détaillée de l'effort et de la fréquence cardiaque",
+        "Classements KOM/QOM et création d'itinéraires personnalisés",
+        "Suivi de votre état de forme et de votre fatigue",
+        "Fonction Beacon de partage de localisation en direct"
       ],
       "options": [
         {
@@ -1985,17 +1985,17 @@
       "id": "freeletics",
       "categoryId": "c-fitness",
       "name": "Freeletics",
-      "subtitle": "Coach IA Fitness",
+      "subtitle": "Entraînement au Poids du Corps",
       "price": 1000,
       "logo": "../images/products/freeletics.png",
       "rating": "4.6",
       "clients": "1050",
-      "description": "Entraînements sans matériel générés par IA, adaptés à votre niveau et vos objectifs.",
+      "description": "Entraînez-vous sans matériel grâce à un coach virtuel personnalisé propulsé par l'IA.",
       "features": [
-        "Coach IA qui adapte chaque séance à votre forme",
-        "Entraînements 100% sans équipement",
-        "Suivi de progression hebdomadaire",
-        "Nutrition et mindset inclus"
+        "Séances d'entraînement adaptées à vos retours par l'IA",
+        "Entraînements complets réalisables sans matériel",
+        "Conseils audio de motivation et de développement personnel",
+        "Accès aux guides nutritionnels sportifs de Freeletics"
       ],
       "options": [
         {
@@ -2021,17 +2021,17 @@
       "id": "mobilis",
       "categoryId": "c-mobile",
       "name": "Recharge Mobilis",
-      "subtitle": "Recharge instantanée sur numéro",
+      "subtitle": "Recharge Mobilis",
       "price": 110,
       "logo": "../images/products/mobilis.png",
       "rating": "4.8",
       "clients": "12000",
-      "description": "Rechargez votre ligne Mobilis instantanément — saisissez simplement votre numéro.",
+      "description": "Rechargez votre ligne téléphonique Mobilis instantanément sans aucun déplacement.",
       "features": [
-        "Livraison immédiate sur votre numéro",
-        "Valable pour appels, SMS et data",
-        "Compatible forfaits prépayés & postpayés",
-        "Confirmation par SMS"
+        "Recharge directe sur votre numéro de téléphone",
+        "Compatible avec l'ensemble des offres Mobilis",
+        "Validation et expédition immédiate de votre crédit",
+        "Confirmation d'activation par SMS de l'opérateur"
       ],
       "options": [
         {
@@ -2066,17 +2066,17 @@
       "id": "djezzy",
       "categoryId": "c-mobile",
       "name": "Recharge Djezzy",
-      "subtitle": "Recharge instantanée sur numéro",
+      "subtitle": "Recharge Djezzy",
       "price": 110,
       "logo": "../images/products/djezzy.png",
       "rating": "4.7",
       "clients": "10500",
-      "description": "Rechargez votre ligne Djezzy instantanément — saisissez simplement votre numéro.",
+      "description": "Rechargez votre ligne téléphonique Djezzy instantanément sans aucun déplacement.",
       "features": [
-        "Livraison immédiate sur votre numéro",
-        "Valable pour appels, SMS et data",
-        "Compatible forfaits prépayés & postpayés",
-        "Confirmation par SMS"
+        "Recharge rapide sur votre numéro de téléphone",
+        "Compatible avec l'ensemble des offres Djezzy",
+        "Validation et expédition immédiate de votre crédit",
+        "Confirmation d'activation par SMS de l'opérateur"
       ],
       "options": [
         {
@@ -2111,17 +2111,17 @@
       "id": "ooredoo",
       "categoryId": "c-mobile",
       "name": "Recharge Ooredoo",
-      "subtitle": "Recharge instantanée",
+      "subtitle": "Recharge Ooredoo",
       "price": 110,
       "logo": "../images/products/ooredoo.png",
       "rating": "4.7",
       "clients": "9800",
-      "description": "Rechargez votre ligne Ooredoo instantanément — saisissez simplement votre numéro.",
+      "description": "Rechargez votre ligne téléphonique Ooredoo instantanément sans aucun déplacement.",
       "features": [
-        "Livraison immédiate sur votre numéro",
-        "Valable pour appels, SMS et data",
-        "Compatible forfaits prépayés & postpayés",
-        "Confirmation par SMS"
+        "Recharge rapide sur votre numéro de téléphone",
+        "Compatible avec l'ensemble des offres Ooredoo",
+        "Validation et expédition immédiate de votre crédit",
+        "Confirmation d'activation par SMS de l'opérateur"
       ],
       "options": [
         {
@@ -2156,17 +2156,17 @@
       "id": "gc-itunes",
       "categoryId": "c-giftcards",
       "name": "Carte Cadeau iTunes",
-      "subtitle": "App Store & Apple Services",
+      "subtitle": "Carte App Store & iTunes",
       "price": 1400,
       "logo": "../images/products/iTunes.png",
       "rating": "4.9",
       "clients": "7200",
-      "description": "Achetez des apps, jeux, musique et abonnements sur l'App Store et les services Apple.",
+      "description": "Créditez votre compte Apple pour acheter des applications, de la musique et des abonnements.",
       "features": [
-        "Utilisable sur App Store, Apple Music, iCloud",
-        "Code numérique livré instantanément",
-        "Valable dans 45+ pays",
-        "Aucune date d'expiration"
+        "Code de recharge officiel envoyé par voie numérique",
+        "Utilisable sur l'App Store, Apple Music et iCloud+",
+        "Crédits de recharge valables sans limite de durée",
+        "Parfait pour recharger des comptes étrangers"
       ],
       "options": [
         {
@@ -2197,17 +2197,17 @@
       "id": "gc-google-play",
       "categoryId": "c-giftcards",
       "name": "Carte Cadeau Google Play",
-      "subtitle": "Apps, jeux & contenu Android",
+      "subtitle": "Carte Cadeau Google",
       "price": 1400,
       "logo": "../images/products/google-play.png",
       "rating": "4.9",
       "clients": "8100",
-      "description": "Achetez apps, jeux, films et abonnements sur le Google Play Store.",
+      "description": "Créditez votre compte Google Play Store pour acheter des applications, livres et jeux.",
       "features": [
-        "Utilisable sur Google Play, YouTube, Google One",
-        "Code numérique livré instantanément",
-        "Compatible avec tout appareil Android",
-        "Aucune date d'expiration"
+        "Code de recharge officiel envoyé par voie numérique",
+        "Achat d'applications, de jeux mobiles et de contenus",
+        "Compatible avec l'ensemble des appareils Android",
+        "Crédits de recharge valables sans limite de durée"
       ],
       "options": [
         {
@@ -2238,17 +2238,17 @@
       "id": "gc-amazon",
       "categoryId": "c-giftcards",
       "name": "Carte Cadeau Amazon",
-      "subtitle": "Shopping & services Amazon",
+      "subtitle": "Carte Cadeau Shopping",
       "price": 1400,
       "logo": "../images/products/amazon.png",
       "rating": "4.8",
       "clients": "5600",
-      "description": "Utilisez votre solde Amazon pour acheter des millions de produits ou des abonnements Prime.",
+      "description": "Approvisionnez votre solde Amazon pour acheter des millions de produits et d'articles physiques.",
       "features": [
-        "Valable sur Amazon.com, .fr, .co.uk et plus",
-        "Code numérique livré instantanément",
-        "Utilisable pour Prime, Audible, Kindle",
-        "Aucune date d'expiration"
+        "Code cadeau officiel pour le site et l'application Amazon",
+        "Achat d'articles physiques, de livres Kindle et abonnements",
+        "Crédits de recharge valables sans limite de durée",
+        "Aucun frais de gestion de compte ou d'activation"
       ],
       "options": [
         {
@@ -2279,17 +2279,17 @@
       "id": "gc-steam",
       "categoryId": "c-giftcards",
       "name": "Carte Cadeau Steam",
-      "subtitle": "Jeux PC & contenus Steam",
+      "subtitle": "Carte Cadeau Steam",
       "price": 1400,
       "logo": "../images/products/steam.jpg",
       "rating": "4.9",
       "clients": "6800",
-      "description": "Rechargez votre portefeuille Steam pour acheter des jeux, DLC et items.",
+      "description": "Créditez votre portefeuille Steam pour acheter des jeux PC, des DLC et des extensions.",
       "features": [
-        "Ajout direct au portefeuille Steam",
-        "Code numérique livré instantanément",
-        "Compatible avec tous les jeux Steam",
-        "Utilisable pour les abonnements Steam"
+        "Recharge directe et sécurisée de votre solde Steam",
+        "Achat de milliers de jeux PC et contenus de marché",
+        "Utilisable lors des célèbres soldes saisonnières Steam",
+        "Crédits de recharge valables sans limite de durée"
       ],
       "options": [
         {
@@ -2320,17 +2320,17 @@
       "id": "gc-playstation",
       "categoryId": "c-giftcards",
       "name": "Carte PSN PlayStation",
-      "subtitle": "PS Store & PlayStation Plus",
+      "subtitle": "Carte PlayStation Store",
       "price": 1400,
       "logo": "../images/products/play-station.png",
       "rating": "4.8",
       "clients": "5900",
-      "description": "Rechargez votre portefeuille PlayStation Store pour acheter jeux, DLC et abonnements PS Plus.",
+      "description": "Créditez votre solde PlayStation Store pour acheter des jeux complets et des abonnements.",
       "features": [
-        "Ajout direct au compte PlayStation Network",
-        "Code numérique livré instantanément",
-        "Compatible PS4, PS5 et app mobile",
-        "Utilisable pour PS Plus & PS Now"
+        "Recharge directe de votre solde PlayStation Network",
+        "Achat de jeux PS4/PS5, de DLC et d'abonnements PS Plus",
+        "Crédits de recharge valables sans limite de durée",
+        "Code numérique officiel envoyé de manière sécurisée"
       ],
       "options": [
         {
@@ -2361,17 +2361,17 @@
       "id": "gc-xbox",
       "categoryId": "c-giftcards",
       "name": "Carte Cadeau Xbox",
-      "subtitle": "Microsoft Store & Game Pass",
+      "subtitle": "Carte Microsoft & Xbox",
       "price": 1400,
       "logo": "../images/products/xBox.png",
       "rating": "4.8",
       "clients": "4700",
-      "description": "Rechargez votre solde Microsoft pour acheter des jeux Xbox et des abonnements Game Pass.",
+      "description": "Créditez votre solde Microsoft pour acheter des jeux Xbox et des abonnements Xbox Game Pass.",
       "features": [
-        "Utilisable sur Xbox Store & Microsoft Store",
-        "Code numérique livré instantanément",
-        "Compatible Xbox Series X/S, Xbox One & PC",
-        "Utilisable pour Xbox Game Pass Ultimate"
+        "Recharge de solde utilisable sur Xbox et PC Windows",
+        "Achat de jeux et abonnements Xbox Game Pass Ultimate",
+        "Crédits de recharge valables sans limite de durée",
+        "Code numérique officiel envoyé de manière sécurisée"
       ],
       "options": [
         {
@@ -2402,17 +2402,17 @@
       "id": "tradingview",
       "categoryId": "c-finance",
       "name": "TradingView",
-      "subtitle": "Analyse Technique Pro",
+      "subtitle": "Graphiques Financiers",
       "price": 1800,
       "logo": "../images/products/trading-view.png",
       "rating": "4.9",
       "clients": "3800",
-      "description": "La plateforme d'analyse de marchés financiers et crypto la plus utilisée au monde.",
+      "description": "Accédez aux meilleurs graphiques d'analyse technique et de marchés en temps réel.",
       "features": [
-        "Graphiques avancés multi-timeframes",
-        "100+ indicateurs techniques & scripts Pine",
-        "Alertes en temps réel sur prix & indicateurs",
-        "Données sur actions, forex, crypto et matières premières"
+        "Graphiques professionnels interactifs multi-écrans",
+        "Plus de 100 indicateurs techniques et alertes en direct",
+        "Données complètes sur les actions, devises et cryptomonnaies",
+        "Possibilité de coder vos indicateurs via Pine Script"
       ],
       "options": [
         {
@@ -2455,17 +2455,17 @@
       "id": "coinstats",
       "categoryId": "c-finance",
       "name": "CoinStats Pro",
-      "subtitle": "Suivi de Portefeuille Crypto",
+      "subtitle": "Tracker de Portefeuille",
       "price": 900,
       "logo": "../images/products/coin-stats.png",
       "rating": "4.7",
       "clients": "2100",
-      "description": "Suivez tous vos actifs crypto en temps réel depuis une seule application.",
+      "description": "Suivez l'ensemble de vos cryptomonnaies et portefeuilles DeFi sur une seule application.",
       "features": [
-        "Connexion à 300+ exchanges & wallets",
-        "Alertes de prix et de portefeuille",
-        "Analyse P&L détaillée par actif",
-        "Actualités crypto agrégées en temps réel"
+        "Synchronisation automatique avec vos portefeuilles et exchanges",
+        "Rapports de gains et pertes (P&L) détaillés en direct",
+        "Alertes intelligentes sur les mouvements du marché",
+        "Actualités crypto et analyses de marché intégrées"
       ],
       "options": [
         {
@@ -2491,17 +2491,18 @@
       "id": "binance-vip",
       "categoryId": "c-finance",
       "name": "Binance — Accès VIP",
-      "subtitle": "Réduction de frais",
-      "price": 2500,
+      "subtitle": "Frais Réduits & Avantages",
+      "price": 3500,
+      "oldPrice": null,
       "logo": "../images/products/binance.png",
       "rating": "4.6",
       "clients": "1700",
-      "description": "Profitez de frais de trading réduits et d'un accès prioritaire au support Binance.",
+      "description": "Obtenez des réductions importantes sur vos frais de trading et un accès prioritaire.",
       "features": [
-        "Frais de trading réduits jusqu'à 20%",
-        "Support client prioritaire dédié",
-        "Accès aux ventes Launchpad en avant-première",
-        "Rapport fiscal automatisé"
+        "Réduction immédiate sur les frais de transaction",
+        "Accès prioritaire aux ventes de jetons Launchpad",
+        "Support technique VIP dédié à votre compte",
+        "Accès à des analyses et rapports de marché exclusifs"
       ],
       "options": [
         {
@@ -2523,17 +2524,17 @@
       "id": "kucoin-bot",
       "categoryId": "c-finance",
       "name": "KuCoin Trading Bot",
-      "subtitle": "Trading Automatisé Crypto",
+      "subtitle": "Bots de Trading Crypto",
       "price": 2000,
       "logo": "../images/products/kucoin.png",
       "rating": "4.5",
       "clients": "1200",
-      "description": "Automatisez vos stratégies de trading crypto 24h/24 avec les bots KuCoin.",
+      "description": "Automatisez vos stratégies de trading de cryptomonnaies 24h/24 sans aucune intervention.",
       "features": [
-        "Bots DCA, Grid & Futures préconfigurés",
-        "Fonctionne 24h/24, 7j/7 sans intervention",
-        "Backtesting sur données historiques",
-        "Gestion du risque intégrée (stop-loss)"
+        "Sélection de bots performants (Spot Grid, DCA, Futures)",
+        "Exécution automatique de vos ordres d'achat et de vente",
+        "Optimisation des frais de transaction des bots",
+        "Gestion intégrée des risques et des stop-loss"
       ],
       "options": [
         {
@@ -2564,18 +2565,19 @@
       "logo": "../images/offer1.jpeg",
       "rating": "4.9",
       "clients": "3200",
-      "description": "Tu économises 501 DA sur ce pack combiné. Accédez aux meilleures séries, musique sans pub et vidéos premium.",
+      "description": "Profitez du meilleur du divertissement mondial avec ce pack regroupant Netflix, Spotify et YouTube.",
       "features": [
-        "Netflix 4K Ultra HD inclus",
-        "Spotify sans pub, qualité HD",
-        "YouTube Premium sans publicités",
-        "Livraison instantanée"
+        "Abonnement Netflix Premium 4K Ultra HD inclus",
+        "Abonnement Spotify Premium sans publicité",
+        "Abonnement YouTube Premium et YouTube Music",
+        "Économisez sur vos abonnements multimédias"
       ],
       "descriptionImages": [
         "../images/description/netflix1.jpg",
         "../images/description/spotify1.jpg",
         "../images/description/youtube1.jpg"
-      ]
+      ],
+      "oldPrice": 1900
     },
     {
       "id": "duo-streaming",
@@ -2586,17 +2588,18 @@
       "logo": "../images/offer2.jpeg",
       "rating": "4.7",
       "clients": "1500",
-      "description": "Tu économises 351 DA. Films, séries, et avantages Amazon complets.",
+      "description": "Accédez aux catalogues géants de Disney+ et Amazon Prime Video à prix très avantageux.",
       "features": [
-        "Accès complet Disney+",
-        "Prime Video + avantages Amazon",
-        "Multi-écrans simultanés",
-        "Livraison instantanée"
+        "Abonnement Disney+ Premium inclus",
+        "Abonnement Amazon Prime Video inclus",
+        "Qualité vidéo maximale (4K HDR supporté)",
+        "Accès multi-écrans pour toute la famille"
       ],
       "descriptionImages": [
         "../images/description/disney1.jpg",
         "../images/description/prime-video1.jpg"
-      ]
+      ],
+      "oldPrice": 1300
     },
     {
       "id": "pack-ia",
@@ -2607,17 +2610,18 @@
       "logo": "../images/offer3.jpeg",
       "rating": "4.8",
       "clients": "2100",
-      "description": "Tu économises 1 101 DA. Les 2 meilleurs assistants IA du marché réunis en un seul pack.",
+      "description": "Multipliez votre productivité avec l'accès aux deux intelligences artificielles les plus puissantes du monde.",
       "features": [
-        "ChatGPT-5.5 accès illimité",
-        "Claude Pro accès illimité",
-        "Génération de texte et d'images avancée",
-        "Livraison instantanée"
+        "ChatGPT Plus avec accès prioritaire",
+        "Claude Pro avec de larges limites d'utilisation",
+        "Modèles de pointe (GPT-4o & Claude 3.7 Sonnet)",
+        "Aide de haut niveau au codage et à la rédaction"
       ],
       "descriptionImages": [
         "../images/description/chatGpt1.jpg",
         "../images/description/claude1.jpg"
-      ]
+      ],
+      "oldPrice": 5600
     },
     {
       "id": "pack-gaming",
@@ -2628,17 +2632,62 @@
       "logo": "../images/offer4.jpeg",
       "rating": "4.6",
       "clients": "980",
-      "description": "Tu économises 361 DA. 10 restants ! Fonce pour améliorer ton expérience sur tes jeux préférés.",
+      "description": "Rechargez vos crédits de jeux préférés en un seul pack pratique pour EA Sports FC 25, Fortnite et PUBG Mobile.",
       "features": [
-        "FC Points pour EA FC 25",
-        "V-Bucks pour Fortnite",
-        "UC pour PUBG Mobile",
-        "Livraison instantanée"
+        "Recharge FC Points pour EA Sports FC 25",
+        "Recharge V-Bucks officiels pour Fortnite",
+        "Recharge Unknown Cash (UC) pour PUBG Mobile",
+        "Achat de pass de combat et cosmétiques exclusifs"
       ],
       "descriptionImages": [
         "../images/description/eFootball1.jpg",
         "../images/description/fortnite1.jpg",
         "../images/description/pubg1.jpg"
+      ],
+      "oldPrice": 1360
+    },
+    {
+      "id": "pack-forme-totale",
+      "categoryId": "c-packs",
+      "name": "Forme Totale",
+      "subtitle": "YAZIO PRO + MyFitnessPal Premium",
+      "price": 999,
+      "oldPrice": 1500,
+      "logo": "../images/offer7.png",
+      "rating": "4.8",
+      "clients": "1200",
+      "description": "Suivez vos macros, vos calories et vos repas grâce à la combinaison des deux meilleures applications de fitness.",
+      "features": [
+        "Accès complet aux recettes de YAZIO PRO",
+        "Compteur de calories sans pub de MyFitnessPal Premium",
+        "Suivi nutritionnel et d'hydratation ultra-précis",
+        "Plans de repas et conseils de coach IA"
+      ],
+      "descriptionImages": [
+        "../images/description/yazio1.jpeg",
+        "../images/description/my-fitness-pal1.jpeg"
+      ]
+    },
+    {
+      "id": "pack-academie-premium",
+      "categoryId": "c-packs",
+      "name": "Académie Premium",
+      "subtitle": "Coursera Plus + Udemy Business",
+      "price": 2999,
+      "oldPrice": 4200,
+      "logo": "../images/offer8.jpeg",
+      "rating": "4.9",
+      "clients": "850",
+      "description": "Formez-vous auprès des meilleures universités et experts mondiaux avec Coursera et Udemy.",
+      "features": [
+        "Accès illimité aux cours certifiants Coursera Plus",
+        "Accès complet au catalogue Udemy Personal Plan",
+        "Certificats officiels à valoriser sur votre profil",
+        "Formations de niveau professionnel à votre rythme"
+      ],
+      "descriptionImages": [
+        "../images/description/coursera1.jpg",
+        "../images/description/udemy1.jpg"
       ]
     }
   ]

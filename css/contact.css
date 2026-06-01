@@ -10,7 +10,7 @@ header {
 /* Section contact */
 .contact {
   background-color: var(--bg-section2);
-  padding-top: var(--main-padding);
+  padding-top: 130px;
 }
 
 .contact-main {
@@ -23,17 +23,21 @@ header {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
   gap: 50px;
-  align-items: start;
+  align-items: stretch;
 }
 
 /* Colonne image fixe au scroll */
 .contact-image-col {
-  position: sticky;
-  top: 40px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 /* Image avec bord arrondi */
 .contact-img-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
   border-radius: 25px;
   overflow: hidden;
   border: 0.02px solid rgba(128, 128, 128, 0.329);
@@ -49,8 +53,9 @@ header {
 
 .contact-img-wrapper img {
   width: 100%;
-  display: block;
+  height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 /* Badges d'info sous l'image */
@@ -78,7 +83,7 @@ header {
 .contact-badge:hover {
   transform: translateY(-3px);
   border-color: #7c3aedf1;
-  box-shadow: var(--box-shadow);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
 }
 
 /* Icône du badge */
@@ -129,6 +134,7 @@ header {
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 
 /* Ligne dégradée en haut de la carte */
@@ -248,7 +254,7 @@ select option {
 /* Zone de texte redimensionnable */
 textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 180px;
   line-height: 1.6;
 }
 
@@ -502,12 +508,25 @@ textarea.invalid {
   .contact-layout {
     grid-template-columns: 1fr;
     gap: 30px;
+    align-items: start;
   }
 
   /* Image remonte en premier */
   .contact-image-col {
     position: static;
     order: -1;
+    height: auto;
+    display: block;
+  }
+
+  .contact-img-wrapper {
+    flex: none;
+    height: auto;
+    display: block;
+  }
+
+  .contact-img-wrapper img {
+    height: auto;
   }
 }
 

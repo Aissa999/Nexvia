@@ -275,14 +275,19 @@ header {
     font-size: 13px;
 }
 
-/* Couleur fond PayPal */
-.paypal-badge .badge-icon {
-    background: #003087;
+/* Couleur fond Dahabia */
+.dahabia-badge .badge-icon {
+    background: #fff;
 }
 
 /* Couleur fond Baridi */
 .baridi-badge .badge-icon {
     background: #ccc;
+}
+
+/* Couleur fond CCP */
+.ccp-badge .badge-icon {
+    background: #fff;
 }
 
 /* Fin boîte info et paiements */

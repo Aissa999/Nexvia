@@ -307,7 +307,7 @@ section.marketplace {
 }
 
 .cat-card:hover {
-  transform: translateY(-14px);
+  transform: translateY(-5px);
 }
 
 /* Image de la carte */

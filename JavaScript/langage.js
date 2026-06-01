@@ -73,7 +73,7 @@
   }
 
   function translateText(text, lang = state.lang) {
-    if (!state.data || lang === DEFAULT_LANG) return text;
+    if (!state.data) return text;
 
     const original = normalize(text);
     if (!original) return text;
@@ -82,6 +82,8 @@
     if (Object.prototype.hasOwnProperty.call(phrases, original)) {
       return withOriginalSpacing(text, phrases[original]);
     }
+
+    if (lang === DEFAULT_LANG) return text;
 
     let translated = original;
     const replacements = getReplacementData(lang);

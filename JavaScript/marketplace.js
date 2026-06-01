@@ -19,9 +19,9 @@ async function startMarketplace() {
             { "id": "c-games", "name": "Jeux Vidéo", "description": "Obtenez des avantages exclusifs et du contenu premium sur vos jeux préférés avec nos offres spéciales.", "tags": ["FIFA", "eFootball", "Fortnite", "PUBG", "Free Fire", "Minecraft"], "image": "../images/categories/games.jpg", "cssClass": "c-games" },
             { "id": "c-vpn", "name": "VPN & Proxy", "description": "Naviguez en toute sécurité et débloquez le contenu du monde entier avec nos solutions VPN rapides et fiables.", "tags": ["NordVPN", "Secure VPN", "Smart Proxy", "ExpressVPN", "Surfshark"], "image": "../images/categories/vpn.jpg", "cssClass": "c-vpn" },
             { "id": "c-fitness", "name": "Sport & Santé", "description": "Atteignez vos objectifs de remise en forme avec des plans d'entraînement et de nutrition personnalisés.", "tags": ["MyFitnessPal", "Nike Training", "Yazio", "Strava", "Freeletics"], "image": "../images/categories/fitness.jpg", "cssClass": "c-fitness" },
-            { "id": "c-mobile", "name": "Recharge Mobile", "description": "Rechargez votre forfait Mobilis, Djezzy ou Ooredoo instantanément — livraison directe sur votre numéro.", "tags": ["Mobilis", "Djezzy", "Ooredoo"], "image": "../images/categories/recharge.jpg", "cssClass": "c-mobile" },
+            { "id": "c-mobile", "name": "Recharge Mobile", "description": "Rechargez votre forfait Mobilis, Djezzy ou Ooredoo instantanément — livraison directe sur votre numéro.", "tags": ["Mobilis", "Djezzy", "Ooredoo"], "image": "../images/categories/recharge.png", "cssClass": "c-mobile" },
             { "id": "c-giftcards", "name": "Cartes Cadeaux", "description": "Offrez ou utilisez des cartes cadeaux numériques pour vos plateformes préférées — livraison instantanée par code.", "tags": ["iTunes", "Google Play", "Amazon", "Steam", "PlayStation", "Xbox"], "image": "../images/categories/gift-cards.jpg", "cssClass": "c-giftcards" },
-            { "id": "c-finance", "name": "Finance & Crypto", "description": "Accédez aux meilleurs outils d'analyse financière, de suivi de portefeuille et de trading crypto avancé sécurisé.", "tags": ["TradingView", "CoinStats", "Binance", "Kucoin"], "image": "../images/categories/finance.jpg", "cssClass": "c-finance" }
+            { "id": "c-finance", "name": "Finance & Crypto", "description": "Accédez aux meilleurs outils d'analyse financière, de suivi de portefeuille et de trading crypto avancé sécurisé.", "tags": ["TradingView", "CoinStats", "Binance", "Kucoin"], "image": "../images/categories/finance.png", "cssClass": "c-finance" }
         ],
         "products": [
             { "id": "netflix", "categoryId": "c-films", "name": "Netflix", "subtitle": "Abonnement Premium", "price": 650, "logo": "../images/products/netflix.png", "rating": "4.9", "clients": "5200", "description": "Accédez aux meilleures séries et films du moment en 4K Ultra HD.", "features": ["Qualité 4K Ultra HD + HDR", "Audio Spatial Dolby Atmos", "Téléchargement hors-ligne", "Catalogue mondial complet"] },
@@ -169,6 +169,22 @@ async function startMarketplace() {
         sidebar.innerHTML = `<button class="sb-close" id="sb-close">✕</button><div class="sb-title">${t("CATÉGORIES")}</div>`;
         document.getElementById("sb-close").addEventListener("click", closeMobileSidebar);
 
+        const allItem = document.createElement("div");
+        allItem.className = "sb-item";
+        allItem.dataset.id = "all";
+        allItem.onclick = () => showProductsView("all");
+        allItem.innerHTML = `
+            <span>${t("Tous les produits")}</span>
+            <span class="sb-count">${data.products.length}</span>
+        `;
+        sidebar.appendChild(allItem);
+
+        const hr = document.createElement("hr");
+        hr.style.border = "none";
+        hr.style.borderTop = "1px solid rgba(255, 255, 255, 0.08)";
+        hr.style.margin = "10px 0";
+        sidebar.appendChild(hr);
+
         data.categories.forEach(cat => {
             const prodCount = data.products.filter(p => p.categoryId === cat.id).length;
             const item = document.createElement("div");
@@ -186,6 +202,14 @@ async function startMarketplace() {
 
     function renderMobCats() {
         mobCats.innerHTML = "";
+
+        const allPill = document.createElement("div");
+        allPill.className = "mob-pill";
+        allPill.dataset.id = "all";
+        allPill.onclick = () => showProductsView("all");
+        allPill.innerHTML = `<span>${t("Tous les produits")}</span>`;
+        mobCats.appendChild(allPill);
+
         data.categories.forEach(cat => {
             const pill = document.createElement("div");
             pill.className = "mob-pill";
@@ -230,10 +254,18 @@ async function startMarketplace() {
 
     function renderProducts(categoryId) {
         prodGrid.innerHTML = "";
-        const categoryData = data.categories.find(c => c.id === categoryId) || { name: 'Offres Spéciales' };
-        prodTitle.innerHTML = `${t("Produits de la catégorie")} <span>${t(categoryData.name)}</span>`;
+        let categoryData;
+        let categoryProducts;
 
-        let categoryProducts = data.products.filter(p => p.categoryId === categoryId);
+        if (categoryId === "all") {
+            categoryData = { name: 'Tous les produits' };
+            categoryProducts = [...data.products];
+        } else {
+            categoryData = data.categories.find(c => c.id === categoryId) || { name: 'Offres Spéciales' };
+            categoryProducts = data.products.filter(p => p.categoryId === categoryId);
+        }
+
+        prodTitle.innerHTML = `${t("Produits de la catégorie")} <span>${t(categoryData.name)}</span>`;
 
         const sTerm = document.getElementById("filter-search")?.value.toLowerCase().trim();
         const sSort = document.getElementById("filter-sort")?.value || "popularity";
@@ -259,7 +291,7 @@ async function startMarketplace() {
             return;
         }
 
-        const originalList = data.products.filter(p => p.categoryId === categoryId);
+        const originalList = categoryId === "all" ? [...data.products] : data.products.filter(p => p.categoryId === categoryId);
         const popularId = originalList.reduce((best, p) => {
             const bClients = parseFloat((best.clients || '0').toString().replace(/,/g, '')) || 0;
             const pClients = parseFloat((p.clients || '0').toString().replace(/,/g, '')) || 0;
@@ -319,6 +351,9 @@ async function startMarketplace() {
             } else if (activeProduct.id === 'nord-vpn') {
                 activeProduct.price = 649;
                 activeProduct.oldPrice = 900;
+            } else if (activeProduct.id === 'binance-vip') {
+                activeProduct.price = 2500;
+                activeProduct.oldPrice = 3500;
             }
         }
 
@@ -573,12 +608,15 @@ async function startMarketplace() {
 
         paySection.innerHTML = `
             <div class="pay-lbl">${t("Choisissez un mode de paiement")}</div>
-            <div class="pay-opts">
-                <button class="pay-opt ${selectedPayment === 'baridimob' ? 'active' : ''}" onclick="selectPayment('baridimob')">
-                    <img src="../images/baridi-mob.png" alt="Baridimob" loading="lazy"> Baridimob
+            <div class="pay-opts" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 15px;">
+                <button class="pay-opt ${selectedPayment === 'baridimob' ? 'active' : ''}" onclick="selectPayment('baridimob')" style="padding: 8px 4px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; text-align: center;">
+                    <img src="../images/baridi-mob.png" alt="Baridimob" loading="lazy" style="height: 20px; object-fit: contain;"> Baridimob
                 </button>
-                <button class="pay-opt ${selectedPayment === 'paypal' ? 'active' : ''}" onclick="selectPayment('paypal')">
-                    <img src="../images/paypal.png" alt="PayPal" loading="lazy"> PayPal
+                <button class="pay-opt ${selectedPayment === 'cartedahabia' ? 'active' : ''}" onclick="selectPayment('cartedahabia')" style="padding: 8px 4px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; text-align: center;">
+                    <img src="../images/cartedahabia.png" alt="Dahabia" loading="lazy" style="height: 20px; object-fit: contain; border-radius: 2px;"> Dahabia
+                </button>
+                <button class="pay-opt ${selectedPayment === 'ccp' ? 'active' : ''}" onclick="selectPayment('ccp')" style="padding: 8px 4px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; text-align: center;">
+                    <img src="../images/ccp.png" alt="CCP" loading="lazy" style="height: 20px; object-fit: contain; border-radius: 2px;"> CCP
                 </button>
             </div>
 

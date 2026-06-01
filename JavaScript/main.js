@@ -413,6 +413,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // Page panier
 // ================================================
 
+const t = (key) => {
+  if (window.NexviaI18n && typeof window.NexviaI18n.translateText === 'function') {
+    return window.NexviaI18n.translateText(key);
+  }
+  return key;
+};
+
 // Affichage des produits et du résumé
 window.renderCartPage = function () {
   const itemsContainer = document.getElementById('cart-items');
@@ -450,8 +457,15 @@ window.renderCartPage = function () {
     }
 
     const imgSrc = item.image.startsWith('../') ? item.image : `../${item.image}`;
-    const paymentImgSrc = item.payment === 'baridimob' ? '../images/baridi-mob.png' : '../images/paypal.png';
-    const paymentName = item.payment === 'baridimob' ? 'Baridimob' : 'PayPal';
+    let paymentImgSrc = '../images/baridi-mob.png';
+    let paymentName = t('BaridiMob');
+    if (item.payment === 'cartedahabia') {
+      paymentImgSrc = '../images/cartedahabia.png';
+      paymentName = t('Carte Dahabia');
+    } else if (item.payment === 'ccp') {
+      paymentImgSrc = '../images/ccp.png';
+      paymentName = t('Versement CCP');
+    }
 
     const html = `
         <div class="cart-item">
@@ -484,91 +498,327 @@ window.renderCartPage = function () {
 // Processus de paiement
 // ================================================
 
-// Modal de paiement avec formulaires carte/PayPal
+// Modal de paiement avec formulaires carte/BaridiMob/CCP
 window.processCheckout = function () {
   const imgPath = window.location.pathname.includes('/pages/') || window.location.pathname.includes('\\pages\\') ? '../images/' : 'images/';
   const overlay = document.createElement('div');
   overlay.className = 'checkout-modal-overlay';
   overlay.innerHTML = `
-    <div class="checkout-modal-card" style="width: 400px; padding: 30px; max-width: 90%;">
-      <h2 style="color: #fff; margin-bottom: 20px; font-size: 24px;">Paiement</h2>
-      <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-        <button id="pay-card-btn" style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid var(--main-color1); background: rgba(34, 167, 240, 0.1); color: #fff; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;">
-          <img src="${imgPath}baridi-mob.png" alt="" style="width: 20px; height: 20px;"> Carte Dahabia
+    <div class="checkout-modal-card" style="width: 500px; padding: 35px; max-width: 95%; max-height: 85vh; overflow-y: auto; border-radius: 20px; background: #0f172a; border: 1px solid rgba(138, 63, 252, 0.3); box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 30px rgba(138, 63, 252, 0.15); scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.2) transparent;">
+      
+      <div style="text-align: center; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 15px;">
+        <h2 style="color: #fff; font-size: 22px; font-weight: 800; margin: 0; display: inline-flex; align-items: center; gap: 8px;">
+          <i class="fa-solid fa-shield-halved" style="color: var(--main-color1); font-size: 20px;"></i>
+          <span style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">${t("Paiement Sécurisé")}</span>
+        </h2>
+      </div>
+      
+      <!-- Liste verticale des options -->
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+        <button id="pay-card-btn" style="padding: 14px 18px; border-radius: 10px; border: 1px solid var(--main-color1); background: linear-gradient(135deg, rgba(34, 167, 240, 0.12), rgba(138, 63, 252, 0.12)); color: #fff; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 12px; font-weight: 600; text-align: left; box-shadow: 0 0 15px rgba(34, 167, 240, 0.25);">
+          <img src="${imgPath}cartedahabia.png" alt="" style="width: 24px; height: 24px; border-radius: 4px; object-fit: contain;">
+          <span>${t("Carte Dahabia")}</span>
+          <i class="fa-solid fa-circle-check check-indicator" style="margin-left: auto; color: var(--main-color1); font-size: 16px; transition: opacity 0.3s; opacity: 1;"></i>
         </button>
-        <button id="pay-paypal-btn" style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #fff; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;">
-          <img src="${imgPath}paypal.png" alt="" style="width: 20px; height: 20px;"> PayPal
+        <button id="pay-baridi-btn" style="padding: 14px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); color: #fff; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 12px; font-weight: 600; text-align: left;">
+          <img src="${imgPath}baridi-mob.png" alt="" style="width: 24px; height: 24px; object-fit: contain;">
+          <span>${t("BaridiMob")}</span>
+          <i class="fa-solid fa-circle-check check-indicator" style="margin-left: auto; color: var(--main-color1); font-size: 16px; transition: opacity 0.3s; opacity: 0;"></i>
+        </button>
+        <button id="pay-ccp-btn" style="padding: 14px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); color: #fff; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 12px; font-weight: 600; text-align: left;">
+          <img src="${imgPath}ccp.png" alt="" style="width: 24px; height: 24px; object-fit: contain;">
+          <span>${t("Versement CCP")}</span>
+          <i class="fa-solid fa-circle-check check-indicator" style="margin-left: auto; color: var(--main-color1); font-size: 16px; transition: opacity 0.3s; opacity: 0;"></i>
         </button>
       </div>
 
+      <!-- Formulaire Carte Dahabia -->
       <div id="card-form" style="display: block; text-align: left;">
         <div style="margin-bottom: 15px;">
-          <label style="display: block; color: var(--p-color); margin-bottom: 5px; font-size: 14px;">Numéro de carte</label>
-          <input type="text" id="card-number" placeholder="0000 0000 0000 0000" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff;" required>
+          <label style="display: block; color: #fff; margin-bottom: 6px; font-size: 13px; font-weight: 600;">${t("Nom du titulaire")}</label>
+          <input type="text" id="card-holder" placeholder="Nom et Prénom" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; color: #fff; font-size: 14px; outline: none; transition: 0.3s;" onfocus="this.style.borderColor='var(--main-color1)'; this.style.boxShadow='0 0 8px rgba(34, 167, 240, 0.25)';" onblur="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.boxShadow='none';" required>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; color: #fff; margin-bottom: 6px; font-size: 13px; font-weight: 600;">${t("Numéro de carte")}</label>
+          <input type="text" id="card-number" placeholder="0000 0000 0000 0000" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; color: #fff; font-size: 14px; outline: none; transition: 0.3s;" onfocus="this.style.borderColor='var(--main-color1)'; this.style.boxShadow='0 0 8px rgba(34, 167, 240, 0.25)';" onblur="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.boxShadow='none';" required>
         </div>
         <div style="display: flex; gap: 15px; margin-bottom: 15px;">
             <div style="flex: 1;">
-              <label style="display: block; color: var(--p-color); margin-bottom: 5px; font-size: 14px;">Expiration</label>
-              <input type="text" id="card-exp" placeholder="MM/YY" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff;" required>
+              <label style="display: block; color: #fff; margin-bottom: 6px; font-size: 13px; font-weight: 600;">${t("Expiration")}</label>
+              <input type="text" id="card-exp" placeholder="MM/YY" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; color: #fff; font-size: 14px; outline: none; transition: 0.3s;" onfocus="this.style.borderColor='var(--main-color1)'; this.style.boxShadow='0 0 8px rgba(34, 167, 240, 0.25)';" onblur="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.boxShadow='none';" required>
             </div>
             <div style="flex: 1;">
-              <label style="display: block; color: var(--p-color); margin-bottom: 5px; font-size: 14px;">CVC</label>
-              <input type="text" id="card-cvc" placeholder="123" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff;" required>
+              <label style="display: block; color: #fff; margin-bottom: 6px; font-size: 13px; font-weight: 600;">${t("CVC")}</label>
+              <input type="text" id="card-cvc" placeholder="123" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; color: #fff; font-size: 14px; outline: none; transition: 0.3s;" onfocus="this.style.borderColor='var(--main-color1)'; this.style.boxShadow='0 0 8px rgba(34, 167, 240, 0.25)';" onblur="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.boxShadow='none';" required>
             </div>
         </div>
       </div>
 
-      <div id="paypal-form" style="display: none; text-align: left;">
-        <div style="margin-bottom: 15px;">
-          <label style="display: block; color: var(--p-color); margin-bottom: 5px; font-size: 14px;">Email PayPal</label>
-          <input type="email" id="paypal-email" placeholder="votre@email.com" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff;" required>
+      <!-- Formulaire BaridiMob -->
+      <div id="baridi-form" style="display: none; text-align: left;">
+        <div style="background: rgba(15, 23, 42, 0.6); padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+          <div>
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--p-color); font-weight: 600; margin-bottom: 4px;">${t("Compte BaridiMob")}</div>
+            <span id="baridi-acc-num" style="font-family: 'SFMono-Regular', Consolas, monospace; font-size: 15px; color: #fff; font-weight: 700; letter-spacing: 1px;">0079999001236814450</span>
+          </div>
+          <button id="copy-baridi-btn" style="padding: 8px 14px; background: rgba(34, 167, 240, 0.1); border: 1px solid rgba(34, 167, 240, 0.25); border-radius: 8px; color: var(--main-color1); font-size: 12px; cursor: pointer; transition: 0.3s; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.background='rgba(34, 167, 240, 0.2)';" onmouseout="this.style.background='rgba(34, 167, 240, 0.1)';">
+            <i class="fa-solid fa-copy"></i> <span>${t("Copier")}</span>
+          </button>
         </div>
-        <div style="margin-bottom: 15px;">
-          <label style="display: block; color: var(--p-color); margin-bottom: 5px; font-size: 14px;">Numéro de téléphone</label>
-          <input type="text" id="paypal-phone" placeholder="+213 555 55 55 55" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff;" required>
+        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 15px; line-height: 1.5;">${t("Envoyez le montant exact à ce compte BaridiMob, puis confirmez votre paiement ci-dessous.")}</p>
+        
+        <!-- Mode de validation -->
+        <div style="display: flex; gap: 12px; margin-bottom: 15px;">
+          <label style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; background: rgba(255,255,255,0.02); cursor: pointer; font-size: 13px; color: #fff; transition: 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.04)';" onmouseout="this.style.background='rgba(255,255,255,0.02)';">
+            <input type="radio" name="baridi-proof-type" value="upload" checked style="accent-color: var(--main-color1); width: 16px; height: 16px;">
+            <i class="fa-solid fa-file-image" style="color: var(--main-color1); font-size: 14px;"></i>
+            <span>${t("Importer Reçu")}</span>
+          </label>
+          <label style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; background: rgba(255,255,255,0.02); cursor: pointer; font-size: 13px; color: #fff; transition: 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.04)';" onmouseout="this.style.background='rgba(255,255,255,0.02)';">
+            <input type="radio" name="baridi-proof-type" value="number" style="accent-color: var(--main-color1); width: 16px; height: 16px;">
+            <i class="fa-solid fa-hashtag" style="color: var(--main-color1); font-size: 14px;"></i>
+            <span>${t("Saisir N° Ref")}</span>
+          </label>
+        </div>
+
+        <!-- Section Upload Preuve -->
+        <div id="baridi-upload-section" style="margin-bottom: 15px;">
+          <label style="display: block; color: #fff; margin-bottom: 12px; font-size: 13px; font-weight: 600;">${t("Preuve de paiement (Image)")}</label>
+          <div style="position: relative; border: 2px dashed rgba(34, 167, 240, 0.3); border-radius: 10px; padding: 25px 15px; text-align: center; background: rgba(34, 167, 240, 0.02); cursor: pointer; transition: 0.3s;" id="baridi-drag-zone" onmouseover="this.style.borderColor='var(--main-color1)'; this.style.background='rgba(34, 167, 240, 0.05)';" onmouseout="this.style.borderColor='rgba(34, 167, 240, 0.3)'; this.style.background='rgba(34, 167, 240, 0.02)';">
+            <input type="file" id="baridi-proof-file" accept="image/png, image/jpeg" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;">
+            <div id="baridi-upload-placeholder">
+              <i class="fa-solid fa-cloud-arrow-up" style="font-size: 28px; color: var(--main-color1); margin-bottom: 8px;"></i>
+              <div style="font-size: 13px; color: #94a3b8; font-weight: 500;">${t("Importer Reçu")}</div>
+            </div>
+            <div id="baridi-thumbnail-preview" style="display: none; align-items: center; justify-content: center; gap: 10px; flex-direction: column;">
+              <img id="baridi-preview-img" src="" alt="Thumbnail" style="max-height: 80px; max-width: 100%; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1);">
+              <span id="baridi-preview-filename" style="font-size: 12px; color: #94a3b8; word-break: break-all;"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section Saisie Numéro -->
+        <div id="baridi-number-section" style="margin-bottom: 15px; display: none;">
+          <label style="display: block; color: #fff; margin-bottom: 6px; font-size: 13px; font-weight: 600;">${t("Numéro de transaction")}</label>
+          <input type="text" id="baridi-txn-num" placeholder="${t("Ex: 012345678912")}" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; color: #fff; font-size: 14px; outline: none; transition: 0.3s;" onfocus="this.style.borderColor='var(--main-color1)'; this.style.boxShadow='0 0 8px rgba(34, 167, 240, 0.25)';" onblur="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.boxShadow='none';">
+        </div>
+      </div>
+
+      <!-- Formulaire CCP -->
+      <div id="ccp-form" style="display: none; text-align: left;">
+        <div style="background: rgba(15, 23, 42, 0.6); padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); margin-bottom: 15px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+            <div>
+              <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--p-color); font-weight: 600; margin-bottom: 4px;">${t("Numéro CCP")}</div>
+              <span id="ccp-acc-num" style="font-family: 'SFMono-Regular', Consolas, monospace; font-size: 15px; color: #fff; font-weight: 700; letter-spacing: 1px;">1234567</span>
+            </div>
+            <button id="copy-ccp-acc-btn" style="padding: 8px 14px; background: rgba(34, 167, 240, 0.1); border: 1px solid rgba(34, 167, 240, 0.25); border-radius: 8px; color: var(--main-color1); font-size: 12px; cursor: pointer; transition: 0.3s; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.background='rgba(34, 167, 240, 0.2)';" onmouseout="this.style.background='rgba(34, 167, 240, 0.1)';">
+              <i class="fa-solid fa-copy"></i> <span>${t("Copier")}</span>
+            </button>
+          </div>
+          <div style="height: 1px; background: rgba(255,255,255,0.06);"></div>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+            <div>
+              <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--p-color); font-weight: 600; margin-bottom: 4px;">${t("Clé CCP")}</div>
+              <span id="ccp-key-num" style="font-family: 'SFMono-Regular', Consolas, monospace; font-size: 15px; color: #fff; font-weight: 700; letter-spacing: 1px;">89</span>
+            </div>
+            <button id="copy-ccp-key-btn" style="padding: 8px 14px; background: rgba(34, 167, 240, 0.1); border: 1px solid rgba(34, 167, 240, 0.25); border-radius: 8px; color: var(--main-color1); font-size: 12px; cursor: pointer; transition: 0.3s; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;" onmouseover="this.style.background='rgba(34, 167, 240, 0.2)';" onmouseout="this.style.background='rgba(34, 167, 240, 0.1)';">
+              <i class="fa-solid fa-copy"></i> <span>${t("Copier")}</span>
+            </button>
+          </div>
+        </div>
+        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 15px; line-height: 1.5;">${t("Effectuez le versement du montant exact sur ce compte CCP, puis confirmez votre paiement ci-dessous.")}</p>
+        
+        <!-- Mode de validation -->
+        <div style="display: flex; gap: 12px; margin-bottom: 15px;">
+          <label style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; background: rgba(255,255,255,0.02); cursor: pointer; font-size: 13px; color: #fff; transition: 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.04)';" onmouseout="this.style.background='rgba(255,255,255,0.02)';">
+            <input type="radio" name="ccp-proof-type" value="upload" checked style="accent-color: var(--main-color1); width: 16px; height: 16px;">
+            <i class="fa-solid fa-file-image" style="color: var(--main-color1); font-size: 14px;"></i>
+            <span>${t("Importer Reçu")}</span>
+          </label>
+          <label style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; background: rgba(255,255,255,0.02); cursor: pointer; font-size: 13px; color: #fff; transition: 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.04)';" onmouseout="this.style.background='rgba(255,255,255,0.02)';">
+            <input type="radio" name="ccp-proof-type" value="number" style="accent-color: var(--main-color1); width: 16px; height: 16px;">
+            <i class="fa-solid fa-hashtag" style="color: var(--main-color1); font-size: 14px;"></i>
+            <span>${t("Saisir N° Ref")}</span>
+          </label>
+        </div>
+
+        <!-- Section Upload Preuve -->
+        <div id="ccp-upload-section" style="margin-bottom: 15px;">
+          <label style="display: block; color: #fff; margin-bottom: 12px; font-size: 13px; font-weight: 600;">${t("Preuve de paiement (Image)")}</label>
+          <div style="position: relative; border: 2px dashed rgba(34, 167, 240, 0.3); border-radius: 10px; padding: 25px 15px; text-align: center; background: rgba(34, 167, 240, 0.02); cursor: pointer; transition: 0.3s;" id="ccp-drag-zone" onmouseover="this.style.borderColor='var(--main-color1)'; this.style.background='rgba(34, 167, 240, 0.05)';" onmouseout="this.style.borderColor='rgba(34, 167, 240, 0.3)'; this.style.background='rgba(34, 167, 240, 0.02)';">
+            <input type="file" id="ccp-proof-file" accept="image/png, image/jpeg" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;">
+            <div id="ccp-upload-placeholder">
+              <i class="fa-solid fa-cloud-arrow-up" style="font-size: 28px; color: var(--main-color1); margin-bottom: 8px;"></i>
+              <div style="font-size: 13px; color: #94a3b8; font-weight: 500;">${t("Importer Reçu")}</div>
+            </div>
+            <div id="ccp-thumbnail-preview" style="display: none; align-items: center; justify-content: center; gap: 10px; flex-direction: column;">
+              <img id="ccp-preview-img" src="" alt="Thumbnail" style="max-height: 80px; max-width: 100%; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1);">
+              <span id="ccp-preview-filename" style="font-size: 12px; color: #94a3b8; word-break: break-all;"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section Saisie Numéro -->
+        <div id="ccp-number-section" style="margin-bottom: 15px; display: none;">
+          <label style="display: block; color: #fff; margin-bottom: 6px; font-size: 13px; font-weight: 600;">${t("Numéro de transaction")}</label>
+          <input type="text" id="ccp-txn-num" placeholder="${t("Ex: 012345678912")}" style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; color: #fff; font-size: 14px; outline: none; transition: 0.3s;" onfocus="this.style.borderColor='var(--main-color1)'; this.style.boxShadow='0 0 8px rgba(34, 167, 240, 0.25)';" onblur="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.boxShadow='none';">
         </div>
       </div>
 
       <div id="payment-warning" style="color: #ff4d4f; font-size: 14px; margin-bottom: 15px; display: none; text-align: center; font-weight: 500;"></div>
 
-      <button id="confirm-pay-btn" style="width: 100%; padding: 14px; background: var(--gradient); color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px;">
-        Confirmer le paiement
+      <button id="confirm-pay-btn" style="width: 100%; padding: 14px; background: var(--gradient); color: #fff; border: none; border-radius: 12px; font-size: 15px; font-weight: 800; cursor: pointer; transition: all 0.3s; margin-top: 10px; letter-spacing: 0.5px; box-shadow: 0 8px 20px rgba(123, 47, 247, 0.3);" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 10px 24px rgba(123, 47, 247, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px rgba(123, 47, 247, 0.3)';">
+        ${t("Confirmer le paiement")}
       </button>
-      <button id="cancel-pay-btn" style="width: 100%; padding: 10px; background: transparent; color: var(--p-color); border: none; font-size: 14px; cursor: pointer; margin-top: 10px;">
-        Annuler
+      <button id="cancel-pay-btn" style="width: 100%; padding: 10px; background: transparent; color: #94a3b8; border: none; font-size: 14px; cursor: pointer; margin-top: 10px; font-weight: 600; transition: color 0.3s;" onmouseover="this.style.color='#fff';" onmouseout="this.style.color='#94a3b8';">
+        ${t("Annuler")}
       </button>
     </div>
   `;
   document.body.appendChild(overlay);
 
-  // Gestion des boutons de méthode de paiement
+  // Buttons and Forms selection
   const cardBtn = document.getElementById('pay-card-btn');
-  const paypalBtn = document.getElementById('pay-paypal-btn');
+  const baridiBtn = document.getElementById('pay-baridi-btn');
+  const ccpBtn = document.getElementById('pay-ccp-btn');
+  
   const cardForm = document.getElementById('card-form');
-  const paypalForm = document.getElementById('paypal-form');
+  const baridiForm = document.getElementById('baridi-form');
+  const ccpForm = document.getElementById('ccp-form');
+
   let selectedMethod = 'card';
 
-  cardBtn.onclick = () => {
-    selectedMethod = 'card';
-    cardBtn.style.border = '1px solid var(--main-color1)';
-    cardBtn.style.background = 'rgba(34, 167, 240, 0.1)';
-    paypalBtn.style.border = '1px solid rgba(255,255,255,0.1)';
-    paypalBtn.style.background = 'transparent';
-    cardForm.style.display = 'block';
-    paypalForm.style.display = 'none';
-  };
-
-  paypalBtn.onclick = () => {
-    selectedMethod = 'paypal';
-    paypalBtn.style.border = '1px solid var(--main-color1)';
-    paypalBtn.style.background = 'rgba(34, 167, 240, 0.1)';
-    cardBtn.style.border = '1px solid rgba(255,255,255,0.1)';
-    cardBtn.style.background = 'transparent';
-    paypalForm.style.display = 'block';
+  const selectMethod = (method) => {
+    selectedMethod = method;
+    
+    // Reset forms
     cardForm.style.display = 'none';
+    baridiForm.style.display = 'none';
+    ccpForm.style.display = 'none';
+
+    [
+      { btn: cardBtn, id: 'card' },
+      { btn: baridiBtn, id: 'baridimob' },
+      { btn: ccpBtn, id: 'ccp' }
+    ].forEach(opt => {
+      const check = opt.btn.querySelector('.check-indicator');
+      if (opt.id === method) {
+        opt.btn.style.border = '1px solid var(--main-color1)';
+        opt.btn.style.background = 'linear-gradient(135deg, rgba(34, 167, 240, 0.12), rgba(138, 63, 252, 0.12))';
+        opt.btn.style.boxShadow = '0 0 15px rgba(34, 167, 240, 0.25)';
+        if (check) check.style.opacity = '1';
+      } else {
+        opt.btn.style.border = '1px solid rgba(255,255,255,0.08)';
+        opt.btn.style.background = 'rgba(255,255,255,0.02)';
+        opt.btn.style.boxShadow = 'none';
+        if (check) check.style.opacity = '0';
+      }
+    });
+
+    if (method === 'card') {
+      cardForm.style.display = 'block';
+    } else if (method === 'baridimob') {
+      baridiForm.style.display = 'block';
+    } else if (method === 'ccp') {
+      ccpForm.style.display = 'block';
+    }
   };
 
-  // Formatage automatique de la date d'expiration
+  cardBtn.onclick = () => selectMethod('card');
+  baridiBtn.onclick = () => selectMethod('baridimob');
+  ccpBtn.onclick = () => selectMethod('ccp');
+
+  // Copy helpers Setup
+  const setupCopy = (btnId, textToCopy) => {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
+    btn.onclick = () => {
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const span = btn.querySelector('span');
+        const icon = btn.querySelector('i');
+        if (span) {
+          const originalText = span.textContent;
+          span.textContent = t("Copié");
+          btn.style.color = '#2ecc71';
+          btn.style.borderColor = 'rgba(46, 204, 113, 0.4)';
+          btn.style.background = 'rgba(46, 204, 113, 0.1)';
+          if (icon) {
+            icon.className = 'fa-solid fa-check';
+            icon.style.color = '#2ecc71';
+          }
+          setTimeout(() => {
+            span.textContent = originalText;
+            btn.style.color = 'var(--main-color1)';
+            btn.style.borderColor = 'rgba(34, 167, 240, 0.25)';
+            btn.style.background = 'rgba(34, 167, 240, 0.1)';
+            if (icon) {
+              icon.className = 'fa-solid fa-copy';
+              icon.style.color = 'var(--main-color1)';
+            }
+          }, 2000);
+        }
+      });
+    };
+  };
+
+  setupCopy('copy-baridi-btn', '0079999001236814450');
+  setupCopy('copy-ccp-acc-btn', '1234567');
+  setupCopy('copy-ccp-key-btn', '89');
+
+  // File Preview Setup
+  const setupFilePreview = (fileInputId, previewImgId, previewFilenameId, thumbnailDivId, placeholderDivId) => {
+    const fileInput = document.getElementById(fileInputId);
+    const previewImg = document.getElementById(previewImgId);
+    const previewFilename = document.getElementById(previewFilenameId);
+    const thumbnailDiv = document.getElementById(thumbnailDivId);
+    const placeholderDiv = document.getElementById(placeholderDivId);
+
+    if (!fileInput) return;
+    fileInput.onchange = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        previewFilename.textContent = file.name;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previewImg.src = e.target.result;
+          placeholderDiv.style.display = 'none';
+          thumbnailDiv.style.display = 'flex';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        placeholderDiv.style.display = 'block';
+        thumbnailDiv.style.display = 'none';
+      }
+    };
+  };
+
+  setupFilePreview('baridi-proof-file', 'baridi-preview-img', 'baridi-preview-filename', 'baridi-thumbnail-preview', 'baridi-upload-placeholder');
+  setupFilePreview('ccp-proof-file', 'ccp-preview-img', 'ccp-preview-filename', 'ccp-thumbnail-preview', 'ccp-upload-placeholder');
+
+  // Radio toggles Setup
+  const setupRadioToggles = (radioName, uploadSectionId, numberSectionId) => {
+    const radios = document.getElementsByName(radioName);
+    const uploadSection = document.getElementById(uploadSectionId);
+    const numberSection = document.getElementById(numberSectionId);
+
+    radios.forEach(radio => {
+      radio.onchange = (e) => {
+        if (e.target.value === 'upload') {
+          uploadSection.style.display = 'block';
+          numberSection.style.display = 'none';
+        } else {
+          uploadSection.style.display = 'none';
+          numberSection.style.display = 'block';
+        }
+      };
+    });
+  };
+
+  setupRadioToggles('baridi-proof-type', 'baridi-upload-section', 'baridi-number-section');
+  setupRadioToggles('ccp-proof-type', 'ccp-upload-section', 'ccp-number-section');
+
+  // Expiration date auto formatting
   const expInput = document.getElementById('card-exp');
   if (expInput) {
     expInput.addEventListener('input', (e) => {
@@ -581,78 +831,111 @@ window.processCheckout = function () {
     });
   }
 
-  // Bouton annuler
+  // Cancel Button
   document.getElementById('cancel-pay-btn').onclick = () => {
     document.body.removeChild(overlay);
   };
 
-  // Confirmation du paiement
+  // Payment Confirmation
   document.getElementById('confirm-pay-btn').onclick = () => {
     const warning = document.getElementById('payment-warning');
 
-    // Validation carte
+    // Validation
     if (selectedMethod === 'card') {
+      const holder = document.getElementById('card-holder').value.trim();
       const num = document.getElementById('card-number').value.trim();
       const exp = document.getElementById('card-exp').value.trim();
       const cvc = document.getElementById('card-cvc').value.trim();
-      if (!num || !exp || !cvc) {
-        warning.textContent = "Veuillez remplir toutes les informations de la carte.";
+      if (!holder || !num || !exp || !cvc) {
+        warning.textContent = t("Veuillez remplir toutes les informations de la carte.");
         warning.style.display = 'block';
         return;
       }
 
       const expParts = exp.split('/');
       if (expParts.length !== 2) {
-        warning.textContent = "Format d'expiration invalide (MM/YY).";
+        warning.textContent = t("Format d'expiration invalide (MM/YY).");
         warning.style.display = 'block';
         return;
       }
       const month = parseInt(expParts[0], 10);
       const year = parseInt(expParts[1], 10);
       if (isNaN(month) || month < 1 || month > 12) {
-        warning.textContent = "Mois d'expiration invalide (01-12).";
+        warning.textContent = t("Mois d'expiration invalide (01-12).");
         warning.style.display = 'block';
         return;
       }
       if (isNaN(year) || year < 26) {
-        warning.textContent = "Année d'expiration invalide (26+).";
+        warning.textContent = t("Année d'expiration invalide (26+).");
         warning.style.display = 'block';
         return;
       }
-    } else {
-      // Validation PayPal
-      const email = document.getElementById('paypal-email').value.trim();
-      const phone = document.getElementById('paypal-phone').value.trim();
-      if (!email || !email.includes('@') || !phone) {
-        warning.textContent = "Veuillez entrer un email valide et un numéro de téléphone.";
-        warning.style.display = 'block';
-        return;
+    } else if (selectedMethod === 'baridimob') {
+      const proofType = document.querySelector('input[name="baridi-proof-type"]:checked').value;
+      if (proofType === 'upload') {
+        const fileInput = document.getElementById('baridi-proof-file');
+        if (!fileInput || fileInput.files.length === 0) {
+          warning.textContent = t("Veuillez uploader le reçu de paiement.");
+          warning.style.display = 'block';
+          return;
+        }
+      } else {
+        const txnNum = document.getElementById('baridi-txn-num').value.trim();
+        if (!txnNum) {
+          warning.textContent = t("Veuillez saisir le numéro de transaction.");
+          warning.style.display = 'block';
+          return;
+        }
+      }
+    } else if (selectedMethod === 'ccp') {
+      const proofType = document.querySelector('input[name="ccp-proof-type"]:checked').value;
+      if (proofType === 'upload') {
+        const fileInput = document.getElementById('ccp-proof-file');
+        if (!fileInput || fileInput.files.length === 0) {
+          warning.textContent = t("Veuillez uploader le reçu de paiement.");
+          warning.style.display = 'block';
+          return;
+        }
+      } else {
+        const txnNum = document.getElementById('ccp-txn-num').value.trim();
+        if (!txnNum) {
+          warning.textContent = t("Veuillez saisir le numéro de transaction.");
+          warning.style.display = 'block';
+          return;
+        }
       }
     }
+
     warning.style.display = 'none';
 
-    // Traitement du paiement
+    // Processing payment
     const btn = document.getElementById('confirm-pay-btn');
     btn.disabled = true;
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Traitement...';
+    btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> ${t("Traitement...")}`;
 
     setTimeout(() => {
       const serial = 'ORD-2026-' + Math.random().toString(36).substring(2, 8).toUpperCase();
       overlay.innerHTML = `
-        <div class="checkout-modal-card">
-          <div class="checkout-modal-icon"><i class="fa-solid fa-check"></i></div>
-          <div class="checkout-modal-title">Commande confirmée !</div>
-          <div class="checkout-modal-order"><i class="fa-solid fa-hashtag"></i> ${serial}</div>
-          <p class="checkout-modal-msg">Une confirmation a été envoyée à votre email. Votre abonnement sera activé dans un délai maximum de <strong>24 heures</strong>.</p>
-          <button class="checkout-modal-btn" id="modal-close-btn">
-            <i class="fa-solid fa-house"></i> Retour à l'accueil
+        <div class="checkout-modal-card" style="width: 440px; padding: 40px 30px; text-align: center; border-radius: 24px; background: #0f172a; border: 1px solid rgba(138, 63, 252, 0.4); box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 30px rgba(138, 63, 252, 0.2); animation: cardIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+          <div class="checkout-modal-icon" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, rgba(46, 204, 113, 0.2), rgba(46, 204, 113, 0.05)); border: 2px solid rgba(46, 204, 113, 0.5); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 25px; animation: iconPop 0.5s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;">
+            <i class="fa-solid fa-circle-check" style="font-size: 40px; color: #2ecc71;"></i>
+          </div>
+          <div class="checkout-modal-title" style="color: #fff; font-size: 24px; font-weight: 800; margin-bottom: 12px;">${t("Commande confirmée !")}</div>
+          <div class="checkout-modal-order" style="display: inline-block; background: rgba(34, 167, 240, 0.12); border: 1px solid rgba(34, 167, 240, 0.3); border-radius: 8px; padding: 8px 18px; font-size: 15px; font-weight: 700; color: #22a7f0; margin-bottom: 20px; font-family: monospace; letter-spacing: 0.8px;">
+            <i class="fa-solid fa-hashtag" style="margin-right: 4px;"></i> ${serial}
+          </div>
+          <p class="checkout-modal-msg" style="color: #94a3b8; font-size: 14px; line-height: 1.6; margin-bottom: 30px;">
+            ${t("Une confirmation a été envoyée à votre email. Votre abonnement sera activé dans un délai maximum de <strong>24 heures</strong>.")}
+          </p>
+          <button class="checkout-modal-btn" id="modal-close-btn" style="width: 100%; padding: 14px; background: var(--gradient); color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 20px rgba(123, 47, 247, 0.25); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 24px rgba(123, 47, 247, 0.35)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 20px rgba(123, 47, 247, 0.25)';">
+            <i class="fa-solid fa-house"></i> ${t("Retour à l'accueil")}
           </button>
         </div>
       `;
-      document.getElementById('modal-close-btn').addEventListener('click', () => {
+      document.getElementById('modal-close-btn').onclick = () => {
         window.clearCart();
-        window.location.href = '../index.html';
-      });
+        window.location.href = window.location.pathname.includes('/pages/') || window.location.pathname.includes('\\pages\\') ? '../index.html' : 'index.html';
+      };
     }, 2000);
   };
 };
